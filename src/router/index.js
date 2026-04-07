@@ -1,23 +1,73 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+
+// Page
+import HomePage from '@/pages/HomePage.vue';
+import LoginPage from '@/pages/LoginPage.vue';
+import MyPage from '@/pages/MyPage.vue';
+import SignUpPage from '@/pages/SignUpPage.vue';
+import TransactionPage from '@/pages/TransactionPage.vue';
+
+// components
+import TransactionForm from '@/components/TransactionForm.vue';
+import TransactionItem from '@/components/TransactionItem.vue';
+import TransactionList from '@/components/TransactionList.vue';
+import SummaryCard from '@/components/SummaryCard.vue';
+import BudgetCard from '@/components/BudgetCard.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      name: 'transactionList',
+      component: TransactionList,
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: '/transactionItem',
+      name: 'transactionItem',
+      component: TransactionItem,
+    },
+    {
+      path: '/transactionForm',
+      name: 'transactionForm',
+      component: TransactionForm,
+    },
+    {
+      path: '/summaryCard',
+      name: 'summaryCard',
+      component: SummaryCard,
+    },
+    {
+      path: '/budgetCard',
+      name: 'budgetCard',
+      component: BudgetCard,
+    },
+    {
+      path: '/homePage',
+      name: 'homePage',
+      component: HomePage,
+    },
+    {
+      path: '/loginPage',
+      name: 'loginPage',
+      component: LoginPage,
+    },
+    {
+      path: '/myPage',
+      name: 'myPage',
+      component: MyPage,
+    },
+    {
+      path: '/signUpPage',
+      name: 'signUpPage',
+      component: SignUpPage,
+    },
+    {
+      path: '/transactionPage',
+      name: 'transactionPage',
+      component: TransactionPage,
     },
   ],
-})
+});
 
-export default router
+export default router;
