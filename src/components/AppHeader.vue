@@ -3,7 +3,6 @@
     <div class="container-fluid">
       <!-- 로고 -->
       <RouterLink class="navbar-brand" to="/">MoneyLog</RouterLink>
-      <h2>가나다</h2>
       <!-- 햄버거 버튼 -->
       <button
         class="navbar-toggler"
