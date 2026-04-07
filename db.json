@@ -1,0 +1,61 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "홍길동",
+      "email": "hong@example.com",
+      "password": "1234",
+      "createdAt": "2026-04-07"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "type": "income",
+      "categoryId": 1,
+      "amount": 2500000,
+      "memo": "4월 급여",
+      "date": "2026-04-01"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 12000,
+      "memo": "점심 식사",
+      "date": "2026-04-02"
+    }
+  ],
+  "budgets": [
+    {
+      "id": 1,
+      "userId": 1,
+      "month": "2026-04",
+      "amount": 1500000
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "type": "income",
+      "name": "월급"
+    },
+    {
+      "id": 2,
+      "type": "income",
+      "name": "용돈"
+    },
+    {
+      "id": 3,
+      "type": "expense",
+      "name": "식비"
+    },
+    {
+      "id": 4,
+      "type": "expense",
+      "name": "교통"
+    }
+  ]
+}
