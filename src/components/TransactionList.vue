@@ -1,6 +1,18 @@
 <template>
   <!-- TransactionList 전체 영역 -->
   <div class="transaction-list">
+    <!-- 프로필 영역 추가 (🔔 알림 + 사용자 프로필) -->
+    <div class="profile-area">
+      <!-- 🔔 알림 버튼 (추후 구현) -->
+      <div class="bell-wrap">
+        <button class="bell-btn">🔔</button>
+      </div>
+      <!-- 프로필 아이콘 + 사용자명 → 마이페이지 이동 -->
+      <RouterLink to="/myPage" class="profile-link">
+        <div class="profile-icon">👤</div>
+        <span class="profile-name">사용자 님</span>
+      </RouterLink>
+    </div>
     <!-- 수입/지출/합계 요약 바 -->
     <div class="summary-bar">
       <div class="summary-item">
@@ -49,6 +61,51 @@ const totalBalance = computed(() => totalIncome.value - totalExpense.value);
 </script>
 
 <style scoped>
+/* 프로필 영역 전체 */
+.profile-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 4px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+/* 🔔 알림 버튼 */
+.bell-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* 프로필 링크 */
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #000;
+}
+
+/* 프로필 아이콘 원형 */
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #6c757d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+}
+
+/* 프로필 이름 */
+.profile-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
 /* 수입/지출/합계 요약 바 */
 .summary-bar {
   display: flex;
