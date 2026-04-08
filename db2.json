@@ -25,6 +25,7 @@
       "createdAt": "2026-04-04"
     }
   ],
+
   "transactions": [
     {
       "id": 1,
@@ -57,14 +58,22 @@
       "assets": "cash"
     }
   ],
+
   "budgets": [
     {
       "id": 1,
-      "userId": 1,
+      "userId": "usr_a1b2c3",
       "month": "2026-04",
-      "amount": 1500000
+      "amount": 815355
+    },
+    {
+      "id": 2,
+      "userId": "usr_d4e5f6",
+      "month": "2026-04",
+      "amount": 1747891
     }
   ],
+
   "categories": [
     {
       "id": 1,
