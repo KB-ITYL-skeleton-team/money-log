@@ -3,13 +3,8 @@
   <div class="transaction-list">
     <!-- 프로필 영역 추가 (🔔 알림 + 사용자 프로필) -->
     <div class="profile-area">
-      <!-- 🔔 알림 버튼 (추후 구현) -->
-      <div class="bell-wrap">
-        <button class="bell-btn">🔔</button>
-      </div>
       <!-- 프로필 아이콘 + 사용자명 → 마이페이지 이동 -->
       <RouterLink to="/myPage" class="profile-link">
-        <div class="profile-icon">👤</div>
         <span class="profile-name">사용자 님</span>
       </RouterLink>
     </div>
@@ -58,6 +53,14 @@ const totalExpense = computed(() =>
 
 // 합계 (수입 - 지출)
 const totalBalance = computed(() => totalIncome.value - totalExpense.value);
+
+// v-calendar 라이브러리 import
+import { Calendar } from 'v-calendar';
+import 'v-calendar/style.css';
+import { ref } from 'vue';
+
+// 선택된 날짜 (오늘 날짜로 초기화)
+const selectedDate = ref(new Date());
 </script>
 
 <style scoped>
@@ -70,14 +73,6 @@ const totalBalance = computed(() => totalIncome.value - totalExpense.value);
   border-bottom: 1px solid #eee;
 }
 
-/* 🔔 알림 버튼 */
-.bell-btn {
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-}
-
 /* 프로필 링크 */
 .profile-link {
   display: flex;
@@ -85,19 +80,6 @@ const totalBalance = computed(() => totalIncome.value - totalExpense.value);
   gap: 8px;
   text-decoration: none;
   color: #000;
-}
-
-/* 프로필 아이콘 원형 */
-.profile-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #6c757d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 20px;
 }
 
 /* 프로필 이름 */
