@@ -1,13 +1,13 @@
 {
   "users": [
     {
-      "id": "202604028371",
-      "userId": "usr_a1b2c3",
+      "id": "202604035194",
+      "userId": "hyegyo",
       "name": "송혜교",
-      "email": "user1@example.com",
+      "email": "user2@example.com",
       "password": "1234",
-      "phone": "010-3821-7495",
-      "createdAt": "2026-04-02"
+      "phone": "010-5917-2043",
+      "createdAt": "2026-04-03"
     },
     {
       "id": "202604035194",
@@ -78,11 +78,41 @@
       "date": "2026-04-09",
       "asset": "은행",
       "id": "W8v2T_0"
+    },
+    {
+      "userId": 1,
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 100000,
+      "memo": "배고파요",
+      "date": "2026-04-09",
+      "asset": "은행",
+      "id": "hYwUAjmg3gY"
+    },
+    {
+      "userId": 1,
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 2000000000,
+      "memo": "배고파서 많이 먹었어요",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "0PIWcO1bEj8"
+    },
+    {
+      "userId": 1,
+      "type": "income",
+      "categoryId": 1,
+      "amount": 1000000,
+      "memo": "월급은 잘 안늘어나는데,,,",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "rOVHCLlkw74"
     }
   ],
   "budgets": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "month": "2026-04",
       "amount": 1500000
@@ -90,24 +120,25 @@
   ],
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "type": "income",
       "name": "월급"
     },
     {
-      "id": 2,
+      "id": "2",
       "type": "income",
       "name": "용돈"
     },
     {
-      "id": 3,
+      "id": "3",
       "type": "expense",
       "name": "식비"
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "expense",
       "name": "교통"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
