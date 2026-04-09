@@ -2,30 +2,59 @@
   "users": [
     {
       "id": 1,
-      "name": "홍길동",
-      "email": "hong@example.com",
+      "userId": "usr_a1b2c3",
+      "name": "송혜교",
+      "email": "user1@example.com",
       "password": "1234",
-      "createdAt": "2026-04-07"
+      "createdAt": "2026-04-02"
+    },
+    {
+      "id": 2,
+      "userId": "usr_d4e5f6",
+      "name": "이영희",
+      "email": "user2@example.com",
+      "password": "1234",
+      "createdAt": "2026-04-03"
+    },
+    {
+      "id": 3,
+      "userId": "usr_g7h8i9",
+      "name": "유재석",
+      "email": "user3@example.com",
+      "password": "1234",
+      "createdAt": "2026-04-04"
     }
   ],
   "transactions": [
     {
       "id": 1,
-      "userId": 1,
-      "type": "income",
-      "categoryId": 1,
-      "amount": 2500000,
-      "memo": "4월 급여",
-      "date": "2026-04-01"
+      "userId": "usr_a1b2c3",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 612046,
+      "memo": "지출",
+      "date": "2026-04-02",
+      "assets": "card"
     },
     {
       "id": 2,
-      "userId": 1,
+      "userId": "usr_a1b2c3",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 962278,
+      "memo": "수입",
+      "date": "2026-04-03",
+      "assets": "bank"
+    },
+    {
+      "id": 3,
+      "userId": "usr_d4e5f6",
       "type": "expense",
       "categoryId": 3,
-      "amount": 12000,
-      "memo": "점심 식사",
-      "date": "2026-04-02"
+      "amount": 395976,
+      "memo": "지출",
+      "date": "2026-04-07",
+      "assets": "cash"
     }
   ],
   "budgets": [
