@@ -4,12 +4,12 @@
       <circle cx="50" cy="50" r="40" fill="#020617" />
       <path :d="path" fill="#facc15" class="light" />
     </svg>
-    <p>{{ Math.round(progress) }}%</p>
+    <p>{{ Math.floor(percentageBalance) }}%</p>
   </div>
 </template>
 
 <script>
-import { computed, watch } from 'vue';
+import { computed } from 'vue';
 import { useTransactionsStore } from '@/stores/stores.js';
 import { storeToRefs } from 'pinia';
 
@@ -18,7 +18,44 @@ export default {
 
   setup() {
     const transactions = useTransactionsStore();
-    const { income, progress } = storeToRefs(transactions);
+    const { selectedMonth, userID } = storeToRefs(transactions);
+
+    // expense by month
+    const totalExpense = computed(() =>
+      transactions.expense
+        .filter((e) => e.date.slice(0, 7) === selectedMonth.value)
+        .reduce((sum, e) => sum + e.amount, 0),
+    );
+    const percentageBalance = computed(() => {
+      return (
+        ((totalBudget.value - totalExpense.value) / totalBudget.value) * 100
+      );
+    });
+
+    const percentageExpense = computed(() => {
+      return (totalExpense.value / totalBudget.value) * 100;
+    });
+
+    // budget by month
+    const totalBudget = computed(() => {
+      const budgetForMonth = transactions.budgets.find(
+        (b) =>
+          b.userId === userID.value &&
+          b.month === selectedMonth.value.slice(0, 7),
+      );
+      return budgetForMonth ? budgetForMonth.amount : 0;
+    });
+
+    // progress
+    const progress = computed(() => {
+      if (!totalBudget.value) {
+        return 0;
+      }
+
+      let ratio = (totalBudget.value - totalExpense.value) / totalBudget.value;
+      ratio = 1 - ratio;
+      return Math.min(100, Math.max(0, ratio * 100));
+    });
 
     const path = computed(() => {
       const phase = (progress.value / 100) * Math.PI;
@@ -39,15 +76,11 @@ export default {
       `;
     });
 
-    watch(progress, (v) => {
-      if (v > 100) progress.value = 100;
-      if (v < 0) progress.value = 0;
-    });
-
     return {
+      percentageBalance,
+      percentageExpense,
       progress,
       path,
-      income,
     };
   },
 };

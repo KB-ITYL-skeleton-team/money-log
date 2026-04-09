@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="content">
     <h1>Income (Monthly)</h1>
-    <!-- 월 선택 -->
+    <!-- select month -->
     <input type="month" v-model="selectedMonth" />
 
-    <!-- 도넛 차트 -->
+    <!-- chart -->
     <apexchart
       v-if="filteredMonth"
       type="donut"
@@ -20,74 +20,91 @@
 
       <div v-for="group in filteredMonth.categories" :key="group.categoryId">
         <h3>
-          Category: {{ group.categoryId }} | Sum: {{ group.total }} |
-          Percentage: {{ group.percentage.toFixed(1) }}%
+          Category: {{ categoryName[group.categoryId] }} | Sum:
+          {{ group.total }} | Percentage: {{ group.percentage.toFixed(1) }}%
         </h3>
 
         <ul>
           <li v-for="item in group.incomes" :key="item.id">
-            {{ item.memo }} : {{ item.amount }} ({{ item.date }})
+            ({{ item.date }}) : {{ item.amount }}, ({{ item.memo }})
           </li>
         </ul>
       </div>
     </div>
 
-    <!-- 데이터 없을 때 -->
-    <p v-else>해당 월 데이터 없음</p>
+    <p v-else>Nothing</p>
   </div>
 </template>
 
 <script>
-import { computed, ref } from 'vue';
-import { useTransactionsStore } from '@/stores/stores';
-import { storeToRefs } from 'pinia';
 import VueApexCharts from 'vue3-apexcharts';
+import { computed, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useTransactionsStore } from '@/stores/stores';
 
 export default {
   name: 'monthStaticsIncome',
   components: { apexchart: VueApexCharts },
   setup() {
     const transactions = useTransactionsStore();
-    const { income } = storeToRefs(transactions);
+    const { income, categories } = storeToRefs(transactions);
 
+    // selected month initializition
     const selectedMonth = ref(new Date().toISOString().slice(0, 7));
 
-    // 월별 그룹화
+    // grouping income by month/category
     const incomeByMonth = computed(() => {
       const result = {};
 
-      income.value.forEach((inc) => {
-        const month = inc.date.slice(0, 7);
+      income.value.forEach((income) => {
+        const month = income.date.slice(0, 7);
 
-        if (!result[month]) result[month] = { categories: {}, total: 0 };
+        if (!result[month]) {
+          result[month] = { categories: {}, total: 0 };
+        }
 
-        if (!result[month].categories[inc.categoryId])
-          result[month].categories[inc.categoryId] = { incomes: [], total: 0 };
+        if (!result[month].categories[income.categoryId]) {
+          result[month].categories[income.categoryId] = {
+            incomes: [],
+            total: 0,
+          };
+        }
 
-        result[month].categories[inc.categoryId].incomes.push(inc);
-        result[month].categories[inc.categoryId].total += inc.amount;
-        result[month].total += inc.amount;
+        result[month].categories[income.categoryId].incomes.push(income);
+        result[month].categories[income.categoryId].total += income.amount;
+        result[month].total += income.amount;
       });
 
       return Object.entries(result).map(([month, data]) => ({
-        month,
+        month: month,
         total: data.total,
         categories: Object.entries(data.categories).map(
-          ([categoryId, cat]) => ({
-            categoryId,
-            incomes: cat.incomes,
-            total: cat.total,
-            percentage: data.total === 0 ? 0 : (cat.total / data.total) * 100,
+          ([categoryId, category]) => ({
+            categoryId: categoryId,
+            incomes: category.incomes,
+            total: category.total,
+            percentage:
+              data.total === 0 ? 0 : (category.total / data.total) * 100,
           }),
         ),
       }));
     });
 
+    // catrgory name
+    const categoryName = computed(() => {
+      const name = {};
+      categories.value.forEach((category) => {
+        name[category.id] = category.name;
+      });
+      return name;
+    });
+
+    // filter month
     const filteredMonth = computed(() =>
       incomeByMonth.value.find((m) => m.month === selectedMonth.value),
     );
 
-    // 도넛 차트용 데이터
+    // data for chart
     const series = computed(() =>
       filteredMonth.value
         ? filteredMonth.value.categories.map((c) => c.total)
@@ -96,7 +113,9 @@ export default {
 
     const chartOptions = computed(() => ({
       labels: filteredMonth.value
-        ? filteredMonth.value.categories.map((c) => c.categoryId)
+        ? filteredMonth.value.categories.map(
+            (c) => categoryName.value[c.categoryId],
+          )
         : [],
       plotOptions: {
         pie: {
@@ -105,7 +124,7 @@ export default {
               show: true,
               total: {
                 show: true,
-                label: 'Total',
+                label: 'Total Income',
                 formatter: () =>
                   filteredMonth.value ? filteredMonth.value.total : 0,
               },
@@ -118,7 +137,7 @@ export default {
       colors: ['#4caf50', '#ff9800', '#2196f3', '#9c27b0', '#e91e63'],
     }));
 
-    return { selectedMonth, filteredMonth, series, chartOptions };
+    return { selectedMonth, categoryName, filteredMonth, series, chartOptions };
   },
 };
 </script>
