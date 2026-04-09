@@ -189,25 +189,28 @@ const selectedDateLabel = computed(() => {
   border: 1px solid #333;
 }
 
-/* 선택된 날짜 */
+/* 선택된 날짜 - 패딩 추가로 공간 확보 */
 .selected-date {
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 12px;
+  padding: 12px 16px; /* 변경: 공간 추가 */
+  border-bottom: 1px solid #333; /* 변경: 구분선 추가 */
   color: #fff;
 }
 
-/* 거래 내역 목록 */
+/* 거래 내역 목록 - 높이 조정 */
 .transaction-items {
   height: calc(100% - 80px);
+  display: flex; /* 변경: 가운데 정렬 위해 추가 */
+  align-items: center; /* 변경: 세로 가운데 정렬 */
+  justify-content: center; /* 변경: 가로 가운데 정렬 */
 }
 
-/* 내역 없을 때 메시지 */
+/* 내역 없을 때 메시지 - margin 제거 */
 .empty-msg {
   color: #666;
   text-align: center;
-  margin-top: 40px;
-  font-size: 13px;
+  font-size: 20px;
 }
 
 /* + 플로팅 버튼 */
