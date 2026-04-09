@@ -13,6 +13,8 @@ import TransactionItem from '@/components/TransactionItem.vue';
 import TransactionList from '@/components/TransactionList.vue';
 import SummaryCard from '@/components/SummaryCard.vue';
 import BudgetCard from '@/components/BudgetCard.vue';
+import FindId from '@/components/FindId.vue';
+import FindPw from '@/components/FindPw.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -61,6 +63,16 @@ const router = createRouter({
       path: '/signUpPage',
       name: 'signUpPage',
       component: SignUpPage,
+    },
+    {
+      path: '/find-id',
+      name: 'findId',
+      component: FindId,
+    },
+    {
+      path: '/find-pw',
+      name: 'findPw',
+      component: FindPw,
     },
     {
       path: '/transactionPage',
