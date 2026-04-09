@@ -1,7 +1,7 @@
 <template>
-  <nav class="footer-nav">
-    <RouterLink to="/transactionList">목록</RouterLink>
-    <RouterLink to="/transactionForm">등록</RouterLink>
+  <nav class="footer-nav footer">
+    <RouterLink to="/transactionList">홈</RouterLink>
+    <!-- <RouterLink to="/transactionForm">등록</RouterLink> -->
     <RouterLink to="/summaryCard">통계</RouterLink>
     <RouterLink to="/budgetCard">예산</RouterLink>
   </nav>
@@ -26,9 +26,13 @@ import { RouterLink } from 'vue-router';
   z-index: 1000;
 }
 
-.footer-nav a {
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
+/* ===== 모바일에서만 보이게 ===== */
+@media (max-width: 768px) {
+  .footer-nav {
+    display: flex;
+  }
+  #app {
+    padding-bottom: 70px;
+  }
 }
 </style>
