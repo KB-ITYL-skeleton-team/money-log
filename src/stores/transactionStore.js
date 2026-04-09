@@ -1,18 +1,28 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
-// API 요청의 기본 서버 주소
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
-/**
- * fetch 요청을 보내고 JSON 응답을 반환합니다.
- * @param {string} url - 요청 URL
- * @param {RequestInit} options - fetch 옵션(method, headers, body 등)
- * @returns {Promise<any>}
- */
-const requestJson = async (url, options = {}) => {
-  // 전달받은 URL/옵션으로 HTTP 요청
-  const response = await fetch(url, options);
+const buildUrl = (path, params = {}) => {
+  const url = new URL(path, API_BASE_URL);
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value === undefined || value === null || value === '') return;
+    searchParams.append(key, value);
+  });
+
+  const query = searchParams.toString();
+  if (query) {
+    url.search = query;
+  }
+
+  return url.toString();
+};
+
+const requestJson = async (path, options = {}) => {
+  const response = await fetch(path, options);
 
   if (!response.ok) {
     throw new Error(`요청에 실패했습니다. (${response.status})`);

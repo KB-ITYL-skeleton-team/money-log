@@ -32,7 +32,10 @@
           <button class="arrow-btn">＞</button>
         </div>
         <!-- 달력 날짜 영역 (추후 구현) -->
-        <div class="calendar-body"></div>
+        <!-- 달력 컴포넌트 삽입 => 다른 팀에서 구현한 달력 사용 -->
+        <div class="calendar-body">
+          <CalendarView />
+        </div>
       </div>
 
       <!-- 오른쪽: 날짜별 거래 내역 -->
@@ -53,6 +56,8 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useTransactionStore } from '@/stores/transactionStore';
+// CalendarView 컴포넌트 import
+import CalendarView from '@/components/CalendarView.vue';
 
 // 거래 내역 store 가져오기
 const store = useTransactionStore();
@@ -174,7 +179,7 @@ const selectedDateLabel = computed(() => {
   cursor: pointer;
 }
 
-/* 달력 날짜 영역 (추후 구현) */
+/* 달력 날짜 영역 */
 .calendar-body {
   border: 1px solid #333;
   height: 300px;
