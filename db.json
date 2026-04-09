@@ -78,6 +78,56 @@
       "date": "2026-04-09",
       "asset": "은행",
       "id": "W8v2T_0"
+    },
+    {
+      "userId": 1,
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 5000,
+      "memo": "dd",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "ufQDEqa"
+    },
+    {
+      "userId": 1,
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 5000000,
+      "memo": "오마카세",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "e-NIPzu"
+    },
+    {
+      "userId": 1,
+      "type": "income",
+      "categoryId": 1,
+      "amount": 6000000,
+      "memo": "6백만원",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "FosD4SM"
+    },
+    {
+      "userId": 1,
+      "type": "income",
+      "categoryId": 1,
+      "amount": 2500000,
+      "memo": "dt",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "ImjTlzA"
+    },
+    {
+      "userId": 1,
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 2000,
+      "memo": "zv",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "Eqodd4F"
     }
   ],
   "budgets": [
