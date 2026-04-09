@@ -16,9 +16,10 @@
             </button>
           </template>
           <RouterLink class="nav-link" to="/transactionList">홈</RouterLink>
+          <RouterLink class="nav-link" to="/fortune">운세</RouterLink>
           <!-- <RouterLink class="nav-link" to="/transactionForm">거래등록</RouterLink> -->
-          <RouterLink class="nav-link" to="/summaryCard">통계</RouterLink>
-          <RouterLink class="nav-link" to="/budgetCard">예산</RouterLink>
+          <RouterLink class="nav-link" to="/statics">통계</RouterLink>
+          <RouterLink class="nav-link" to="/totalBudget">예산</RouterLink>
         </div>
       </nav>
     </div>
