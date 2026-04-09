@@ -1,6 +1,7 @@
 <template>
   <nav class="footer-nav">
     <RouterLink to="/transactionList">홈</RouterLink>
+    <RouterLink class="nav-link" to="/fortune">운세</RouterLink>
     <!-- <RouterLink to="/transactionForm">등록</RouterLink> -->
     <RouterLink to="/statics">통계</RouterLink>
     <RouterLink to="/totalBudget">예산</RouterLink>
