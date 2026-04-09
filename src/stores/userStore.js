@@ -8,9 +8,9 @@ export const useLoginStore = defineStore('login', () => {
 
   const userId = ref('');
   const userPw = ref('');
-  const isRemembered = ref(false);
   const isLoggedIn = ref(false);
   const userName = ref('');
+  const currentUser = ref(null);
 
   const handleLogin = async () => {
     try {
@@ -48,5 +48,35 @@ export const useLoginStore = defineStore('login', () => {
     }
   };
 
-  return { userId, userPw, isRemembered, isLoggedIn, userName, handleLogin };
+  const deleteAccount = async () => {
+    if (!currentUser.value) return;
+
+    if (!confirm('정말로 탈퇴하시겠습니까? 계정과 모든 데이터가 삭제됩니다.'))
+      return;
+
+    try {
+      await axios.delete(`http://localhost:3000/users/${currentUser.value.id}`);
+
+      currentUser.value = null;
+      isLoggedIn.value = false;
+      userId.value = '';
+      userPw.value = '';
+
+      alert('탈퇴가 완료되었습니다.');
+      router.push('/loginPage'); // 탈퇴 후 로그인 페이지로 이동
+    } catch (error) {
+      console.error('탈퇴 에러:', error);
+      alert('탈퇴 처리 중 오류가 발생했습니다.');
+    }
+  };
+
+  return {
+    userId,
+    userPw,
+
+    isLoggedIn,
+    userName,
+    handleLogin,
+    deleteAccount,
+  };
 });
