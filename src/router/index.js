@@ -14,6 +14,9 @@ import TransactionList from '@/components/TransactionList.vue';
 import SummaryCard from '@/components/SummaryCard.vue';
 import BudgetCard from '@/components/BudgetCard.vue';
 
+import FindId from '@/components/FindId.vue';
+import FindPw from '@/components/FindPw.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -71,6 +74,16 @@ const router = createRouter({
       path: '/transactionPage',
       name: 'transactionPage',
       component: TransactionPage,
+    },
+    {
+      path: '/find-id',
+      name: 'findid',
+      component: FindId,
+    },
+    {
+      path: '/find-pw',
+      name: 'findpw',
+      component: FindPw,
     },
   ],
 });
