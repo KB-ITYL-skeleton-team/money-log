@@ -16,24 +16,36 @@
         placeholder="비밀번호"
       />
     </div>
-  </div>
 
-  <button @click="handleLogin" class="btn btn-primary w-100 mb-3">
-    로그인
-  </button>
+    <div class="form-check mb-3">
+      <input
+        v-model="isRemembered"
+        class="form-check-input"
+        type="checkbox"
+        id="rememberMe"
+      />
+      <label class="form-check-label" for="rememberMe">
+        로그인 상태 유지
+      </label>
+    </div>
 
-  <div class="d-flex justify-content-between">
-    <router-link to="/signup" class="text-decoration-none"
-      >회원가입</router-link
-    >
-    <div>
-      <router-link to="/find-id" class="text-decoration-none"
-        >아이디 찾기</router-link
+    <button @click="handleLogin" class="btn btn-primary w-100 mb-3">
+      로그인
+    </button>
+
+    <div class="d-flex justify-content-between">
+      <router-link to="/signup" class="text-decoration-none"
+        >회원가입</router-link
       >
-      <span class="mx-1">|</span>
-      <router-link to="/find-pw" class="text-decoration-none"
-        >비밀번호 찾기</router-link
-      >
+      <div>
+        <router-link to="/find-id" class="text-decoration-none"
+          >아이디 찾기</router-link
+        >
+        <span class="mx-1">|</span>
+        <router-link to="/find-pw" class="text-decoration-none"
+          >비밀번호 찾기</router-link
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -45,18 +57,18 @@ import { useLoginStore } from '@/stores/userStore';
 
 const userId = ref('');
 const userPw = ref('');
+const isRemembered = ref(false);
 
 const router = useRouter();
 const loginStore = useLoginStore();
 
 const handleLogin = async () => {
-  if (!userId.value.trim() || !userPw.value.trim()) {
-    alert('아이디와 비밀번호를 모두 입력해주세요.');
-    return;
-  }
+  console.log('handle login  확인');
+
   loginStore.userId = userId.value;
   loginStore.userPw = userPw.value;
+  loginStore.isRemembered = isRemembered.value;
 
-  await loginStore.handleLogin(userId.value, userPw.value);
+  await loginStore.handleLogin();
 };
 </script>
