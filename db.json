@@ -1,33 +1,36 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "202604028371",
       "userId": "usr_a1b2c3",
       "name": "송혜교",
       "email": "user1@example.com",
       "password": "1234",
+      "phone": "010-3821-7495",
       "createdAt": "2026-04-02"
     },
     {
-      "id": 2,
+      "id": "202604035194",
       "userId": "usr_d4e5f6",
       "name": "이영희",
       "email": "user2@example.com",
       "password": "1234",
+      "phone": "010-5917-2043",
       "createdAt": "2026-04-03"
     },
     {
-      "id": 3,
+      "id": "202604046283",
       "userId": "usr_g7h8i9",
       "name": "유재석",
       "email": "user3@example.com",
       "password": "1234",
+      "phone": "010-7642-9186",
       "createdAt": "2026-04-04"
     }
   ],
   "transactions": [
     {
-      "id": 1,
+      "id": "202604028912",
       "userId": "usr_a1b2c3",
       "type": "expense",
       "categoryId": 3,
@@ -37,7 +40,7 @@
       "assets": "card"
     },
     {
-      "id": 2,
+      "id": "202604031247",
       "userId": "usr_a1b2c3",
       "type": "income",
       "categoryId": 1,
@@ -47,7 +50,7 @@
       "assets": "bank"
     },
     {
-      "id": 3,
+      "id": "202604075639",
       "userId": "usr_d4e5f6",
       "type": "expense",
       "categoryId": 3,
