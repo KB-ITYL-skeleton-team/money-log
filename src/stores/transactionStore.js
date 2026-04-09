@@ -6,6 +6,27 @@ import axios from 'axios';
 // API 기본 주소(json-server)
 const API_BASE_URL = 'http://localhost:3000';
 
+// 로컬스토리지 사용 userId 값을 스토리지에 저장
+const LOGIN_USER_KEY = 'loginUser';
+
+const getCurrentUserId = () => {
+  const raw = localStorage.getItem(LOGIN_USER_KEY);
+  if (!raw) return null;
+
+  try {
+    const parsedUser = JSON.parse(raw);
+    const userId = parsedUser?.userId; // db.json의 users.userId ("usr_...")
+    if (typeof userId !== 'string') return null;
+
+    const trimmed = userId.trim();
+    if (!trimmed) return null;
+
+    return trimmed;
+  } catch {
+    return null;
+  }
+};
+
 // 공통 HTTP 함수(axios): 응답의 `data`만 반환
 const requestJson = async (url, config = {}) => {
   try {
@@ -138,8 +159,15 @@ export const useTransactionStore = defineStore('transaction', () => {
   };
 
   const applyTypeFilter = async (type) => {
+    const currentUserId = getCurrentUserId();
+    if (!currentUserId) {
+      transactions.value = [];
+      errorMessage.value = '로그인이 필요합니다.';
+      return;
+    }
+
     setActiveType(type);
-    await fetchTransactions({ type: activeType.value });
+    await fetchTransactions({ userId: currentUserId }); // ✅ type 제거
   };
 
   const fetchTransactions = async (params = {}) => {
@@ -199,9 +227,16 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
 
     isSaving.value = true;
+    //스토리지 확인 코드
+    const currentUserId = getCurrentUserId();
+    if (!currentUserId) {
+      errorMessage.value = '로그인이 필요합니다.';
+      return false;
+    }
+
     try {
       const payload = {
-        userId: 1,
+        userId: currentUserId,
         type: activeType.value,
         categoryId: form.value.categoryId,
         amount: Number(form.value.amount),
@@ -240,7 +275,6 @@ export const useTransactionStore = defineStore('transaction', () => {
     selectedCategoryName,
     incomeTransactions,
     expenseTransactions,
-
     totalIncome,
     totalExpense,
     currentBalance,
@@ -251,5 +285,6 @@ export const useTransactionStore = defineStore('transaction', () => {
     createTransaction,
     saveTransaction,
     resetForm,
+    getCurrentUserId,
   };
 });

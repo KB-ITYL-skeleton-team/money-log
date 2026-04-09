@@ -124,6 +124,13 @@ const changeType = (type) => {
 };
 // 메서드: 저장(confirm -> store save -> alert -> 목록 이동)
 const transaction_handler = async () => {
+  const savedUser = localStorage.getItem('loginUser');
+  if (!savedUser) {
+    alert('로그인이 필요합니다.');
+    router.push({ name: 'loginPage' }); // 또는 router.push('/loginPage')
+    return;
+  }
+
   const ok = confirm('저장하시겠습니까?');
   if (!ok) return;
   try {

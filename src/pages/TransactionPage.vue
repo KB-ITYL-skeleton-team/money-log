@@ -50,6 +50,13 @@ const goBack = () => {
 };
 
 onMounted(async () => {
+  const savedUser = localStorage.getItem('loginUser');
+  if (!savedUser) {
+    alert('로그인이 필요합니다.');
+    router.replace({ name: 'loginPage' }); // 또는 router.replace('/loginPage')
+    return;
+  }
+
   const initialType = syncTypeFromQuery();
   await transactionStore.fetchCategories();
   await transactionStore.applyTypeFilter(initialType);
@@ -58,8 +65,14 @@ onMounted(async () => {
 watch(
   () => route.query.type,
   async (nextType) => {
-    if (!validTypes.includes(nextType)) return;
+    const savedUser = localStorage.getItem('loginUser');
+    if (!savedUser) {
+      alert('로그인이 필요합니다.');
+      router.replace({ name: 'loginPage' }); // 또는 router.replace('/loginPage')
+      return;
+    }
 
+    if (!validTypes.includes(nextType)) return;
     await transactionStore.applyTypeFilter(nextType);
   },
 );
