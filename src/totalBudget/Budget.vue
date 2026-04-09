@@ -1,33 +1,67 @@
 <template>
-  <p>예산</p>
-  <p>Total Budget : {{ totalBudget }}</p>
-  <br />
-  <p>Total Expense : {{ totalExpense }}</p>
-  <br />
-  <p>Total Balance : {{ totalBalance }}</p>
-  <br />
-  <p>Total Income : {{ totalIncome }}</p>
+  <p>Budget</p>
+  <input type="month" v-model="selectedMonth" />
+  <p>Total Budget : {{ totalBudget }} (100%)</p>
+  <p>
+    Total Expense : {{ totalExpense }} ({{ Math.floor(percentageExpense) }}%)
+  </p>
+  <p>
+    Total Balance : {{ totalBalance }} ({{ Math.floor(percentageBalance) }}%)
+  </p>
 </template>
 
 <script>
+import { computed } from 'vue';
 import { useTransactionsStore } from '@/stores/stores.js';
 import { storeToRefs } from 'pinia';
+
 export default {
   name: 'Budget',
   setup() {
     const transactions = useTransactionsStore();
-    const { totalBudget, totalIncome, totalExpense, totalBalance } =
-      storeToRefs(transactions);
+    const { selectedMonth, userID } = storeToRefs(transactions);
+
+    // expense by year
+    const totalExpense = computed(() =>
+      transactions.expense
+        .filter((e) => e.date.slice(0, 7) === selectedMonth.value)
+        .reduce((sum, e) => sum + e.amount, 0),
+    );
+
+    // budget by month
+    const totalBudget = computed(() => {
+      const budgetForMonth = transactions.budgets.find(
+        (b) =>
+          b.userId === userID.value &&
+          b.month === selectedMonth.value.slice(0, 7),
+      );
+      return budgetForMonth ? budgetForMonth.amount : 0;
+    });
+
+    // balance by month
+    const totalBalance = computed(() => totalBudget.value - totalExpense.value);
+
+    const percentageBalance = computed(() => {
+      return (
+        ((totalBudget.value - totalExpense.value) / totalBudget.value) * 100
+      );
+    });
+
+    const percentageExpense = computed(() => {
+      return (totalExpense.value / totalBudget.value) * 100;
+    });
 
     return {
       transactions,
-      totalBudget,
-      totalIncome,
+      selectedMonth,
       totalExpense,
+      totalBudget,
       totalBalance,
+      percentageBalance,
+      percentageExpense,
     };
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped lang="scss"></style>
