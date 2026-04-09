@@ -13,6 +13,39 @@ export const useLoginStore = defineStore('login', () => {
   const userName = ref(''); // 유저 이름
   const currentUser = ref(null); // 로그인한 유저 전체 정보 객체
 
+  // --- 스토리지 저장 ---
+
+  // localStorage 저장
+  const setLoginUser = (foundUser) => {
+    currentUser.value = foundUser;
+    isLoggedIn.value = true;
+    userName.value = foundUser.name;
+    localStorage.setItem('loginUser', JSON.stringify(foundUser));
+  };
+
+  // localStorage 불러오기
+  const loadUser = () => {
+    const savedUser = localStorage.getItem('loginUser');
+
+    if (savedUser) {
+      const parsedUser = JSON.parse(savedUser);
+      currentUser.value = parsedUser;
+      isLoggedIn.value = true;
+      userName.value = parsedUser.name;
+    }
+  };
+
+  // 로그아웃
+  const logout = () => {
+    currentUser.value = null;
+    isLoggedIn.value = false;
+    userId.value = '';
+    userPw.value = '';
+    userName.value = '';
+    localStorage.removeItem('loginUser');
+    router.push('/loginPage');
+  };
+
   // --- 로그인 로직 ---
   const handleLogin = async () => {
     try {
@@ -121,5 +154,8 @@ export const useLoginStore = defineStore('login', () => {
     findId,
     findPw,
     deleteAccount,
+    setLoginUser,
+    loadUser,
+    logout,
   };
 });
