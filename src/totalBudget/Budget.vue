@@ -8,15 +8,19 @@
   <p>
     Total Balance : {{ totalBalance }} ({{ Math.floor(percentageBalance) }}%)
   </p>
+  <p>Set a Budget</p>
+  <inputBudget></inputBudget>
 </template>
 
 <script>
 import { computed } from 'vue';
 import { useTransactionsStore } from '@/stores/stores.js';
 import { storeToRefs } from 'pinia';
+import inputBudget from './InputBudget.vue';
 
 export default {
   name: 'Budget',
+  components: { inputBudget },
   setup() {
     const transactions = useTransactionsStore();
     const { selectedMonth, userID } = storeToRefs(transactions);
