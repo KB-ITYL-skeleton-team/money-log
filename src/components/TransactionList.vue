@@ -90,6 +90,9 @@ import CalendarView from '@/components/CalendarView.vue';
 import TransactionForm from '@/components/TransactionForm.vue';
 // 라우터 import 추가
 import { useRouter } from 'vue-router';
+// 변경: onBeforeRouteUpdate import 추가
+import { onBeforeRouteUpdate } from 'vue-router';
+
 const router = useRouter();
 
 // CalendarView 컴포넌트 참조
@@ -128,9 +131,16 @@ const selectedDateLabel = computed(() => {
   return `${month}월 ${day}일`;
 });
 
+// 홈 화면에서 홈 화면으로 refresh가 되지 않는 문제 해결 법  => import {onBeforeRouteUpdate} 와 함께 보기
+onBeforeRouteUpdate(() => {
+  displayYear.value = new Date().getFullYear();
+  displayMonth.value = new Date().getMonth() + 1;
+  calendarRef.value?.goToday();
+});
+
 // +버튼 클릭이벤트 관련
 // 모달 표시 여부 상태 (대기정 님이 하셨던 것이 아닌 홈화면에서 + 버튼으로 투사하는 이벤트 관련 const입니다)
-const showModal = ref(false);
+// const showModal = ref(false); ==> 모달 이벤트 필요 없어져서 숨김.
 </script>
 
 <style scoped>
