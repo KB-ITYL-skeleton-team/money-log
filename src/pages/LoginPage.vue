@@ -58,6 +58,5 @@ const handleLogin = async () => {
   loginStore.userPw = userPw.value;
 
   await loginStore.handleLogin(userId.value, userPw.value);
-  git;
 };
 </script>
