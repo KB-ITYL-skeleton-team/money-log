@@ -23,6 +23,11 @@ const router = createRouter({
       component: TransactionList,
     },
     {
+      path: '/transactionList',
+      name: 'transactionList',
+      component: TransactionList,
+    },
+    {
       path: '/transactionItem',
       name: 'transactionItem',
       component: TransactionItem,
