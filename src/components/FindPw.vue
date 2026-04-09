@@ -34,10 +34,12 @@ const email = ref('');
 const loginStore = useLoginStore();
 
 const handleFindPw = async () => {
+  // 이메일과 비밀번호 둘 다 작성
   if (!userId.value || !email.value) {
     alert('모든 정보를 입력해 주세요.');
     return;
   }
+  // 스토어 findPw에 보냄
   await loginStore.findPw(userId.value, email.value);
 };
 </script>

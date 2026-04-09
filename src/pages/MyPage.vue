@@ -1,15 +1,16 @@
 <template>
   <div>
-    <header>
-      <button @click="$router.push('/homePage')">뒤로가기</button>
-    </header>
+    <div>
+      <header>
+        <button @click="$router.push('/homePage')">뒤로가기</button>
+      </header>
+
+      <hr />
+    </div>
+    <h2>{{ loginStore.currentUser?.name }}</h2>
 
     <hr />
   </div>
-  <h2>{{ loginStore.currentUser?.name }}</h2>
-
-  <hr />
-
   <section>
     <h3>개인정보</h3>
     <div>
