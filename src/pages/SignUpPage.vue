@@ -55,6 +55,7 @@ import { useLoginStore } from '@/stores/userStore';
 const router = useRouter();
 
 const form = ref({
+  id:keyid,
   userId: '',
   email: '',
   userPw: '',

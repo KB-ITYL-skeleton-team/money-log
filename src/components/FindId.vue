@@ -19,11 +19,12 @@ const email = ref('');
 const loginStore = useLoginStore();
 
 const handleFindId = async () => {
+  // 이메일 입력되지 않았을 때
   if (!email.value) {
     alert('이메일을 입력해 주세요.');
     return;
   }
-
+  // 입력되면
   console.log('입력한 이메일:', email.value);
   await loginStore.findId(email.value);
 };

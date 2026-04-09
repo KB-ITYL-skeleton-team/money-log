@@ -17,18 +17,6 @@
       />
     </div>
 
-    <div class="form-check mb-3">
-      <input
-        v-model="isRemembered"
-        class="form-check-input"
-        type="checkbox"
-        id="rememberMe"
-      />
-      <label class="form-check-label" for="rememberMe">
-        로그인 상태 유지
-      </label>
-    </div>
-
     <button @click="handleLogin" class="btn btn-primary w-100 mb-3">
       로그인
     </button>
@@ -57,18 +45,19 @@ import { useLoginStore } from '@/stores/userStore';
 
 const userId = ref('');
 const userPw = ref('');
-const isRemembered = ref(false);
 
 const router = useRouter();
 const loginStore = useLoginStore();
 
+// 로그인 버튼 클릭 시 실행
 const handleLogin = async () => {
   console.log('handle login  확인');
 
+  // 입력한 아이디를 스토어에 전달해서 스토어가 서버와 통신할 때 꺼낼 수 있도록
   loginStore.userId = userId.value;
   loginStore.userPw = userPw.value;
-  loginStore.isRemembered = isRemembered.value;
 
+  // 로그인 완료될 때까지 기다림
   await loginStore.handleLogin();
 };
 </script>
