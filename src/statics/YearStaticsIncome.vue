@@ -2,7 +2,7 @@
   <div>
     <h1>Income (Yearly)</h1>
 
-    <!-- 연도 선택 -->
+    <!-- select year -->
     <label>
       <input
         type="number"
@@ -12,7 +12,7 @@
       />
     </label>
 
-    <!-- 도넛 차트 -->
+    <!-- chart -->
     <apexchart
       v-if="filteredYear"
       type="donut"
@@ -26,27 +26,27 @@
 
       <div v-for="group in filteredYear.categories" :key="group.categoryId">
         <h3>
-          Category: {{ group.categoryId }} | Sum: {{ group.total }} |
-          Percentage: {{ group.percentage.toFixed(1) }}%
+          Category: {{ categoryName[group.categoryId] }} | Sum:
+          {{ group.total }} | Percentage: {{ group.percentage.toFixed(1) }}%
         </h3>
 
         <ul>
           <li v-for="item in group.incomes" :key="item.id">
-            {{ item.memo }} : {{ item.amount }} ({{ item.date }})
+            ({{ item.date }}) : {{ item.amount }}, ({{ item.memo }})
           </li>
         </ul>
       </div>
     </div>
 
-    <p v-else>해당 연도 데이터 없음</p>
+    <p v-else>Nothing</p>
   </div>
 </template>
 
 <script>
-import { computed, ref } from 'vue';
-import { useTransactionsStore } from '@/stores/stores';
-import { storeToRefs } from 'pinia';
 import VueApexCharts from 'vue3-apexcharts';
+import { computed, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useTransactionsStore } from '@/stores/stores';
 
 export default {
   name: 'yearStaticsIncome',
@@ -54,47 +54,64 @@ export default {
 
   setup() {
     const transactions = useTransactionsStore();
-    const { income } = storeToRefs(transactions);
+    const { income, categories } = storeToRefs(transactions);
 
+    // selected year initialization
     const selectedYear = ref(new Date().getFullYear());
 
-    // 연도별 그룹화
+    // grouping income by year/category
     const incomeByYear = computed(() => {
       const result = {};
 
-      income.value.forEach((inc) => {
-        const year = inc.date.slice(0, 4);
+      income.value.forEach((income) => {
+        const year = income.date.slice(0, 4);
 
-        if (!result[year]) result[year] = { categories: {}, total: 0 };
+        if (!result[year]) {
+          result[year] = { categories: {}, total: 0 };
+        }
 
-        if (!result[year].categories[inc.categoryId])
-          result[year].categories[inc.categoryId] = { incomes: [], total: 0 };
+        if (!result[year].categories[income.categoryId]) {
+          result[year].categories[income.categoryId] = {
+            incomes: [],
+            total: 0,
+          };
+        }
 
-        result[year].categories[inc.categoryId].incomes.push(inc);
-        result[year].categories[inc.categoryId].total += inc.amount;
-        result[year].total += inc.amount;
+        result[year].categories[income.categoryId].incomes.push(income);
+        result[year].categories[income.categoryId].total += income.amount;
+        result[year].total += income.amount;
       });
 
       return Object.entries(result).map(([year, data]) => ({
-        year,
+        year: year,
         total: data.total,
         categories: Object.entries(data.categories).map(
-          ([categoryId, categoryData]) => ({
-            categoryId,
-            incomes: categoryData.incomes,
-            total: categoryData.total,
+          ([categoryId, category]) => ({
+            categoryId: categoryId,
+            incomes: category.incomes,
+            total: category.total,
             percentage:
-              data.total === 0 ? 0 : (categoryData.total / data.total) * 100,
+              data.total === 0 ? 0 : (category.total / data.total) * 100,
           }),
         ),
       }));
     });
 
+    // catrgory name
+    const categoryName = computed(() => {
+      const name = {};
+      categories.value.forEach((category) => {
+        name[category.id] = category.name;
+      });
+      return name;
+    });
+
+    // filter year
     const filteredYear = computed(() =>
       incomeByYear.value.find((y) => Number(y.year) === selectedYear.value),
     );
 
-    // 도넛 차트용 데이터
+    // data for chart
     const series = computed(() =>
       filteredYear.value
         ? filteredYear.value.categories.map((c) => c.total)
@@ -103,7 +120,9 @@ export default {
 
     const chartOptions = computed(() => ({
       labels: filteredYear.value
-        ? filteredYear.value.categories.map((c) => c.categoryId)
+        ? filteredYear.value.categories.map(
+            (c) => categoryName.value[c.categoryId],
+          )
         : [],
       plotOptions: {
         pie: {
@@ -112,7 +131,7 @@ export default {
               show: true,
               total: {
                 show: true,
-                label: 'Total',
+                label: 'Total Income',
                 formatter: () =>
                   filteredYear.value ? filteredYear.value.total : 0,
               },
@@ -125,7 +144,7 @@ export default {
       colors: ['#4caf50', '#ff9800', '#2196f3', '#ff5722', '#9c27b0'],
     }));
 
-    return { selectedYear, filteredYear, series, chartOptions };
+    return { selectedYear, categoryName, filteredYear, series, chartOptions };
   },
 };
 </script>
