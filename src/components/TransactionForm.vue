@@ -1,107 +1,104 @@
 <template>
-  <section class="transaction-form">
-    <div class="type-tabs">
-      <button
-        v-for="item in typeTabs"
-        :key="item.value"
-        type="button"
-        class="type-btn"
-        :class="{ active: transactionStore.activeType === item.value }"
-        @click="changeType(item.value)"
-      >
-        {{ item.label }}
-      </button>
-    </div>
+  <section class="transaction-form container-fluid">
+    <div class="form-shell">
+      <header class="form-header">
+        <h2 class="title">거래 등록</h2>
 
-    <div class="field-list">
-      <button
-        type="button"
-        class="field-row"
-        @click="transactionStore.setActiveField('date')"
-      >
-        <span class="field-label">날짜</span>
-        <span
-          class="field-value"
-          :class="{ active: transactionStore.activeField === 'date' }"
-        >
-          {{ transactionStore.form.date }}
-        </span>
-      </button>
+        <div class="btn-group" role="group" aria-label="거래 타입">
+          <button
+            v-for="item in typeTabs"
+            :key="item.value"
+            type="button"
+            class="btn"
+            :class="
+              transactionStore.activeType === item.value
+                ? 'btn-danger'
+                : 'btn-outline-secondary'
+            "
+            @click="changeType(item.value)"
+          >
+            {{ item.label }}
+          </button>
+        </div>
+      </header>
 
-      <div
-        class="field-row amount-row"
-        role="button"
-        tabindex="0"
-        @click="transactionStore.setActiveField('amount')"
-      >
-        <span class="field-label">금액</span>
-        <span
-          class="field-value"
-          :class="{ active: transactionStore.activeField === 'amount' }"
-        >
-          {{ transactionStore.displayAmount }}
-        </span>
-        <button
-          type="button"
-          class="calc-btn"
-          @click.stop="transactionStore.openCalculator"
-        >
-          계산기
-        </button>
+      <div class="card form-card">
+        <div class="card-body">
+          <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-6">
+              <label class="form-label mb-1">날짜</label>
+              <input
+                v-model="transactionStore.form.date"
+                type="date"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label mb-1">금액</label>
+              <input
+                v-model="transactionStore.form.amount"
+                type="number"
+                inputmode="numeric"
+                class="form-control"
+                placeholder="0"
+              />
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label mb-1">분류</label>
+              <select
+                v-model.number="transactionStore.form.categoryId"
+                class="form-select"
+              >
+                <option :value="null" disabled>선택</option>
+                <option
+                  v-for="category in transactionStore.categoryOptions"
+                  :key="category.id"
+                  :value="category.id"
+                >
+                  {{ category.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label mb-1">자산</label>
+              <select v-model="transactionStore.form.asset" class="form-select">
+                <option value="" disabled>선택</option>
+                <option
+                  v-for="asset in transactionStore.assetOptions"
+                  :key="asset"
+                  :value="asset"
+                >
+                  {{ asset }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label mb-1">내용</label>
+              <textarea
+                v-model="transactionStore.form.memo"
+                class="form-control"
+                rows="4"
+                placeholder="메모를 입력하세요"
+              />
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end mt-3">
+            <button
+              type="button"
+              class="btn btn-danger px-4"
+              :disabled="transactionStore.isSaving"
+              @click="transaction_handler"
+            >
+              {{ transactionStore.isSaving ? '저장 중...' : '저장하기' }}
+            </button>
+          </div>
+        </div>
       </div>
-
-      <button
-        type="button"
-        class="field-row"
-        @click="transactionStore.setActiveField('category')"
-      >
-        <span class="field-label">분류</span>
-        <span
-          class="field-value"
-          :class="{ active: transactionStore.activeField === 'category' }"
-        >
-          {{ transactionStore.form.category || '선택' }}
-        </span>
-      </button>
-
-      <button
-        type="button"
-        class="field-row"
-        @click="transactionStore.setActiveField('asset')"
-      >
-        <span class="field-label">자산</span>
-        <span
-          class="field-value"
-          :class="{ active: transactionStore.activeField === 'asset' }"
-        >
-          {{ transactionStore.form.asset || '선택' }}
-        </span>
-      </button>
-
-      <button
-        type="button"
-        class="field-row"
-        @click="transactionStore.setActiveField('content')"
-      >
-        <span class="field-label">내용</span>
-        <span
-          class="field-value"
-          :class="{ active: transactionStore.activeField === 'content' }"
-        >
-          {{ transactionStore.form.content || '입력' }}
-        </span>
-      </button>
-    </div>
-
-    <div class="action-row">
-      <button
-        type="button"
-        class="save-btn"
-        @click="transactionStore.saveTransaction"
-      >
-        저장하기
-      </button>
-      <button type="button" class="next-btn" @click="goNext">계속</button>
     </div>
   </section>
 </template>
@@ -110,121 +107,70 @@
 import { useRouter } from 'vue-router';
 import { useTransactionStore } from '@/stores/transactionStore';
 
-// 상단 탭 렌더링용 고정 목록
+// 탭 버튼(UI)
 const typeTabs = [
   { label: '수입', value: 'income' },
   { label: '지출', value: 'expense' },
-  { label: '이체', value: 'transfer' },
 ];
 
+// 라우터 인스턴스
 const router = useRouter();
-// 폼 상태/액션을 직접 사용하는 Pinia 스토어
+// 스토어 인스턴스
 const transactionStore = useTransactionStore();
 
-// 탭 타입을 받아 스토어 상태 변경 + URL 쿼리 동기화
+// 메서드: 탭 변경(라우트 query 변경)
 const changeType = (type) => {
-  transactionStore.setActiveType(type);
-  router.push({ name: 'transaction', query: { type } });
+  router.push({ name: 'transactionPage', query: { type } });
 };
-
-// 다음 화면(마이페이지) 이동
-const goNext = () => {
-  router.push({ name: 'mypage' });
+// 메서드: 저장(confirm -> store save -> alert -> 목록 이동)
+const transaction_handler = async () => {
+  const ok = confirm('저장하시겠습니까?');
+  if (!ok) return;
+  try {
+    const saved = await transactionStore.saveTransaction();
+    if (!saved) {
+      alert('저장에 실패했습니다. 입력값을 확인해주세요.');
+    } else {
+      alert('저장되었습니다.');
+      router.push({ name: 'transactionList' });
+    }
+  } catch (e) {
+    console.error('저장 중 오류:', e);
+    alert('저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+  }
 };
 </script>
 
 <style scoped>
 .transaction-form {
-  background: #fff;
-  border-radius: 16px;
-  padding: 14px;
-}
-
-.type-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.type-btn {
-  border: 1px solid #dadada;
-  background: #f7f7f7;
-  border-radius: 10px;
-  padding: 10px 0;
-  font-size: 14px;
-}
-
-.type-btn.active {
-  border-color: #ff5f46;
-  color: #ff5f46;
-  background: #fff5f3;
-}
-
-.field-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.field-row {
+  background: #f4f4f4;
+  padding: 16px 0;
   width: 100%;
+  margin: 0;
+}
+
+.form-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.form-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 0;
-  border-bottom: 1px solid #ececec;
-  background: transparent;
-  min-height: 52px;
-  text-align: left;
-  padding: 0;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-.field-label {
-  color: #8a8a8a;
-  font-size: 14px;
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
 }
 
-.field-value {
-  color: #404040;
-  font-size: 15px;
-}
-
-.field-value.active {
-  color: #ff5f46;
-}
-
-.amount-row {
-  gap: 8px;
-}
-
-.calc-btn {
-  border: 1px solid #d9d9d9;
-  background: #fff;
-  border-radius: 8px;
-  font-size: 12px;
-  padding: 6px 8px;
-}
-
-.action-row {
-  display: grid;
-  grid-template-columns: 1fr 92px;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.save-btn {
-  border: 0;
-  border-radius: 10px;
-  background: #ff5f46;
-  color: #fff;
-  min-height: 44px;
-}
-
-.next-btn {
-  border: 1px solid #dbdbdb;
-  border-radius: 10px;
-  background: #fff;
-  min-height: 44px;
+.form-card {
+  border-radius: 14px;
+  border-color: #eee;
 }
 </style>
