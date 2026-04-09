@@ -2,7 +2,7 @@
 
 <script></script>
 
-<!-- <template>
+<template>
   <div>
     <h2>회원가입</h2>
 
@@ -55,7 +55,7 @@ import { useLoginStore } from '@/stores/userStore';
 const router = useRouter();
 
 const form = ref({
-  id:keyid,
+  id: keyid,
   userId: '',
   email: '',
   userPw: '',
@@ -84,4 +84,4 @@ const handleSignUp = () => async () => {
     alert('모든 정보를 입력해주세요.');
   }
 };
-</script> -->
+</script>

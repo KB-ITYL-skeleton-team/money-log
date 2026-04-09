@@ -144,6 +144,8 @@ export const useLoginStore = defineStore('login', () => {
     }
   };
 
+  // --- 회원가입 로직 ---
+
   return {
     userId,
     userPw,
