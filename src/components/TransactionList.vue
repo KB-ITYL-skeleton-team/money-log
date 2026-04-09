@@ -25,16 +25,19 @@
     <div class="content-area">
       <!-- 왼쪽: 달력 박스 (나중에 구현) -->
       <div class="calendar-box">
-        <!-- 달력 헤더 -->
+        <!-- 달력 헤더 변경: < 4월 > 버튼에 CalendarView의 월 이동 기능 연결 -->
+        <!-- 변경: calendarRef에서 연도/월 직접 읽어오기 -->
         <div class="calendar-header">
-          <button class="arrow-btn">＜</button>
-          <span class="month-label">{{ currentMonth }}월</span>
-          <button class="arrow-btn">＞</button>
+          <button class="arrow-btn" @click="calendarRef.prevMonth()">＜</button>
+          <span class="month-label">
+            {{ calendarRef?.year }}년 {{ calendarRef?.month + 1 }}월
+          </span>
+          <button class="arrow-btn" @click="calendarRef.nextMonth()">＞</button>
         </div>
         <!-- 달력 날짜 영역 (추후 구현) -->
         <!-- 달력 컴포넌트 삽입 => 다른 팀에서 구현한 달력 사용 -->
         <div class="calendar-body">
-          <CalendarView />
+          <CalendarView ref="calendarRef" />
         </div>
       </div>
 
@@ -47,7 +50,32 @@
           <p class="empty-msg">지출 내역이 없어요.</p>
         </div>
         <!-- + 플로팅 버튼 (추후 팝업 연동 예정) -->
-        <button class="float-btn">＋</button>
+        <!-- 변경: 클릭시 모달 열기 오후 3시 51분 경 = 대기정 형님이 요청하신 변동사항 수행
+        <button class="float-btn" @click="showModal = true">＋</button>-->
+
+        <!-- 변경: 모달 대신 transactionPage로 이동 -->
+        <button
+          class="float-btn"
+          @click="
+            router.push({ name: 'transactionPage', query: { type: 'expense' } })
+          "
+        >
+          ＋
+        </button>
+
+        <!-- 모달 팝업: showModal이 true일 때만 표시 -->
+        <div
+          v-if="showModal"
+          class="modal-overlay"
+          @click.self="showModal = false"
+        >
+          <div class="modal-box">
+            <!-- 모달 닫기 버튼 -->
+            <button class="modal-close" @click="showModal = false">✕</button>
+            <!-- 거래 등록 폼 -->
+            <TransactionForm />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -56,8 +84,16 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useTransactionStore } from '@/stores/transactionStore';
-// CalendarView 컴포넌트 import
+// CalendarView 컴포넌트 import => 추가자 jh
 import CalendarView from '@/components/CalendarView.vue';
+// TransactionForm 컴포넌트 import => 추가자 jh
+import TransactionForm from '@/components/TransactionForm.vue';
+// 라우터 import 추가
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+// CalendarView 컴포넌트 참조
+const calendarRef = ref(null);
 
 // 거래 내역 store 가져오기
 const store = useTransactionStore();
@@ -91,6 +127,10 @@ const selectedDateLabel = computed(() => {
   const day = selectedDate.value.getDate();
   return `${month}월 ${day}일`;
 });
+
+// +버튼 클릭이벤트 관련
+// 모달 표시 여부 상태 (대기정 님이 하셨던 것이 아닌 홈화면에서 + 버튼으로 투사하는 이벤트 관련 const입니다)
+const showModal = ref(false);
 </script>
 
 <style scoped>
@@ -179,11 +219,12 @@ const selectedDateLabel = computed(() => {
   cursor: pointer;
 }
 
-/* 달력 날짜 영역 */
+/* 달력 날짜 영역 - 높이를 auto로 변경해서 달력 크기에 맞게 조정 */
 .calendar-body {
   border: 1px solid #333;
-  height: 300px;
+  height: auto; /* 변경: 300px → auto */
   border-radius: 4px;
+  overflow: hidden; /* 추가: 달력이 박스 밖으로 넘치지 않게 */
 }
 
 /* 오른쪽: 날짜별 내역 */
@@ -230,6 +271,39 @@ const selectedDateLabel = computed(() => {
   border: none;
   color: #fff;
   font-size: 24px;
+  cursor: pointer;
+}
+
+/* 모달 배경 오버레이 */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 모달 박스 */
+.modal-box {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+
+/* 모달 닫기 버튼 */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
   cursor: pointer;
 }
 </style>

@@ -58,6 +58,26 @@
       "memo": "지출",
       "date": "2026-04-07",
       "assets": "cash"
+    },
+    {
+      "userId": 1,
+      "type": "income",
+      "categoryId": 1,
+      "amount": 12,
+      "memo": "jh",
+      "date": "2026-04-09",
+      "asset": "은행",
+      "id": "qpedCzh"
+    },
+    {
+      "userId": 1,
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 11,
+      "memo": "df",
+      "date": "2026-04-09",
+      "asset": "은행",
+      "id": "W8v2T_0"
     }
   ],
   "budgets": [

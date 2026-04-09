@@ -1,25 +1,16 @@
 <template>
   <div>
-    <div style="width: 960px; margin: 0 auto">
+    <!-- width가 원래는 960px이었는데 700px로 수정하였다. -->
+    <div style="width: 700px; margin: 0 auto">
       <div style="border: solid 1px black">
         <div>
-          <div style="text-align: center; align-content: center">
-            <button @click="prevYear">&lt;&lt;</button>
-            <button @click="prevMonth">&lt;</button>
-            <span @dblclick="goToday" style="cursor: pointer">
-              <!-- 2-3. 현재 날짜 보여주기 
+          <!-- 2-3. 현재 날짜 보여주기  ===> TransactionList.vue로 직접 이동하여 출력
             사용자 설정에 보여주기
             년도 표기 2026 [4자리], 26[2자리]
             월 표기 1월, 01월 [1자리, 2자리]
             일 표기 8일 08일 [1자리 , 2자리]
             시간 표기 오전,오후 12시간제 , 24시간제 표기 [12시간제, 24시간제]
         -->
-              {{ year }}년-{{ month + 1 }}월-{{ date }}일
-              {{ weekDays[day] }}요일
-            </span>
-            <button @click="nextMonth">&gt;</button>
-            <button @click="nextYear">&gt;&gt;</button><br /><br />
-          </div>
 
           <!-- <p>첫 날: {{ firstDay }}, 마지막 날 : {{ lastDate }}</p> -->
           <!-- <p>{{ calendarTable }}</p>a -->
@@ -46,15 +37,20 @@
               border: solid 1px black;
             "
           >
+            <!-- 해당하는 날짜에 (작업일 기준 4월 9일) 영역전개 아니 영역 표시 (오늘을 알 수 있게) -->
             <div
               v-for="(item, index) in calendarTable"
               :key="index"
               :style="{
                 border: '1px solid gray',
-                height: '100px',
+                height: '80px',
                 textAlign: 'center',
                 boxSizing: 'border-box',
                 color: getDayColor(index),
+                paddingTop: '4px',
+                backgroundColor: isToday(item)
+                  ? '#4a90e2'
+                  : 'transparent' /* 추가: 오늘 날짜 파란색 배경 */,
               }"
             >
               {{ item }}
@@ -164,12 +160,32 @@ const nextYear = () => {
 const goToday = () => {
   currentDate.value = new Date();
 };
-// 4-4 공휴일 색 구분하기
+// 4-4 공휴일 색 구분하기 - 기본색을 white로 변경
 const getDayColor = (index) => {
   if (index % 7 === 0) return 'red';
   if (index % 7 === 6) return 'blue';
-  return 'black';
+  return 'white'; // 변경: black → white
 };
+
+// 오늘 날짜 객체 => 파란색으로 영역 전개
+const today = new Date();
+
+// 현재 셀이 오늘 날짜인지 확인
+const isToday = (item) => {
+  return (
+    item === today.getDate() &&
+    month.value === today.getMonth() &&
+    year.value === today.getFullYear()
+  );
+};
+
+// 부모 컴포넌트에서 호출할 수 있도록 메서드 노출
+defineExpose({
+  prevMonth,
+  nextMonth,
+  year, // 추가: 연도 노출
+  month, // 추가: 월 노출
+});
 </script>
 
 <style scoped></style>
