@@ -10,6 +10,7 @@ import axios from 'axios';
 import { ref } from 'vue';
 import { useTransactionsStore } from '@/stores/staticsStores.js';
 import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
 
 export default {
   setup() {
@@ -47,6 +48,11 @@ export default {
         console.error(err);
       }
     };
+
+    onMounted(() => {
+      transactions.init();
+    });
+
     return { inputMonth, budgetAmount, transactions, budget, createBudget };
   },
 };

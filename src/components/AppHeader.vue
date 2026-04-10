@@ -40,12 +40,16 @@
 import { computed } from 'vue';
 import { useRouter, RouterLink } from 'vue-router';
 import { useLoginStore } from '@/stores/userStore';
+import { watchEffect } from 'vue';
 
 // 로그인 되어 있는지 확인 - 안 되어 있으면
 const loginStore = useLoginStore();
 const router = useRouter();
 const isLogin = computed(() => loginStore.isLoggedIn);
 const user = computed(() => loginStore.currentUser);
+watchEffect(() => {
+  console.log('user:', user.value);
+});
 
 const logout = () => {
   loginStore.logout();

@@ -11,7 +11,7 @@
 import budget from '@/totalBudget/Budget.vue';
 import moon from '@/totalBudget/Moon.vue';
 export default {
-  name: ' totalBudget',
+  name: 'totalBudget',
   components: { budget, moon },
 };
 </script>
