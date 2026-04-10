@@ -139,10 +139,9 @@
       "type": "expense",
       "name": "교통"
     }
-<<<<<<< HEAD
+
   ]
 =======
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
->>>>>>> 49a80eea49344ce57029535ae4ab4e4b6a89146d
+  ]
+>>>>>>> adbba51d4f3047b39f0e134cb888ccd2ef94a75f
 }
