@@ -5,7 +5,7 @@
       "userId": "usr_e0ifd0tv",
       "name": "남주혁",
       "email": "user1@example.com",
-      "password": "1234",
+      "password": "qwer123",
       "createdAt": "2026-01-05",
       "phone": "010-8858-4250"
     },
@@ -899,6 +899,15 @@
       "password": "1234",
       "createdAt": "2026-02-28",
       "phone": "010-6450-5727"
+    },
+    {
+      "name": "테스트",
+      "phone": "010-3434-5343",
+      "email": "test@gmail.com",
+      "userId": "testtest",
+      "password": "test1234",
+      "id": "1775808008728",
+      "createdAt": "2026-04-10"
     }
   ],
   "transactions": [
@@ -15356,6 +15365,10 @@
       "type": "expense",
       "name": "기타"
     }
+<<<<<<< HEAD
   ],
   "$schema": "./node_modules/json-server/schema.json"
+=======
+  ]
+>>>>>>> c891644bb1fd4478f2f19eef2de61afedd9b8f84
 }

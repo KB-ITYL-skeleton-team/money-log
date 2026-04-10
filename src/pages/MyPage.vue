@@ -1,16 +1,14 @@
 <template>
   <div class="mypage-wrapper container mt-5 pb-5">
     <header class="d-flex justify-content-start mb-4">
-      <!-- 뒤로가기 버튼(홈페이지로) -->
       <button
-        @click="$router.push('/homePage')"
+        @click="$router.push('/transactionList')"
         class="btn btn-outline-dark btn-sm rounded-pill px-3"
       >
         &lt; 뒤로가기
       </button>
     </header>
 
-    <!-- My Page -->
     <h1 class="pc-title d-none d-md-block mb-5 text-center text-md-start">
       My Page
     </h1>
@@ -18,8 +16,6 @@
     <div class="row info-content-area align-items-center">
       <div class="col-12 col-md-5 text-center mb-4 mb-md-0 icon-section">
         <h1 class="d-md-none mb-4 mobile-inner-title">My Page</h1>
-
-        <!-- 이름 이미지 -->
         <div class="profile-img-wrapper position-relative d-inline-block">
           <div
             class="profile-img bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white mx-auto"
@@ -39,7 +35,6 @@
         </div>
       </div>
 
-      <!-- 유저 아이디 -->
       <div class="col-12 col-md-7 ps-md-5 form-section">
         <section class="card p-4 rounded-4 border shadow-sm bg-white">
           <div class="info-list">
@@ -50,9 +45,9 @@
               <p class="m-0 border-bottom pb-2 text-muted">
                 {{ loginStore.currentUser?.userId }}
               </p>
+              <small class="text-muted">아이디는 변경되지 않습니다.</small>
             </div>
 
-            <!-- 유저 이름 -->
             <div class="mb-4">
               <label class="form-label fw-bold small text-secondary mb-1"
                 >이름</label
@@ -67,11 +62,10 @@
                 {{ loginStore.currentUser?.name }}
               </p>
               <small v-if="isEditMode && !validateName" class="text-danger"
-                >이름은 2자 이상이어야 합니다.</small
+                >한글로 입력해주세요</small
               >
             </div>
 
-            <!-- 유저 이메일 -->
             <div class="mb-4">
               <label class="form-label fw-bold small text-secondary mb-1"
                 >이메일</label
@@ -95,39 +89,65 @@
                 <label class="form-label fw-bold small text-primary mb-1"
                   >현재 비밀번호 확인</label
                 >
-                <div class="position-relative">
+                <div class="position-relative d-flex align-items-center">
                   <input
                     :type="showPw.current ? 'text' : 'password'"
                     v-model="editForm.currentPassword"
                     class="form-control-custom"
                     placeholder="기존 비밀번호 입력"
+                    style="flex: 1"
                   />
+                  <span v-if="validateCurrentPw" class="ms-1 text-success"
+                    >✔️</span
+                  >
                   <span
                     class="pw-icon"
                     @click="showPw.current = !showPw.current"
-                    >{{ showPw.current ? '👁️' : '🙈' }}</span
+                    style="position: static; cursor: pointer; margin-left: 10px"
                   >
+                    {{ showPw.current ? '🐵' : '🙈' }}
+                  </span>
                 </div>
               </div>
+
               <div class="mb-2">
                 <label class="form-label fw-bold small text-secondary mb-1"
                   >새 비밀번호</label
                 >
-                <div class="position-relative">
+                <div class="position-relative d-flex align-items-center">
                   <input
                     :type="showPw.new ? 'text' : 'password'"
                     v-model="editForm.newPassword"
                     class="form-control-custom"
                     placeholder="변경 시에만 입력"
+                    style="flex: 1"
                   />
-                  <span class="pw-icon" @click="showPw.new = !showPw.new">{{
-                    showPw.new ? '👁️' : '🙈'
-                  }}</span>
+                  <span
+                    v-if="isNewPwValidAndDifferent"
+                    class="ms-1 text-success"
+                    >✔️</span
+                  >
+                  <span
+                    class="pw-icon"
+                    @click="showPw.new = !showPw.new"
+                    style="position: static; cursor: pointer; margin-left: 10px"
+                  >
+                    {{ showPw.new ? '🐵' : '🙈' }}
+                  </span>
                 </div>
                 <small
                   v-if="editForm.newPassword && !validatePassword"
                   class="text-danger"
-                  >영문, 숫자 포함 8자 이상 입력하세요.</small
+                  >영문, 숫자 포함 7자 이상 입력하세요.</small
+                >
+                <small
+                  v-if="
+                    editForm.newPassword &&
+                    validatePassword &&
+                    !isNewPwDifferent
+                  "
+                  class="text-danger d-block"
+                  >현재 비밀번호와 같습니다.</small
                 >
               </div>
             </div>
@@ -171,14 +191,13 @@
 <script setup>
 import { ref, reactive, computed } from 'vue';
 import { useLoginStore } from '@/stores/userStore';
+import { useRouter } from 'vue-router';
 
 const loginStore = useLoginStore();
+const router = useRouter();
 const isEditMode = ref(false);
-
-//  비밀번호 보이기, 가리기 (현재, 새 비번)
 const showPw = reactive({ current: false, new: false });
 
-// 수정시 입력 값 담을 객체
 const editForm = reactive({
   name: '',
   email: '',
@@ -187,38 +206,63 @@ const editForm = reactive({
 });
 
 // --- (Computed) ---
-
-// 이름 글자수 제한 없이 오타 없는지 확인
 const validateName = computed(() => /^[가-힣]+$/.test(editForm.name));
+const validateEmail = computed(() =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(editForm.email),
+);
+const pwRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{7,}$/;
 
-// 이메일 형식만 맞게
-const validatePassword = computed(() => {
-  const pw = editForm.newPassword;
+// 일곱글자 확인 + "실제 현재 비번과 일치하는지" 확인
+const isCurrentPwCorrect = computed(
+  () => editForm.currentPassword === loginStore.currentUser?.password,
+);
 
-  // 새 비밀번호 칸이 비어있다면 (수정 안 함) 통과
-  if (!pw) return true;
+// 새 비번 규격 확인
+const validatePassword = computed(() => pwRegExp.test(editForm.newPassword));
+// 새 비번이 현재 비번과 다른지 확인
+const isNewPwDifferent = computed(
+  () => editForm.currentPassword !== editForm.newPassword,
+);
 
-  // 입력했다면 영문+숫자 포함 7자 이상인지 검사
-  const regExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{7,}$/;
-
-  return regExp.test(pw);
+// 4번: 새비번 체크표시 노출 조건 (규격에 맞고 + 현재 비번과 다를 때)
+const isNewPwValidAndDifferent = computed(() => {
+  return (
+    editForm.newPassword && validatePassword.value && isNewPwDifferent.value
+  );
 });
+
 const handleEditToggle = async () => {
   if (isEditMode.value) {
-    if (!validateName.value || !validateEmail.value)
-      return alert('입력 형식을 확인해주세요.');
-    if (editForm.newPassword && !validatePassword.value)
-      return alert('새 비밀번호 형식이 올바르지 않습니다.');
+    // 현재 비밀번호 입력 필수
     if (!editForm.currentPassword)
       return alert('현재 비밀번호를 입력해야 저장이 가능합니다.');
 
+    // 추가 검증: 입력한 현재 비번이 실제 DB의 비번과 맞는지 확인
+    if (!isCurrentPwCorrect.value)
+      return alert('현재 비밀번호가 일치하지 않습니다.');
+
+    if (!validateName.value || !validateEmail.value)
+      return alert('이름 또는 이메일 형식을 확인해주세요.');
+
+    // 새 비번 입력 시 검증
+    if (editForm.newPassword) {
+      if (!validatePassword.value)
+        return alert('새 비밀번호 형식이 올바르지 않습니다.');
+      if (!isNewPwDifferent.value)
+        return alert('새 비밀번호가 현재 비밀번호와 같습니다.');
+    }
+
+    // 저장 시도
     const success = await loginStore.updateUser({ ...editForm });
     if (success) {
       alert('수정되었습니다!');
       isEditMode.value = false;
       clearPwFields();
+      // 저장 완료 후 달력(/transactionList)으로 이동
+      router.push('/transactionList');
     }
   } else {
+    // 수정 모드 진입 시 기존 정보 로드
     editForm.name = loginStore.currentUser?.name || '';
     editForm.email = loginStore.currentUser?.email || '';
     isEditMode.value = true;
