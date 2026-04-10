@@ -78,11 +78,41 @@
       "date": "2026-04-09",
       "asset": "은행",
       "id": "W8v2T_0"
+    },
+    {
+      "userId": 1,
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 100000,
+      "memo": "배고파요",
+      "date": "2026-04-09",
+      "asset": "은행",
+      "id": "hYwUAjmg3gY"
+    },
+    {
+      "userId": 1,
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 2000000000,
+      "memo": "배고파서 많이 먹었어요",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "0PIWcO1bEj8"
+    },
+    {
+      "userId": 1,
+      "type": "income",
+      "categoryId": 1,
+      "amount": 1000000,
+      "memo": "월급은 잘 안늘어나는데,,,",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "rOVHCLlkw74"
     }
   ],
   "budgets": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "month": "2026-04",
       "amount": 1500000
@@ -90,24 +120,29 @@
   ],
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "type": "income",
       "name": "월급"
     },
     {
-      "id": 2,
+      "id": "2",
       "type": "income",
       "name": "용돈"
     },
     {
-      "id": 3,
+      "id": "3",
       "type": "expense",
       "name": "식비"
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "expense",
       "name": "교통"
     }
+<<<<<<< HEAD
   ]
+=======
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+>>>>>>> 49a80eea49344ce57029535ae4ab4e4b6a89146d
 }

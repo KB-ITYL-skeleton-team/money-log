@@ -17,6 +17,15 @@ import BudgetCard from '@/components/BudgetCard.vue';
 import FindId from '@/components/FindId.vue';
 import FindPw from '@/components/FindPw.vue';
 
+import statics from '@/statics/Statics.vue';
+import yearStaticsIncome from '@/statics/YearStaticsIncome.vue';
+import yearStaticsExpense from '@/statics/YearStaticsExpense.vue';
+import monthStaticsIncome from '@/statics/MonthStaticsIncome.vue';
+import monthStaticsExpense from '@/statics/MonthStaticsExpense.vue';
+import settleExpense from '@/settle/SettleExpense.vue';
+import fortune from '@/fortune/Fortune.vue';
+import totalBudget from '@/totalBudget/TotalBudget.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -85,6 +94,32 @@ const router = createRouter({
       name: 'findpw',
       component: FindPw,
     },
+
+    {
+      path: '/statics',
+      component: statics,
+      redirect: '/statics/monthStatics',
+      children: [
+        {
+          path: 'yearStatics',
+          components: {
+            left: yearStaticsIncome,
+            right: yearStaticsExpense,
+          },
+        },
+        {
+          path: 'monthStatics',
+          components: {
+            left: monthStaticsIncome,
+            right: monthStaticsExpense,
+          },
+        },
+      ],
+    },
+
+    { path: '/settleExpense', component: settleExpense },
+    { path: '/fortune', component: fortune },
+    { path: '/totalBudget', component: totalBudget },
   ],
 });
 
