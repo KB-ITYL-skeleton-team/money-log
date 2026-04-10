@@ -93,7 +93,6 @@
               />
             </div>
           </div>
-
           <div class="d-flex justify-content-end mt-3">
             <button
               type="button"
@@ -108,6 +107,19 @@
                     ? '수정하기'
                     : '저장하기'
               }}
+            </button>
+
+            <!-- 삭제 버튼은 수정 모드에서만 보이도록, 클릭 시 삭제 확인 후
+              store.deleteTransaction() 호출 -> 목록으로 이동
+              - 수정 버튼 오른쪽에 배치 -->
+            <button
+              v-if="transactionStore.isEditing"
+              type="button"
+              class="btn btn-outline-danger ms-2"
+              :disabled="transactionStore.isSaving"
+              @click="delete_handler"
+            >
+              삭제하기
             </button>
           </div>
         </div>
@@ -162,6 +174,22 @@ const transaction_handler = async () => {
   } catch (e) {
     console.error('저장 중 오류:', e);
     alert('저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+  }
+};
+// 삭제하는 메서드 -> 스토어 내부의 deleteTransaction() 호출 -> 목록으로 이동
+const delete_handler = async () => {
+  const ok = confirm('정말 삭제하시겠습니까?');
+  if (!ok) return;
+
+  try {
+    await transactionStore.deleteTransaction(
+      transactionStore.editingTransactionId,
+    );
+    alert('삭제되었습니다.');
+    router.push({ name: 'transactionList' });
+  } catch (e) {
+    console.error('삭제 중 오류:', e);
+    alert(e?.message || '삭제 중 오류가 발생했습니다.');
   }
 };
 </script>
