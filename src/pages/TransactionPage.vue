@@ -69,6 +69,12 @@ onMounted(async () => {
     return;
   }
 
+  // 추가: date query가 있으면 form.date에 세팅 (TransactionList에서 선택한 날짜 반영)
+  const dateFromQuery = route.query.date;
+  if (dateFromQuery) {
+    transactionStore.form.date = dateFromQuery;
+  }
+
   const initialType = syncTypeFromQuery();
   await transactionStore.applyTypeFilter(initialType);
 });
