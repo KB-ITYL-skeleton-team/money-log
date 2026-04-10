@@ -2,178 +2,178 @@
   <div
     class="signup-wrapper d-flex align-items-center justify-content-center mt-md-5 pb-5"
   >
-    <div class="container signup-container">
-      <h1 class="pc-title d-none d-md-block mb-5 text-center text-md-start">
-        회원가입
-      </h1>
+    <!-- 페이지 새로고침으로 삭제 방지 -->
+    <form
+      @submit.prevent="submitSignup"
+      class="signup-card p-4 p-md-5 border rounded-5 shadow-sm bg-white"
+    >
+      <h1 class="fw-extra-bold mb-4 text-dark display-6">회원가입</h1>
 
-      <!-- 페이지 새로고침으로 삭제 방지 -->
-      <form
-        @submit.prevent="submitSignup"
-        class="signup-card p-4 p-md-5 border rounded-5 shadow-sm bg-white"
-      >
-        <h1 class="d-md-none mb-5 mobile-inner-title text-center">회원가입</h1>
-
-        <h3 class="h5 fw-bold mb-4 text-secondary">개인정보</h3>
-
-        <div class="row info-content-area">
-          <div class="col-12 col-md-6 pe-md-4 mb-4 mb-md-0 section-divider">
-            <div class="mb-4">
-              <label class="form-label fw-bold small text-secondary mb-1"
-                >이름</label
-              >
-              <div class="input-with-icon">
-                <input
-                  v-model="name"
-                  type="text"
-                  class="form-underline"
-                  placeholder="이름을 입력하세요"
-                />
-                <span class="valid-icon" v-if="name.length > 0">
-                  <span v-if="isNameValid" style="color: green">✅</span>
-                  <span v-else style="color: red">❌</span>
-                </span>
-              </div>
-            </div>
-
-            <div class="mb-4">
-              <label class="form-label fw-bold small text-secondary mb-1"
-                >전화번호</label
-              >
-              <div class="input-with-icon">
-                <input
-                  v-model="phone"
-                  type="text"
-                  class="form-underline"
-                  placeholder="010-0000-0000"
-                />
-                <span class="valid-icon" v-if="phone.length > 0">
-                  <span v-if="isPhoneValid" style="color: green">✅</span>
-                  <span v-else style="color: red">❌</span>
-                </span>
-              </div>
-            </div>
-
-            <div class="mb-4">
-              <label class="form-label fw-bold small text-secondary mb-1"
-                >이메일</label
-              >
-              <div class="input-with-icon">
-                <input
-                  v-model="email"
-                  type="text"
-                  class="form-underline"
-                  placeholder="ex123@example.com"
-                />
-                <span class="valid-icon" v-if="email.length > 0">
-                  <span v-if="isEmailValid" style="color: green">✅</span>
-                  <span v-else style="color: red">❌</span>
-                </span>
-              </div>
-            </div>
-
-            <div class="mb-4">
-              <label class="form-label fw-bold small text-secondary mb-1"
-                >아이디</label
-              >
-              <div class="d-flex gap-2">
-                <div class="input-with-icon flex-grow-1">
-                  <input
-                    v-model="userId"
-                    type="text"
-                    class="form-underline"
-                    placeholder="아이디"
-                    @input="isIdChecked = false"
-                  />
-                  <span class="valid-icon" v-if="userId.length > 0">
-                    <span v-if="isIdChecked" style="color: green">✅</span>
-                    <span v-else style="color: red">❌</span>
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  @click="checkId"
-                  class="btn btn-outline-dark btn-sm rounded-pill px-3"
-                >
-                  중복확인
-                </button>
-              </div>
+      <div class="row info-content-area">
+        <div class="col-12 col-md-6 pe-md-4 mb-4 mb-md-0 section-divider">
+          <div class="mb-4">
+            <label class="form-label fw-bold small text-secondary mb-1"
+              >이름</label
+            >
+            <div class="input-with-icon">
+              <input
+                v-model="name"
+                type="text"
+                class="form-underline"
+                placeholder="한글로 정확히 입력하세요"
+              />
+              <span class="valid-icon" v-if="name.length > 0">
+                <span v-if="isNameValid" style="color: green">✅</span>
+                <span v-else style="color: red">❌</span>
+              </span>
             </div>
           </div>
 
-          <div class="col-12 col-md-6 ps-md-4">
-            <div class="mb-4">
-              <label class="form-label fw-bold small text-secondary mb-1"
-                >비밀번호</label
-              >
-              <div class="input-with-icon">
+          <div class="mb-4">
+            <label class="form-label fw-bold small text-secondary mb-1"
+              >전화번호</label
+            >
+            <div class="input-with-icon">
+              <input
+                v-model="phone"
+                type="text"
+                class="form-underline"
+                placeholder="010-0000-0000"
+              />
+              <span class="valid-icon" v-if="phone.length > 0">
+                <span v-if="isPhoneValid" style="color: green">✅</span>
+                <span v-else style="color: red">❌</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-bold small text-secondary mb-1"
+              >이메일</label
+            >
+            <div class="input-with-icon">
+              <input
+                v-model="email"
+                type="text"
+                class="form-underline"
+                placeholder="ex123@example.com"
+              />
+              <span class="valid-icon" v-if="email.length > 0">
+                <span v-if="isEmailValid" style="color: green">✅</span>
+                <span v-else style="color: red">❌</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-bold small text-secondary mb-1"
+              >아이디</label
+            >
+            <div class="d-flex gap-2">
+              <div class="input-with-icon flex-grow-1">
                 <input
-                  v-model="password"
-                  :type="showPassword ? 'text' : 'password'"
+                  v-model="userId"
+                  type="text"
                   class="form-underline"
-                  placeholder="영문+숫자 7자 이상"
+                  placeholder="아이디 (6자리 이상)"
+                  @input="isIdChecked = false"
                 />
-                <button
-                  type="button"
-                  class="eye-btn"
-                  @click="showPassword = !showPassword"
-                >
-                  {{ showPassword ? '🙈' : '👁️' }}
-                </button>
-                <span class="valid-icon pw-valid" v-if="password.length > 0">
-                  <span v-if="isPwValid" style="color: green">✅</span>
-                  <span v-else style="color: red">❌</span>
+                <span class="valid-icon" v-if="userId.length > 0">
+                  <span v-if="isIdChecked" style="color: green">✅</span>
+
+                  <template v-else>
+                    <span v-if="!isIdValid" style="color: red">❌</span>
+                    <span v-else style="color: orange">⚠️</span>
+                  </template>
                 </span>
               </div>
-            </div>
-
-            <div class="mb-5">
-              <label class="form-label fw-bold small text-secondary mb-1"
-                >비밀번호 확인</label
-              >
-              <div class="input-with-icon">
-                <input
-                  v-model="passwordConfirm"
-                  :type="showPasswordConfirm ? 'text' : 'password'"
-                  class="form-underline"
-                  placeholder="비밀번호 확인"
-                />
-                <button
-                  type="button"
-                  class="eye-btn"
-                  @click="showPasswordConfirm = !showPasswordConfirm"
-                >
-                  {{ showPasswordConfirm ? '🙈' : '👁️' }}
-                </button>
-                <span
-                  class="valid-icon pw-valid"
-                  v-if="passwordConfirm.length > 0"
-                >
-                  <span v-if="isPwConfirmValid" style="color: green">✅</span>
-                  <span v-else style="color: red">❌</span>
-                </span>
-              </div>
-            </div>
-
-            <div class="d-grid gap-2 mb-3 mt-auto">
-              <button
-                type="submit"
-                class="btn btn-dark-custom py-2 rounded-3 fw-bold"
-              >
-                가입하기
-              </button>
               <button
                 type="button"
-                @click="router.push('/loginPage')"
-                class="btn btn-outline-secondary py-2 rounded-3 FW-bold"
+                @click="checkId"
+                class="btn btn-outline-dark btn-sm rounded-pill px-3"
               >
-                가입취소
+                중복확인
               </button>
             </div>
           </div>
+          <div class="mt-2" style="font-size: 0.75rem">
+            <span class="me-2">❌: 6자 미만</span>
+            <span class="me-2">⚠️: 중복 확인 필요</span>
+            <span>✅: 사용 가능</span>
+          </div>
         </div>
-      </form>
-    </div>
+        <div class="col-12 col-md-6 ps-md-4">
+          <div class="mb-4">
+            <label class="form-label fw-bold small text-secondary mb-1"
+              >비밀번호</label
+            >
+            <div class="input-with-icon">
+              <input
+                v-model="password"
+                :type="showPassword ? 'text' : 'password'"
+                class="form-underline"
+                placeholder="영문+숫자 7자 이상"
+              />
+              <button
+                type="button"
+                class="eye-btn"
+                @click="showPassword = !showPassword"
+              >
+                {{ showPassword ? '🐵' : '🙈' }}
+              </button>
+              <span class="valid-icon pw-valid" v-if="password.length > 0">
+                <span v-if="isPwValid" style="color: green">✅</span>
+                <span v-else style="color: red">❌</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="mb-5">
+            <label class="form-label fw-bold small text-secondary mb-1"
+              >비밀번호 확인</label
+            >
+            <div class="input-with-icon">
+              <input
+                v-model="passwordConfirm"
+                :type="showPasswordConfirm ? 'text' : 'password'"
+                class="form-underline"
+                placeholder="비밀번호 확인"
+              />
+              <button
+                type="button"
+                class="eye-btn"
+                @click="showPasswordConfirm = !showPasswordConfirm"
+              >
+                {{ showPasswordConfirm ? '🐵' : '🙈' }}
+              </button>
+              <span
+                class="valid-icon pw-valid"
+                v-if="passwordConfirm.length > 0"
+              >
+                <span v-if="isPwConfirmValid" style="color: green">✅</span>
+                <span v-else style="color: red">❌</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2 mb-3 mt-auto">
+            <button
+              type="submit"
+              class="btn btn-dark-custom py-2 rounded-3 fw-bold"
+            >
+              가입하기
+            </button>
+            <button
+              type="button"
+              @click="router.push('/loginPage')"
+              class="btn btn-outline-secondary py-2 rounded-3 FW-bold"
+            >
+              가입취소
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -207,6 +207,8 @@ const isPhoneValid = computed(() => /^010-\d{4}-\d{4}$/.test(phone.value));
 const isEmailValid = computed(() =>
   /^[a-zA-A0-9._%+-]+@[a-zA-A0-9.-]+\.[a-zA-A]{2,}$/.test(email.value),
 );
+// 아이디 형식
+const isIdValid = computed(() => userId.value.length >= 6);
 // 비밀번호 형식
 const isPwValid = computed(() => {
   const pw = password.value;
@@ -223,21 +225,23 @@ const isPwConfirmValid = computed(
   () => password.value !== '' && password.value === passwordConfirm.value,
 );
 
+// --- 중복 확인 버튼 클릭 시 실행 ---
 const checkId = async () => {
-  if (!userId.value) return alert('아이디를 입력하세요.');
-  try {
-    const res = await axios.get(
-      `http://localhost:3000/users?userId=${userId.value}`,
-    );
-    if (res.data.length > 0) {
-      alert('이미 사용 중인 아이디입니다.');
-      isIdChecked.value = false;
-    } else {
-      alert('사용 가능한 아이디입니다.');
-      isIdChecked.value = true;
-    }
-  } catch (e) {
-    alert('중복 확인 중 오류가 발생했습니다.');
+  // 1. 6자리 미만이면 서버 요청도 안 보냄
+  if (userId.value.length < 6) {
+    alert('아이디는 6자리 이상이어야 합니다.');
+    return;
+  }
+
+  // 2. 스토어 함수 호출해서 중복 여부 확인
+  const isDuplicated = await loginStore.checkIdDuplicated(userId.value);
+
+  if (isDuplicated) {
+    alert('이미 사용 중인 아이디입니다.');
+    isIdChecked.value = false; // 중복 확인 실패 상태
+  } else {
+    alert('사용 가능한 아이디입니다.');
+    isIdChecked.value = true; // 중복 확인 완료 상태
   }
 };
 
@@ -264,6 +268,20 @@ const submitSignup = async () => {
 </script>
 
 <style scoped>
+.fw-extra-bold {
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.display-6 {
+  font-size: 2.5rem;
+  color: #212529 !important;
+}
+
+.signup-card {
+  max-width: 850px;
+  width: 100%;
+}
 /* 카드 스타일 */
 .signup-card {
   border-radius: 40px !important;

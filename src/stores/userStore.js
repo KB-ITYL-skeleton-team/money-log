@@ -117,6 +117,32 @@ export const useLoginStore = defineStore('login', () => {
       alert('서버와 통신 중 오류가 발생했습니다.');
     }
   };
+  // --- 회원 정보 수정  ---
+  const updateUser = async (editData) => {
+    try {
+      const updatedInfo = {
+        ...currentUser.value,
+        name: editData.name,
+        email: editData.email,
+        password: editData.newPassword || currentUser.value.password, // 새 비번 없으면 기존 비번
+      };
+
+      const response = await axios.put(
+        `http://localhost:3000/users/${currentUser.value.id}`,
+        updatedInfo,
+      );
+
+      if (response.status === 200) {
+        // 2. 스토어 상태 및 로컬 스토리지 동기화
+        setLoginUser(response.data);
+        return true; // 성공 시 true 반환하여 컴포넌트에서 push 하도록 함
+      }
+    } catch (error) {
+      console.error('정보 수정 에러:', error);
+      alert('정보 수정 중 오류가 발생했습니다.');
+      return false;
+    }
+  };
 
   // --- 회원 탈퇴 ---
   const deleteAccount = async () => {
@@ -168,6 +194,19 @@ export const useLoginStore = defineStore('login', () => {
       alert('서버 연결 중 오류가 발생했습니다.');
     }
   };
+  // --- 아이디 중복 확인 함수 ---
+  const checkIdDuplicated = async (userId) => {
+    try {
+      const response = await axios.get('http://localhost:3000/users');
+      const users = response.data;
+
+      // 중복 여부 확인 (있으면 true, 없으면 false)
+      return users.some((u) => String(u.userId) === String(userId));
+    } catch (error) {
+      console.error('중복 확인 에러:', error);
+      return true; // 에러 시 안전하게 중복으로 간주
+    }
+  };
 
   return {
     userId,
@@ -183,5 +222,7 @@ export const useLoginStore = defineStore('login', () => {
     loadUser,
     logout,
     handleSignup,
+    updateUser,
+    checkIdDuplicated,
   };
 });
