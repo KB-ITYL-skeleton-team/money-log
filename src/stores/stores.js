@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import data from '../../dummy_db.json';
+import data from '../../db.json';
 
 export const useTransactionsStore = defineStore('Transactions', () => {
   const transactions = ref(data.transactions);
