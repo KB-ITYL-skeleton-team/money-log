@@ -231,19 +231,12 @@ const goCreate = (type) => {
 </script>
 
 <style scoped>
-/* 전체 영역 - 검정 배경 */
-.transaction-list {
-  background-color: #000;
-  min-height: 100vh;
-  color: #fff;
-}
-
 /* 수입/지출/합계 요약 바 */
 .summary-bar {
   display: flex;
   justify-content: space-around;
   padding: 12px 0;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid white;
 }
 
 /* 요약 항목 */
@@ -286,7 +279,7 @@ const goCreate = (type) => {
 /* 왼쪽: 달력 박스 */
 .calendar-box {
   flex: 1;
-  border-right: 1px solid #333;
+  border-right: 1px solid white;
   padding: 12px;
 }
 
@@ -296,7 +289,7 @@ const goCreate = (type) => {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
-  border: 1px solid #333;
+  border: 1px solid white;
   padding: 8px;
   border-radius: 4px;
 }
@@ -318,7 +311,7 @@ const goCreate = (type) => {
 
 /* 달력 날짜 영역 - 높이를 auto로 변경해서 달력 크기에 맞게 조정 */
 .calendar-body {
-  border: 1px solid #333;
+  border: 1px solid white;
   height: auto; /* 변경: 300px → auto */
   border-radius: 4px;
   overflow: hidden; /* 추가: 달력이 박스 밖으로 넘치지 않게 */
@@ -329,7 +322,7 @@ const goCreate = (type) => {
   flex: 1;
   padding: 12px;
   position: relative;
-  border: 1px solid #333;
+  border: 1px solid white;
 }
 
 /* 선택된 날짜 - 패딩 추가로 공간 확보 */
@@ -337,7 +330,7 @@ const goCreate = (type) => {
   font-size: 14px;
   font-weight: 600;
   padding: 12px 16px; /* 변경: 공간 추가 */
-  border-bottom: 1px solid #333; /* 변경: 구분선 추가 */
+  border-bottom: 1px solid white; /* 변경: 구분선 추가 */
   color: #fff;
 }
 
@@ -363,14 +356,14 @@ const goCreate = (type) => {
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid white;
   width: 100%;
   cursor: pointer; /* 추가: 클릭 가능한 항목임을 표시 */
 }
 
 /* 거래 내역 아이템 호버 효과 */
 .transaction-item:hover {
-  background-color: #1a1a1a; /* 추가: 마우스 올렸을 때 색상 변경 */
+  background-color: white; /* 추가: 마우스 올렸을 때 색상 변경 */
 }
 
 /* 메모 */
@@ -397,39 +390,6 @@ const goCreate = (type) => {
   border: none;
   color: #fff;
   font-size: 24px;
-  cursor: pointer;
-}
-
-/* 모달 배경 오버레이 */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-/* 모달 박스 */
-.modal-box {
-  background: #1a1a1a;
-  border-radius: 12px;
-  padding: 24px;
-  width: 90%;
-  max-width: 600px;
-  position: relative;
-}
-
-/* 모달 닫기 버튼 */
-.modal-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 18px;
   cursor: pointer;
 }
 </style>
