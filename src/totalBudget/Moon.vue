@@ -10,7 +10,7 @@
 
 <script>
 import { computed } from 'vue';
-import { useTransactionsStore } from '@/stores/stores.js';
+import { useTransactionsStore } from '@/stores/staticsStores.js';
 import { storeToRefs } from 'pinia';
 
 export default {
