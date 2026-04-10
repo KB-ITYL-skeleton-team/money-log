@@ -280,6 +280,33 @@ export const useTransactionStore = defineStore('transaction', () => {
       headers: { 'Content-Type': 'application/json' },
     });
   };
+  // 삭제 버튼 실행 함수
+  const deleteTransaction = async (transactionId) => {
+    const currentUserId = getCurrentUserId();
+    if (!currentUserId) throw new Error('로그인이 필요합니다.');
+
+    // 본인 거래인지 확인
+    const tx = await fetchTransactionById(transactionId);
+    if (String(tx.userId) !== String(currentUserId)) {
+      throw new Error('본인 거래만 삭제할 수 있습니다.');
+    }
+
+    await requestJson(`${API_BASE_URL}/transactions/${transactionId}`, {
+      method: 'DELETE',
+    });
+
+    // 화면 상태에서도 제거
+    transactions.value = transactions.value.filter(
+      (t) => String(t.id) !== String(transactionId),
+    );
+
+    // 삭제한 게 현재 수정 중이면 수정모드 종료
+    if (String(editingTransactionId.value) === String(transactionId)) {
+      clearEditTransaction();
+    }
+
+    return true;
+  };
 
   const saveTransaction = async () => {
     // [Action] 폼 검증 -> userId 확인 -> payload 생성 -> (등록/수정) 저장 처리
@@ -375,5 +402,6 @@ export const useTransactionStore = defineStore('transaction', () => {
     isEditing,
     startEditTransaction,
     clearEditTransaction,
+    deleteTransaction,
   };
 });
