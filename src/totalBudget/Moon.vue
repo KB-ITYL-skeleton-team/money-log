@@ -94,7 +94,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  background: #020617;
+  /* background: #020617; */
 
   color: white;
 }
