@@ -264,16 +264,6 @@ const submitSignup = async () => {
 </script>
 
 <style scoped>
-/* [웹/앱 공통] 전체 배경 */
-.signup-wrapper {
-  min-height: 100vh;
-  background-color: #ffffff;
-}
-
-.signup-container {
-  max-width: 900px;
-}
-
 /* 카드 스타일 */
 .signup-card {
   border-radius: 40px !important;
