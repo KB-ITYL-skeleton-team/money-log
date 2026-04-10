@@ -66,7 +66,7 @@ export const useLoginStore = defineStore('login', () => {
 
         alert(`${foundUser.name}님 환영합니다!`);
         setLoginUser(foundUser);
-        router.push('/home');
+        router.push('/transactionList');
       } else {
         alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       }
