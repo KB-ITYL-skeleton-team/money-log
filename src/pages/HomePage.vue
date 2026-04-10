@@ -1,17 +1,19 @@
 <template>
-  <div>
-    <h1>홈 화면</h1>
+  <div class="app-background">
+    <router-view />
   </div>
 </template>
 
-<script>
-export default {
-  name: '',
-  data() {
-    return {};
-  },
-  methods: {},
-};
-</script>
+<style>
+.app-background {
+  min-height: 100vh;
 
-<style scoped></style>
+  background-image: url('@/assets/giphy3.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* 또는 contain */
+
+  display: flex;
+  flex-direction: column;
+}
+</style>
