@@ -1,5 +1,5 @@
 <template>
-  <section class="transaction-form container-fluid">
+  <section class="transaction-form">
     <div class="form-shell">
       <header class="form-header">
         <h2 class="title">
@@ -75,10 +75,10 @@
                 <option value="" disabled>선택</option>
                 <option
                   v-for="asset in transactionStore.assetOptions"
-                  :key="asset"
-                  :value="asset"
+                  :key="asset.value"
+                  :value="asset.value"
                 >
-                  {{ asset }}
+                  {{ asset.label }}
                 </option>
               </select>
             </div>
@@ -201,15 +201,15 @@ const delete_handler = async () => {
 
 <style scoped>
 .transaction-form {
-  padding: 16px 0;
+  padding: 0;
   width: 100%;
   margin: 0;
 }
 
 .form-shell {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .form-header {
@@ -217,17 +217,35 @@ const delete_handler = async () => {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 
 .title {
   margin: 0;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 800;
 }
 
 .form-card {
-  border-radius: 14px;
-  border-color: #eee;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.form-label {
+  font-weight: 700;
+  color: #6c757d;
+}
+
+@media (max-width: 767.98px) {
+  .form-header {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 }
 </style>

@@ -74,6 +74,20 @@ const createInitialForm = () => ({
   memo: '',
 });
 
+const createTransactionEntityId = (dateValue) => {
+  const normalizedDate = String(dateValue ?? '').replaceAll('-', '');
+  const datePart =
+    normalizedDate.length === 8
+      ? normalizedDate
+      : new Date().toISOString().slice(0, 10).replaceAll('-', '');
+  const randomSuffix = String(Math.floor(Math.random() * 10000)).padStart(
+    4,
+    '0',
+  );
+
+  return `${datePart}${randomSuffix}`;
+};
+
 export const useTransactionStore = defineStore('transaction', () => {
   // [State] 서버에서 불러온 "내 전체 거래 목록"(수입+지출). 합계/목록 UI의 원본 데이터
   const transactions = ref([]);
@@ -99,7 +113,11 @@ export const useTransactionStore = defineStore('transaction', () => {
   const isEditing = computed(() => Boolean(editingTransactionId.value));
 
   // 옵션(선택지)
-  const assetOptions = ['현금', '은행', '카드'];
+  const assetOptions = [
+    { label: '현금', value: 'cash' },
+    { label: '은행', value: 'bank' },
+    { label: '카드', value: 'card' },
+  ];
 
   // 계산값(getter = computed)
   const categoriesByType = computed(() => {
@@ -276,7 +294,7 @@ export const useTransactionStore = defineStore('transaction', () => {
   // - 수정 모드에서 저장 버튼을 눌렀을 때 실행됨
   const updateTransaction = async (transactionId, payload) => {
     return await requestJson(`${API_BASE_URL}/transactions/${transactionId}`, {
-      method: 'PATCH',
+      method: 'PUT',
       data: payload,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -342,7 +360,7 @@ export const useTransactionStore = defineStore('transaction', () => {
         amount: Number(form.value.amount),
         memo: form.value.memo,
         date: form.value.date,
-        asset: form.value.asset || null,
+        assets: form.value.asset || null,
       };
 
       console.log('[SAVE] payload:', payload);
@@ -364,7 +382,10 @@ export const useTransactionStore = defineStore('transaction', () => {
         return true;
       }
 
-      const saved = await createTransaction(payload);
+      const saved = await createTransaction({
+        ...payload,
+        id: createTransactionEntityId(form.value.date),
+      });
       console.log('[SAVE] saved response:', saved);
 
       resetForm();
