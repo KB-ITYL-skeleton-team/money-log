@@ -77,11 +77,16 @@
         <!-- 변경: 클릭시 모달 열기 오후 3시 51분 경 = 대기정 형님이 요청하신 변동사항 수행
         <button class="float-btn" @click="showModal = true">＋</button>-->
 
+<<<<<<< HEAD
         <!-- 변경: 인라인 router.push 대신 goToAddTransaction 함수로 분리
              이유1: template 안에서 ref의 .value 자동 언래핑 문제로 toISOString 오류 발생
              이유2: toISOString()은 UTC 기준이라 한국 시간(UTC+9)과 하루 차이 발생
              → 함수로 분리해서 getFullYear/getMonth/getDate로 직접 날짜 문자열 생성 -->
         <button class="float-btn" @click="goToAddTransaction">＋</button>
+=======
+        <!-- 변경: 모달 대신 transactionPage로 이동 -->
+        <button class="float-btn" @click="goCreate('expense')">＋</button>
+>>>>>>> 5b9b0d34ffa9f78c74d10059ec94eac426c65562
       </div>
     </div>
   </div>
@@ -220,6 +225,12 @@ const goToAddTransaction = () => {
 // +버튼 클릭이벤트 관련
 // 모달 표시 여부 상태 (대기정 님이 하셨던 것이 아닌 홈화면에서 + 버튼으로 투사하는 이벤트 관련 const입니다)
 // const showModal = ref(false); ==> 모달 이벤트 필요 없어져서 숨김.
+
+// + 버튼을 누를시 수정모드 해제 + 저장모드로 전환하는 함수
+const goCreate = (type) => {
+  store.clearEditTransaction(); // ✅ 수정모드 해제 + 폼 초기화
+  router.push({ name: 'transactionPage', query: { type } });
+};
 </script>
 
 <style scoped>

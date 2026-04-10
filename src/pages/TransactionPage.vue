@@ -63,6 +63,9 @@ onMounted(async () => {
 
   await transactionStore.fetchCategories();
 
+  // [Edit Mode] query.editId가 있으면 "거래 수정"으로 진입
+  // - TransactionList에서 클릭한 거래의 id를 넘겨받아, store.startEditTransaction으로 form을 채움
+  // - 수정 모드에서는 기존 탭/필터 로직을 타면 폼이 초기화될 수 있어 return 처리
   const editId = route.query.editId;
   if (editId) {
     await transactionStore.startEditTransaction(editId);
@@ -82,6 +85,7 @@ onMounted(async () => {
 watch(
   () => route.query.type,
   async (nextType) => {
+    // 수정 모드에서는 type query 변경에 반응하지 않음(폼 유지 목적)
     if (route.query.editId) return;
 
     // 탭 변경 시(query 변경): activeType만 바꾸고 필요한 데이터 갱신

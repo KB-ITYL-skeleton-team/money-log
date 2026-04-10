@@ -8,6 +8,7 @@
 
         <!-- 수입/지출 탭: store.activeType 변경 + URL query.type 변경 -->
         <div class="btn-group" role="group" aria-label="거래 타입">
+          <!-- 수정 모드에서는 탭 변경을 막아 폼 리셋/상태 꼬임을 방지 -->
           <button
             v-for="item in typeTabs"
             :key="item.value"
@@ -131,12 +132,14 @@ const router = useRouter();
 const transactionStore = useTransactionStore();
 
 // 탭 변경 시 라우트 query를 바꿔서 TransactionPage의 로직과 동기화
+// - 수정 모드(isEditing)에서는 탭 변경을 막아, 불필요한 form 초기화를 방지
 const changeType = (type) => {
   if (transactionStore.isEditing) return;
   router.push({ name: 'transactionPage', query: { type } });
 };
 
 // [Save Click] 로그인 여부 확인 -> 저장 확인(confirm) -> store.saveTransaction() 호출 -> 목록으로 이동
+// - saveTransaction 내부에서 (등록/수정)을 자동 분기(POST/PATCH)
 const transaction_handler = async () => {
   const savedUser = localStorage.getItem('loginUser');
   if (!savedUser) {
