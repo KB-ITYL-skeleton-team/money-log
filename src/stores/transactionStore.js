@@ -88,6 +88,9 @@ export const useTransactionStore = defineStore('transaction', () => {
   });
   const form = ref(createInitialForm());
   const isSaving = ref(false);
+  // [Edit State] 수정 모드인지 여부와 대상 거래 id
+  const editingTransactionId = ref(null); // null이면 등록 모드, 값이 있으면 수정 모드
+  const isEditing = computed(() => Boolean(editingTransactionId.value));
 
   // 옵션(선택지)
   const assetOptions = ['현금', '은행', '카드'];
@@ -198,6 +201,40 @@ export const useTransactionStore = defineStore('transaction', () => {
   const fetchCategories = async () => {
     categories.value = Object.values(CATEGORY_MAP).flat();
   };
+  const fetchTransactionById = async (transactionId) => {
+    return await requestJson(`${API_BASE_URL}/transactions/${transactionId}`);
+  };
+
+  const startEditTransaction = async (transactionId) => {
+    const currentUserId = getCurrentUserId();
+    if (!currentUserId) throw new Error('로그인이 필요합니다.');
+
+    const tx = await fetchTransactionById(transactionId);
+
+    // 내 거래인지 확인(중요)
+    if (String(tx.userId) !== String(currentUserId)) {
+      throw new Error('본인 거래만 수정할 수 있습니다.');
+    }
+
+    editingTransactionId.value = tx.id;
+
+    // 수정 모드에서는 resetForm()이 끼어들면 안 되므로 activeType은 직접 세팅
+    activeType.value = tx.type;
+
+    // 서버 데이터 -> 폼 상태로 매핑
+    form.value = {
+      date: tx.date ?? new Date().toISOString().slice(0, 10),
+      amount: String(tx.amount ?? ''),
+      categoryId: tx.categoryId ?? null,
+      asset: tx.asset ?? tx.assets ?? '', // db.json에 assets로 들어간 데이터도 대응
+      memo: tx.memo ?? '',
+    };
+  };
+
+  const clearEditTransaction = () => {
+    editingTransactionId.value = null;
+    resetForm();
+  };
 
   const createTransaction = async (payload) => {
     isLoading.value = true;
@@ -219,6 +256,13 @@ export const useTransactionStore = defineStore('transaction', () => {
     } finally {
       isLoading.value = false;
     }
+  };
+  const updateTransaction = async (transactionId, payload) => {
+    return await requestJson(`${API_BASE_URL}/transactions/${transactionId}`, {
+      method: 'PATCH',
+      data: payload,
+      headers: { 'Content-Type': 'application/json' },
+    });
   };
 
   const saveTransaction = async () => {
@@ -253,6 +297,22 @@ export const useTransactionStore = defineStore('transaction', () => {
       };
 
       console.log('[SAVE] payload:', payload);
+
+      if (editingTransactionId.value) {
+        const updated = await updateTransaction(
+          editingTransactionId.value,
+          payload,
+        );
+
+        // store.transactions 배열에서도 해당 항목을 최신으로 교체
+        const idx = transactions.value.findIndex(
+          (t) => String(t.id) === String(updated.id),
+        );
+        if (idx !== -1) transactions.value[idx] = updated;
+
+        clearEditTransaction();
+        return true;
+      }
 
       const saved = await createTransaction(payload);
       console.log('[SAVE] saved response:', saved);
@@ -293,5 +353,9 @@ export const useTransactionStore = defineStore('transaction', () => {
     saveTransaction,
     resetForm,
     getCurrentUserId,
+    editingTransactionId,
+    isEditing,
+    startEditTransaction,
+    clearEditTransaction,
   };
 });

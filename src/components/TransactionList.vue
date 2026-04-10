@@ -54,10 +54,13 @@
             지출 내역이 없어요.
           </p>
           <!-- 내역이 있을 때 -->
+          <!-- 거래 내역(오른쪽 리스트) 한 줄을 클릭하면 수정 화면으로 이동 -->
+          <!-- goEdit(transaction)이 transaction.id/type을 query로 넘겨 TransactionPage가 수정 모드로 폼을 채우게 함 -->
           <div
             v-for="transaction in filteredTransactions"
             :key="transaction.id"
             class="transaction-item"
+            @click="goEdit(transaction)"
           >
             <span class="transaction-memo">{{ transaction.memo }}</span>
             <span
@@ -179,6 +182,15 @@ const filteredTransactions = computed(() => {
     );
   });
 });
+// 오른쪽 거래 목록(날짜별 내역)에서 항목을 클릭했을 때 호출되는 함수
+// - 클릭한 거래의 id를 query(editId)로 넘겨 TransactionPage를 "수정 모드"로 진입시킴
+// - type도 같이 넘겨서(TransactionPage에서) 수입/지출 탭 표시를 거래 타입과 맞춤
+const goEdit = (transaction) => {
+  router.push({
+    name: 'transactionPage',
+    query: { type: transaction.type, editId: transaction.id },
+  });
+};
 
 // 추가: 마운트시 userId:1 거래 내역 불러오기
 // 마운트 시 로그인 유저 거래 내역 불러오기(gj)
