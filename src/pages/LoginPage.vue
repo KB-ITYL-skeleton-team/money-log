@@ -111,7 +111,7 @@ const handleLogin = async () => {
 <style scoped>
 .login-wrapper {
   min-height: 100vh;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 .login-container {
   max-width: 900px;
