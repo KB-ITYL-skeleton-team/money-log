@@ -29,8 +29,8 @@ export default {
 
 <style lang="scss" scoped>
 .box {
-  background: #020617;
+  // background: #020617;
   color: rgba(250, 204, 21, 0.401);
 }
 </style>
-(250, 204, 21, 0.4)rgba
+<!-- (250, 204, 21, 0.4)rgba -->

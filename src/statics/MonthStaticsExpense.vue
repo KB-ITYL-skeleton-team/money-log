@@ -40,7 +40,7 @@
 import VueApexCharts from 'vue3-apexcharts';
 import { computed, ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useTransactionsStore } from '@/stores/stores';
+import { useTransactionsStore } from '@/stores/staticsStores';
 
 export default {
   name: 'monthStaticsExpense',
