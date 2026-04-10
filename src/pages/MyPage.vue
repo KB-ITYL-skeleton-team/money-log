@@ -192,30 +192,16 @@ const editForm = reactive({
 const validateName = computed(() => /^[가-힣]+$/.test(editForm.name));
 
 // 이메일 형식만 맞게
-const validateEmail = computed(() =>
-  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(editForm.email),
-);
-
 const validatePassword = computed(() => {
   const pw = editForm.newPassword;
-  if (!pw) return true; // 새 비밀번호를 입력하지 않는 경우(변경 안 함)는 통과
 
-  // 영문 + 숫자 포함 7자 이상
+  // 새 비밀번호 칸이 비어있다면 (수정 안 함) 통과
+  if (!pw) return true;
+
+  // 입력했다면 영문+숫자 포함 7자 이상인지 검사
   const regExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{7,}$/;
-  if (!regExp.test(pw)) return false;
 
-  //연속 3글자 방지
-  for (let i = 0; i < pw.length - 2; i++) {
-    const char1 = pw.charCodeAt(i);
-    const char2 = pw.charCodeAt(i + 1);
-    const char3 = pw.charCodeAt(i + 2);
-    if (
-      (char1 + 1 === char2 && char2 + 1 === char3) ||
-      (char1 - 1 === char2 && char2 - 1 === char3)
-    )
-      return false;
-  }
-  return true;
+  return regExp.test(pw);
 });
 const handleEditToggle = async () => {
   if (isEditMode.value) {
