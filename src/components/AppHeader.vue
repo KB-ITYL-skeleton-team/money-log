@@ -1,7 +1,14 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <RouterLink class="navbar-brand" to="/">우주를 줄게</RouterLink>
+      <RouterLink class="navbar-brand" to="/"
+        >우주를 줄게
+        <img src="/src/assets/orbit_clean.gif" class="logo-icon" />
+      </RouterLink>
+
+      <nav class="mobile-header-menu">
+        <div class="navbar-nav ms-auto"></div>
+      </nav>
 
       <nav class="header-menu">
         <div class="navbar-nav ms-auto">
@@ -22,7 +29,7 @@
           <RouterLink class="nav-link" to="/fortune">운세</RouterLink>
           <RouterLink class="nav-link" to="/statics">통계</RouterLink>
           <RouterLink class="nav-link" to="/totalBudget">예산</RouterLink>
-          <div v-if="user">{{ user.name }} 님 환영합니다</div>
+          <div v-if="isLogin && user">{{ user.name }} 님 환영합니다</div>
         </div>
       </nav>
     </div>
@@ -35,17 +42,13 @@ import { useRouter, RouterLink } from 'vue-router';
 import { useLoginStore } from '@/stores/userStore';
 
 // 로그인 되어 있는지 확인 - 안 되어 있으면
-const store = useLoginStore();
+const loginStore = useLoginStore();
 const router = useRouter();
-const isLogin = computed(() => store.isLoggedIn);
-const user = computed(() => {
-  const savedUser = localStorage.getItem('loginUser');
-  console.log('savedUser 정보  :', savedUser);
-  return savedUser ? JSON.parse(savedUser) : null;
-});
+const isLogin = computed(() => loginStore.isLoggedIn);
+const user = computed(() => loginStore.currentUser);
 
 const logout = () => {
-  store.logout();
+  loginStore.logout();
   router.push('/loginPage');
 };
 
@@ -57,4 +60,13 @@ const refreshHome = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.logo-icon {
+  /* width: clamp(20px, 3vw, 32px); */
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+
+  opacity: 0.8; /* 살짝 자연스럽게 */
+}
+</style>
