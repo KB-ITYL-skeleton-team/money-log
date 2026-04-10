@@ -144,6 +144,30 @@ export const useLoginStore = defineStore('login', () => {
     }
   };
 
+  // --- 회원가입 로직 ---
+  const handleSignup = async (userData) => {
+    try {
+      // 1. 서버에 저장할 객체 구성
+
+      const newUser = {
+        ...userData,
+        id: String(Date.now()),
+        createdAt: new Date().toISOString().split('T')[0], // 가입 날짜
+      };
+
+      // 2. 서버에 데이터 전송 (POST 요청)
+      await axios.post('http://localhost:3000/users', newUser);
+
+      alert('회원가입이 완료되었습니다! 로그인 페이지로 이동합니다.');
+
+      // 3. 가입 성공 후 로그인 페이지로 이동
+      router.push('/loginPage');
+    } catch (error) {
+      console.error('회원가입 처리 에러:', error);
+      alert('서버 연결 중 오류가 발생했습니다.');
+    }
+  };
+
   return {
     userId,
     userPw,
@@ -157,5 +181,6 @@ export const useLoginStore = defineStore('login', () => {
     setLoginUser,
     loadUser,
     logout,
+    handleSignup,
   };
 });
