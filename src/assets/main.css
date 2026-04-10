@@ -7,14 +7,13 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  z-index: -1;
 }
 
-/* 모바일 header 메뉴 */
+/* 기본 상태 */
 .mobile-header-menu {
+  display: none;
 }
 
-/* header 메뉴 */
 .header-menu {
   display: flex;
   align-items: center;
@@ -23,7 +22,7 @@ body {
   flex-wrap: nowrap;
 }
 
-/* 태블릿 이상에서는 nav 목록 가로 유지 */
+/* 태블릿 이상 */
 @media (min-width: 768px) {
   .header-menu,
   .navbar-nav {
@@ -45,11 +44,15 @@ body {
   }
 }
 
-/* 모바일에서만 header 메뉴 숨김 */
+/* 모바일 */
 @media (max-width: 767px) {
   .header-menu,
   .navbar-collapse {
     display: none !important;
+  }
+
+  .mobile-header-menu {
+    display: flex !important;
     align-items: center;
   }
 }

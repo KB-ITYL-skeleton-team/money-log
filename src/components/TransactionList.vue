@@ -1,22 +1,36 @@
 <template>
   <!-- TransactionList 전체 영역 - 검정 배경 -->
   <div class="transaction-list">
-    <!-- 수입/지출/합계 요약 바 -->
+    <!-- [변경] 상단 요약바
+         변경 전: 수입/지출/합계 라벨만 표시 + store.transactions 전체 합산
+         변경 후: "26년 4월 수입/지출/합계" 형태로 라벨 변경 + displayYear/displayMonth 기준 해당 월 합산
+         이유: 전체 데이터가 아닌 현재 보고 있는 월의 수입/지출/합계만 표시하기 위함 -->
     <div class="summary-bar">
       <div class="summary-item">
-        <span class="summary-label">수입</span>
+        <!-- [변경] "수입" → "26년 4월 수입" 형태로 표시
+                  displayYear % 100 으로 연도 2자리 표시 (2026 → 26) -->
+        <span class="summary-label"
+          >{{ displayYear % 100 }}년 {{ displayMonth }}월 수입</span
+        >
         <span class="summary-value income">{{
           totalIncome.toLocaleString()
         }}</span>
       </div>
       <div class="summary-item">
-        <span class="summary-label">지출</span>
+        <!-- [변경] "지출" → "26년 4월 지출" 형태로 표시 -->
+        <span class="summary-label"
+          >{{ displayYear % 100 }}년 {{ displayMonth }}월 지출</span
+        >
         <span class="summary-value expense">{{
           totalExpense.toLocaleString()
         }}</span>
       </div>
       <div class="summary-item">
-        <span class="summary-label">합계</span>
+        <!-- [변경] "합계" → "26년 4월 합계" 형태로 표시 -->
+        <span class="summary-label"
+          >{{ displayYear % 100 }}년 {{ displayMonth }}월 합계</span
+        >
+        <!-- 합계는 흰색 그대로 유지 -->
         <span class="summary-value">{{ totalBalance.toLocaleString() }}</span>
       </div>
     </div>
@@ -25,8 +39,7 @@
     <div class="content-area">
       <!-- 왼쪽: 달력 박스 -->
       <div class="calendar-box">
-        <!-- 달력 헤더 변경: < 년 월 > 버튼에 CalendarView의 월 이동 기능 연결 -->
-        <!-- 변경: displayYear/displayMonth 사용 + onPrevMonth/onNextMonth 연결 -->
+        <!-- 달력 헤더: < 년 월 > 버튼으로 월 이동 -->
         <div class="calendar-header">
           <button class="arrow-btn" @click="onPrevMonth">＜</button>
           <span class="month-label"
@@ -34,35 +47,49 @@
           >
           <button class="arrow-btn" @click="onNextMonth">＞</button>
         </div>
-        <!-- 달력 날짜 영역 -->
-        <!-- 달력 컴포넌트 삽입 => 다른 팀에서 구현한 달력 사용 -->
         <div class="calendar-body">
-          <!-- ref 추가: 부모에서 자식 메서드 호출하기 위해 -->
-          <!-- 추가 : @selectDate="onSelectDate" List.vue와 View 태그에 이벤트 연결-->
-          <CalendarView ref="calendarRef" @selectDate="onSelectDate" />
+          <!-- [변경] :selectedDate="selectedDate" props 추가
+                    변경 전: <CalendarView ref="calendarRef" @selectDate="onSelectDate" />
+                    변경 후: selectedDate를 CalendarView에 props로 전달
+                    이유: CalendarView 내부에서 클릭한 날짜에 파란색 배경을 표시하려면
+                         부모의 selectedDate를 자식이 알아야 하기 때문 -->
+          <CalendarView
+            ref="calendarRef"
+            @selectDate="onSelectDate"
+            :selectedDate="selectedDate"
+          />
         </div>
       </div>
 
       <!-- 오른쪽: 날짜별 거래 내역 -->
       <div class="detail-box">
-        <!-- 선택된 날짜 표시 (달력 클릭시 변경) -->
+        <!-- 선택된 날짜 표시 -->
         <div class="selected-date">{{ selectedDateLabel }}</div>
-        <!-- 거래 내역 목록 (날짜별 필터링) -->
+
+        <!-- [추가] 선택 날짜의 수입/지출/합계 표시 (①②③)
+                  이유: 사용자가 특정 날짜 클릭 시 해당 날짜의 요약 정보를 바로 확인할 수 있게 하기 위함
+                  selectedIncome/selectedExpense/selectedBalance는 filteredTransactions 기반으로 계산 -->
+        <div class="selected-summary">
+          <span class="income">수입 {{ selectedIncome.toLocaleString() }}</span>
+          <span class="expense"
+            >지출 {{ selectedExpense.toLocaleString() }}</span
+          >
+          <span style="color: #eee"
+            >합계 {{ selectedBalance.toLocaleString() }}</span
+          >
+        </div>
+
+        <!-- 거래 내역 목록 -->
         <div class="transaction-items">
-          <!-- 내역이 없을 때 -->
           <p v-if="filteredTransactions.length === 0" class="empty-msg">
             수입/지출 내역이 없어요. <br />+ 버튼을 눌러 추가해주세요.
           </p>
-          <!-- 내역이 있을 때: v-for로 날짜별 필터링된 거래 내역 표시 -->
           <div
             v-for="transaction in filteredTransactions"
             :key="transaction.id"
             class="transaction-item"
             @click="goEdit(transaction)"
           >
-            <!-- 오른쪽 거래 목록(날짜별 내역)에서 항목을 클릭했을 때 호출되는 함수 -->
-            <!-- 클릭한 거래의 id를 query(editId)로 넘겨 TransactionPage를 "수정 모드"로 진입시킴 -->
-            <!-- type도 같이 넘겨서(TransactionPage에서) 수입/지출 탭 표시를 거래 타입과 맞춤 -->
             <span class="transaction-memo">{{ transaction.memo }}</span>
             <span
               class="transaction-amount"
@@ -73,11 +100,8 @@
             </span>
           </div>
         </div>
-        <!-- + 플로팅 버튼 -->
-        <!-- 변경: 클릭시 모달 열기 오후 3시 51분 경 = 대기정 형님이 요청하신 변동사항 수행
-        <button class="float-btn" @click="showModal = true">＋</button>-->
 
-        <!-- 변경: 모달 대신 transactionPage로 이동 -->
+        <!-- + 플로팅 버튼 -->
         <button class="float-btn" @click="goCreate('expense')">＋</button>
       </div>
     </div>
@@ -85,86 +109,94 @@
 </template>
 
 <script setup>
-// 변경: onMounted 추가
 import { computed, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-// 변경: onBeforeRouteUpdate import 추가
 import { onBeforeRouteUpdate } from 'vue-router';
 import { useTransactionStore } from '@/stores/transactionStore';
-// CalendarView 컴포넌트 import => 추가자 jh
 import CalendarView from '@/components/CalendarView.vue';
 
 const router = useRouter();
-
-// CalendarView 컴포넌트 참조
 const calendarRef = ref(null);
-
-// 거래 내역 store 가져오기
 const store = useTransactionStore();
 
-// 수입 합계
+// [변경] 해당 월 전체 수입 합계
+// 변경 전: store.transactions 전체를 type === 'income'으로만 필터링
+// 변경 후: displayYear/displayMonth 기준으로 해당 월만 필터링 후 합산
+// 이유: 현재 보고 있는 월의 수입만 표시하기 위함
 const totalIncome = computed(() =>
   store.transactions
-    .filter((t) => t.type === 'income')
+    .filter((t) => {
+      const d = new Date(t.date);
+      return (
+        t.type === 'income' &&
+        d.getFullYear() === displayYear.value &&
+        d.getMonth() + 1 === displayMonth.value
+      );
+    })
     .reduce((sum, t) => sum + t.amount, 0),
 );
 
-// 지출 합계
+// [변경] 해당 월 전체 지출 합계
+// 변경 전: store.transactions 전체를 type === 'expense'으로만 필터링
+// 변경 후: displayYear/displayMonth 기준으로 해당 월만 필터링 후 합산
+// 이유: 현재 보고 있는 월의 지출만 표시하기 위함
 const totalExpense = computed(() =>
   store.transactions
-    .filter((t) => t.type === 'expense')
+    .filter((t) => {
+      const d = new Date(t.date);
+      return (
+        t.type === 'expense' &&
+        d.getFullYear() === displayYear.value &&
+        d.getMonth() + 1 === displayMonth.value
+      );
+    })
     .reduce((sum, t) => sum + t.amount, 0),
 );
 
-// 합계 (수입 - 지출)
+// 합계 (수입 - 지출) - 기존 유지
 const totalBalance = computed(() => totalIncome.value - totalExpense.value);
 
-// 선택된 날짜 (오늘 날짜로 초기화)
+// 선택된 날짜 (오늘 날짜로 초기화) - 기존 유지
 const selectedDate = ref(new Date());
 
-// 현재 월 표시용
-const currentMonth = computed(() => selectedDate.value.getMonth() + 1);
-
-// 선택된 날짜 표시용 (예: 4월 7일)
+// 선택된 날짜 표시용 (예: 4월 7일) - 기존 유지
 const selectedDateLabel = computed(() => {
   const month = selectedDate.value.getMonth() + 1;
   const day = selectedDate.value.getDate();
   return `${month}월 ${day}일`;
 });
 
-// 현재 표시할 년/월 (기본값: 오늘)
+// 현재 표시할 년/월 (기본값: 오늘) - 기존 유지
 const displayYear = ref(new Date().getFullYear());
 const displayMonth = ref(new Date().getMonth() + 1);
 
-// 이전 월로 이동 후 년/월 업데이트
+// 이전 월로 이동 - 기존 유지
 const onPrevMonth = () => {
   calendarRef.value.prevMonth();
-  // 변경된 년/월을 calendarRef에서 읽어서 업데이트
   displayYear.value = calendarRef.value.year;
   displayMonth.value = calendarRef.value.month + 1;
 };
 
-// 다음 월로 이동 후 년/월 업데이트
+// 다음 월로 이동 - 기존 유지
 const onNextMonth = () => {
   calendarRef.value.nextMonth();
-  // 변경된 년/월을 calendarRef에서 읽어서 업데이트
   displayYear.value = calendarRef.value.year;
   displayMonth.value = calendarRef.value.month + 1;
 };
 
-// 달력에서 날짜 클릭시 selectedDate 업데이트
+// 달력에서 날짜 클릭시 selectedDate 업데이트 - 기존 유지
 const onSelectDate = ({ year, month, day }) => {
   selectedDate.value = new Date(year, month - 1, day);
 };
 
-// 홈 화면에서 홈 화면으로 refresh가 되지 않는 문제 해결 법 => import {onBeforeRouteUpdate} 와 함께 보기
+// 홈 화면 refresh 문제 해결 - 기존 유지
 onBeforeRouteUpdate(() => {
   displayYear.value = new Date().getFullYear();
   displayMonth.value = new Date().getMonth() + 1;
   calendarRef.value?.goToday();
 });
 
-// 추가: 선택된 날짜에 해당하는 거래 내역만 필터링
+// 선택된 날짜에 해당하는 거래 내역 필터링 - 기존 유지
 const filteredTransactions = computed(() => {
   const y = selectedDate.value.getFullYear();
   const m = selectedDate.value.getMonth();
@@ -177,17 +209,36 @@ const filteredTransactions = computed(() => {
   });
 });
 
-// 추가: 마운트시 userId:1 거래 내역 불러오기
-// 마운트 시 로그인 유저 거래 내역 불러오기(gj)
+// [추가] 선택 날짜의 수입 합계 (오른쪽 패널 ①)
+// 이유: filteredTransactions(선택 날짜 거래 내역)에서 수입만 합산
+const selectedIncome = computed(() =>
+  filteredTransactions.value
+    .filter((t) => t.type === 'income')
+    .reduce((sum, t) => sum + t.amount, 0),
+);
+
+// [추가] 선택 날짜의 지출 합계 (오른쪽 패널 ②)
+// 이유: filteredTransactions(선택 날짜 거래 내역)에서 지출만 합산
+const selectedExpense = computed(() =>
+  filteredTransactions.value
+    .filter((t) => t.type === 'expense')
+    .reduce((sum, t) => sum + t.amount, 0),
+);
+
+// [추가] 선택 날짜의 합계 (오른쪽 패널 ③)
+// 이유: 선택 날짜 수입 - 지출
+const selectedBalance = computed(
+  () => selectedIncome.value - selectedExpense.value,
+);
+
+// 마운트시 거래 내역 불러오기 - 기존 유지
 onMounted(async () => {
   const userId = store.getCurrentUserId();
   if (!userId) return;
   await store.fetchTransactions({ userId });
 });
 
-// 오른쪽 거래 목록(날짜별 내역)에서 항목을 클릭했을 때 호출되는 함수
-// - 클릭한 거래의 id를 query(editId)로 넘겨 TransactionPage를 "수정 모드"로 진입시킴
-// - type도 같이 넘겨서(TransactionPage에서) 수입/지출 탭 표시를 거래 타입과 맞춤
+// 거래 수정 페이지로 이동 - 기존 유지
 const goEdit = (transaction) => {
   router.push({
     name: 'transactionPage',
@@ -195,43 +246,18 @@ const goEdit = (transaction) => {
   });
 };
 
-// 변경: + 버튼 클릭시 선택된 날짜와 함께 거래 등록 페이지로 이동
-// 이유1: template 안에서 ref의 .value 자동 언래핑 문제로 toISOString 오류 발생
-// 이유2: toISOString()은 UTC 기준이라 한국 시간(UTC+9)과 하루 차이 발생
-// → getFullYear/getMonth/getDate로 직접 날짜 문자열 생성해서 정확한 날짜 전달
-const goToAddTransaction = () => {
-  const y = selectedDate.value.getFullYear();
-  const m = String(selectedDate.value.getMonth() + 1).padStart(2, '0');
-  const d = String(selectedDate.value.getDate()).padStart(2, '0');
-  const dateStr = `${y}-${m}-${d}`;
-
-  router.push({
-    name: 'transactionPage',
-    query: {
-      type: 'expense',
-      date: dateStr,
-    },
-  });
-};
-
-// +버튼 클릭이벤트 관련
-// 모달 표시 여부 상태 (대기정 님이 하셨던 것이 아닌 홈화면에서 + 버튼으로 투사하는 이벤트 관련 const입니다)
-// const showModal = ref(false); ==> 모달 이벤트 필요 없어져서 숨김.
-
-// + 버튼을 누를시 수정모드 해제 + 저장모드로 전환하는 함수
+// + 버튼 클릭시 수정모드 해제 + 저장모드로 전환 - 기존 유지
 const goCreate = (type) => {
-  store.clearEditTransaction(); // ✅ 수정모드 해제 + 폼 초기화
+  store.clearEditTransaction();
   const y = selectedDate.value.getFullYear();
   const m = String(selectedDate.value.getMonth() + 1).padStart(2, '0');
   const d = String(selectedDate.value.getDate()).padStart(2, '0');
   const dateStr = `${y}-${m}-${d}`;
-  console.log('goCreate 날짜:', dateStr); // 임시 확인용
   router.push({ name: 'transactionPage', query: { type, date: dateStr } });
 };
 </script>
 
 <style scoped>
-/* 수입/지출/합계 요약 바 */
 .summary-bar {
   display: flex;
   justify-content: space-around;
@@ -239,7 +265,6 @@ const goCreate = (type) => {
   border-bottom: 1px solid #eee;
 }
 
-/* 요약 항목 */
 .summary-item {
   display: flex;
   flex-direction: column;
@@ -247,44 +272,37 @@ const goCreate = (type) => {
   gap: 4px;
 }
 
-/* 라벨 */
 .summary-label {
   font-size: 12px;
   color: #eee;
 }
 
-/* 금액 */
 .summary-value {
   font-size: 14px;
   font-weight: 600;
   color: #eee;
 }
 
-/* 수입 색상 */
 .income {
   color: #4caf50;
 }
 
-/* 지출 색상 */
 .expense {
   color: #f44336;
 }
 
-/* 2단 레이아웃 */
 .content-area {
   display: flex;
-  height: auto; /* 변경: calc(100vh - 60px) → auto */
-  align-items: stretch; /* 추가: 달력이랑 높이 맞추기 */
+  height: auto;
+  align-items: stretch;
 }
 
-/* 왼쪽: 달력 박스 */
 .calendar-box {
   flex: 1;
   border-right: 1px solid #eee;
   padding: 12px;
 }
 
-/* 달력 헤더 */
 .calendar-header {
   display: flex;
   justify-content: space-between;
@@ -295,69 +313,72 @@ const goCreate = (type) => {
   border-radius: 4px;
 }
 
-/* 월 표시 */
 .month-label {
   font-size: 16px;
   font-weight: 600;
   color: #eee;
 }
 
-/* 화살표 버튼 */
 .arrow-btn {
   background: none;
   border: none;
-  color: #eee; /* #eee 자체가 연한 회색이라, font-weight : 900; 을 눌러서 굵게 변경 */
+  color: #eee;
   font-size: 16px;
   font-weight: 900;
   cursor: pointer;
 }
 
-/* 달력 날짜 영역 - 높이를 auto로 변경해서 달력 크기에 맞게 조정 */
 .calendar-body {
   border: 1px solid #eee;
-  height: auto; /* 변경: 300px → auto */
+  height: auto;
   padding: 15px;
   border-radius: 4px;
-  overflow: hidden; /* 추가: 달력이 박스 밖으로 넘치지 않게 */
+  overflow: hidden;
 }
 
-/* 오른쪽: 날짜별 내역 */
 .detail-box {
   flex: 1;
   padding: 12px;
   position: relative;
   border: 1px solid #eee;
-  overflow-y: auto; /* 추가: 내용이 많아지면 스크롤 */
+  overflow-y: auto;
 }
 
-/* 선택된 날짜 - 패딩 추가로 공간 확보 */
 .selected-date {
   font-size: 14px;
   font-weight: 600;
-  padding: 12px 16px; /* 변경: 공간 추가 */
-  border-bottom: 1px solid #eee; /* 변경: 구분선 추가 */
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
   color: #eee;
 }
 
-/* 거래 내역 목록 - 높이 조정 */
-.transaction-items {
-  height: auto; /* 변경: calc(100% - 80px) → auto */
-  display: flex; /* 변경: 가운데 정렬 위해 추가 */
-  align-items: flex-start; /* 변경: center -> flex-start (위쪽 정렬) */
-  justify-content: flex-start; /* 변경: center -> flex-start (위쪽 정렬) */
-  flex-direction: column; /* 추가: 내역 세로로 나열 */
-  padding-top: 12px; /* 추가 살짝 여백 주기 */
+/* [추가] 선택 날짜 수입/지출/합계 영역
+   이유: 선택한 날짜의 요약 정보를 selected-date 바로 아래에 표시하기 위함 */
+.selected-summary {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 12px;
+  font-weight: 600;
 }
 
-/* 내역 없을 때 메시지 - margin 제거 */
+.transaction-items {
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 12px;
+}
+
 .empty-msg {
   color: #eee;
   text-align: center;
   font-size: 18px;
-  width: 100%; /* 추가: 가로 전체 차지해야 center 적용됨 */
+  width: 100%;
 }
 
-/* 거래 내역 아이템 */
 .transaction-item {
   display: flex;
   justify-content: space-between;
@@ -365,27 +386,23 @@ const goCreate = (type) => {
   padding: 8px 16px;
   border-bottom: 1px solid #eee;
   width: 100%;
-  cursor: pointer; /* 추가: 클릭 가능한 항목임을 표시 */
+  cursor: pointer;
 }
 
-/* 거래 내역 아이템 호버 효과 */
 .transaction-item:hover {
-  background-color: #eee; /* 추가: 마우스 올렸을 때 색상 변경 */
+  background-color: #eee;
 }
 
-/* 메모 */
 .transaction-memo {
   font-size: 13px;
   color: #eee;
 }
 
-/* 금액 */
 .transaction-amount {
   font-size: 13px;
   font-weight: 600;
 }
 
-/* + 플로팅 버튼 */
 .float-btn {
   position: absolute;
   bottom: 16px;
@@ -399,30 +416,30 @@ const goCreate = (type) => {
   font-size: 24px;
   cursor: pointer;
 }
-/* 반응형: 모바일에서 세로 배치 */
+
 @media (max-width: 430px) {
   .content-area {
-    flex-direction: column; /* 변경: 가로 → 세로 */
+    flex-direction: column;
     height: auto;
   }
 
   .calendar-box {
-    width: 100%; /* 반응형 웹을 위한 추가 : 전체 너비 차지하도록 => 화면이 작아졌을 때 달력이 빠그라지는 것을 방지 */
+    width: 100%;
     border-right: none;
     border-bottom: 1px solid #eee;
   }
 
   .detail-box {
-    width: 100%; /* 반응형 웹을 위한 추가 : 전체 너비 차지하도록 => 화면이 작아졌을 때 달력을 감싸는 외부 상자가 빠그라지는 것을 방지 */
+    width: 100%;
     align-self: auto;
     min-height: 300px;
-    position: relative; /* 추가 : absoulte 버튼 기준점 */
-    padding-bottom: 70px; /* 추가 : 버튼 공간 확보 */
+    position: relative;
+    padding-bottom: 70px;
   }
-  /* 추가: 모바일에서 플로팅 버튼 위치 고정 => .detail-box가 작아서 버튼이 잘려서 안보이는 문제 해결 */
+
   .float-btn {
-    position: fixed; /* 변경: absolute → fixed */
-    bottom: 80px; /* 변경: 하단 네비게이션 위에 위치 */
+    position: fixed;
+    bottom: 80px;
     right: 16px;
   }
 }
