@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useTransactionsStore } from '@/stores/staticsStores.js';
 import { storeToRefs } from 'pinia';
 
@@ -18,21 +18,33 @@ export default {
 
   setup() {
     const transactions = useTransactionsStore();
-    const { selectedMonth, userID } = storeToRefs(transactions);
+    const { selectedMonth, userID, expense, budgets } =
+      storeToRefs(transactions);
+
+    onMounted(() => {
+      transactions.init();
+    });
 
     // expense by month
     const totalExpense = computed(() =>
       transactions.expense
         .filter((e) => e.date.slice(0, 7) === selectedMonth.value)
-        .reduce((sum, e) => sum + e.amount, 0),
+        .reduce((sum, e) => sum + (e.amount || 0), 0),
     );
     const percentageBalance = computed(() => {
+      if (!totalBudget.value) {
+        return 0;
+      }
+
       return (
         ((totalBudget.value - totalExpense.value) / totalBudget.value) * 100
       );
     });
 
     const percentageExpense = computed(() => {
+      if (!totalBudget.value) {
+        return 0;
+      }
       return (totalExpense.value / totalBudget.value) * 100;
     });
 
