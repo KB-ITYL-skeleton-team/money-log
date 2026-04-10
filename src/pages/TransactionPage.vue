@@ -9,6 +9,7 @@
     </header>
 
     <!-- 입력 폼 영역(탭/날짜/금액/분류/자산/내용/저장) -->
+    <!-- 거래 등록 폼 UI(입력/저장 버튼)는 TransactionForm이 담당 -->
     <TransactionForm />
   </div>
 </template>
@@ -19,7 +20,7 @@ import { useRoute, useRouter } from 'vue-router';
 import TransactionForm from '@/components/TransactionForm.vue';
 import { useTransactionStore } from '@/stores/transactionStore';
 
-// 상수: 허용되는 query.type 값
+// 허용되는 탭 타입(수입/지출) - query.type 검증용
 const validTypes = ['income', 'expense'];
 
 const route = useRoute();
@@ -27,7 +28,7 @@ const router = useRouter();
 // 스토어 인스턴스
 const transactionStore = useTransactionStore();
 
-// 메서드: query.type을 store 상태와 동기화
+// 메서드: URL query.type과 store.activeType을 동기화하고, 잘못된 값이면 URL을 정정
 const syncTypeFromQuery = () => {
   const requestedType = route.query.type;
 
@@ -50,6 +51,15 @@ const goBack = () => {
 };
 
 onMounted(async () => {
+  // [Auth Guard] loginUser 없으면 로그인 페이지로 이동 (거래 등록은 로그인 필요)
+  const savedUser = localStorage.getItem('loginUser');
+  if (!savedUser) {
+    alert('로그인이 필요합니다.');
+    router.replace({ name: 'loginPage' }); // 또는 router.replace('/loginPage')
+    return;
+  }
+
+  // 초기 진입 시: 카테고리 로드 -> (유저 기준) 거래 목록 로드 -> 화면 상태 준비
   const initialType = syncTypeFromQuery();
   await transactionStore.fetchCategories();
   await transactionStore.applyTypeFilter(initialType);
@@ -58,8 +68,15 @@ onMounted(async () => {
 watch(
   () => route.query.type,
   async (nextType) => {
-    if (!validTypes.includes(nextType)) return;
+    // 탭 변경 시(query 변경): activeType만 바꾸고 필요한 데이터 갱신
+    const savedUser = localStorage.getItem('loginUser');
+    if (!savedUser) {
+      alert('로그인이 필요합니다.');
+      router.replace({ name: 'loginPage' }); // 또는 router.replace('/loginPage')
+      return;
+    }
 
+    if (!validTypes.includes(nextType)) return;
     await transactionStore.applyTypeFilter(nextType);
   },
 );

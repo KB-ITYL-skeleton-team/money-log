@@ -40,6 +40,7 @@
             <!-- 해당하는 날짜에 (작업일 기준 4월 9일) 영역전개 아니 영역 표시 (오늘을 알 수 있게) -->
             <div
               v-for="(item, index) in calendarTable"
+              @click="onClickDate(item)"
               :key="index"
               :style="{
                 border: '1px solid gray',
@@ -179,12 +180,23 @@ const isToday = (item) => {
   );
 };
 
+// 달력 날짜 클릭 하면 오른쪽에 반환해주는 이벤트 정리
+// 1. 부모로 날짜 전달하는 emit 정의
+const emit = defineEmits(['selectDate']);
+
+// 2. 날짜 클릭시 부모로 날짜 전달
+const onClickDate = (item) => {
+  if (!item) return;
+  emit('selectDate', { year: year.value, month: month.value + 1, day: item });
+};
+
 // 부모 컴포넌트에서 호출할 수 있도록 메서드 노출
 defineExpose({
   prevMonth,
   nextMonth,
   year, // 추가: 연도 노출
   month, // 추가: 월 노출
+  goToday, // 추가 : 홈에서 다른 월로 이동 시, 홈 버튼 누르면 다시 refresh => 부모에서 오늘 날짜로 초기화 호출 가능
 });
 </script>
 

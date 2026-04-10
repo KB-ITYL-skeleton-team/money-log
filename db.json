@@ -1,13 +1,13 @@
 {
   "users": [
     {
-      "id": "202604035194",
-      "userId": "hyegyo",
+      "id": "202604028371",
+      "userId": "usr_a1b2c3",
       "name": "송혜교",
-      "email": "user2@example.com",
+      "email": "user1@example.com",
       "password": "1234",
-      "phone": "010-5917-2043",
-      "createdAt": "2026-04-03"
+      "phone": "010-3821-7495",
+      "createdAt": "2026-04-02"
     },
     {
       "id": "202604035194",
@@ -139,6 +139,5 @@
       "type": "expense",
       "name": "교통"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

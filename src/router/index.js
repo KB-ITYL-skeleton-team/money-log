@@ -29,16 +29,14 @@ import totalBudget from '@/totalBudget/TotalBudget.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // 홈으로 가는것, 리스트로 가는것 2개 구현 -> (alias) 사용
     {
       path: '/',
       name: 'transactionList',
       component: TransactionList,
+      alias: '/transactionList',
     },
-    {
-      path: '/transactionList',
-      name: 'transactionList',
-      component: TransactionList,
-    },
+
     {
       path: '/transactionItem',
       name: 'transactionItem',
@@ -75,8 +73,8 @@ const router = createRouter({
       component: MyPage,
     },
     {
-      path: '/signUpPage',
-      name: 'signUpPage',
+      path: '/signup',
+      name: 'signup',
       component: SignUpPage,
     },
     {
