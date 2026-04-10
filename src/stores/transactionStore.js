@@ -6,6 +6,29 @@ import axios from 'axios';
 // API 기본 주소(json-server)
 const API_BASE_URL = 'http://localhost:3000';
 
+// [Auth] localStorage에 저장된 로그인 유저(loginUser)에서 userId("usr_...")를 꺼내는 용도
+// - 거래 저장/조회 시 "누구의 데이터인지" 식별하는 키로 사용
+const LOGIN_USER_KEY = 'loginUser';
+
+// localStorage(loginUser) -> JSON 파싱 -> userId 문자열 반환 (없거나 깨졌으면 null)
+const getCurrentUserId = () => {
+  const raw = localStorage.getItem(LOGIN_USER_KEY);
+  if (!raw) return null;
+
+  try {
+    const parsedUser = JSON.parse(raw);
+    const userId = parsedUser?.userId; // db.json의 users.userId ("usr_...")
+    if (typeof userId !== 'string') return null;
+
+    const trimmed = userId.trim();
+    if (!trimmed) return null;
+
+    return trimmed;
+  } catch {
+    return null;
+  }
+};
+
 // 공통 HTTP 함수(axios): 응답의 `data`만 반환
 const requestJson = async (url, config = {}) => {
   try {
@@ -49,13 +72,14 @@ const createInitialForm = () => ({
 });
 
 export const useTransactionStore = defineStore('transaction', () => {
-  // 상태(state)
+  // [State] 서버에서 불러온 "내 전체 거래 목록"(수입+지출). 합계/목록 UI의 원본 데이터
   const transactions = ref([]);
   const categories = ref([]);
   const isLoading = ref(false);
   const errorMessage = ref('');
 
   // UI 상태(state)
+  // [UI State] 현재 입력/탭 상태 (income | expense) - 조회조건이 아니라 화면/폼 기준
   const activeType = ref('expense');
   const lastSelectedType = ref('income');
   const typeClickCount = ref({
@@ -108,6 +132,7 @@ export const useTransactionStore = defineStore('transaction', () => {
     transactions.value.filter((item) => item.type === 'expense'),
   );
 
+  // [Computed] transactions(전체)에서 타입별로 합계 계산 -> 총수입/총지출/잔액
   const totalIncome = computed(() =>
     incomeTransactions.value.reduce(
       (sum, item) => sum + Number(item.amount || 0),
@@ -138,14 +163,22 @@ export const useTransactionStore = defineStore('transaction', () => {
   };
 
   const applyTypeFilter = async (type) => {
+    const currentUserId = getCurrentUserId();
+    if (!currentUserId) {
+      transactions.value = [];
+      errorMessage.value = '로그인이 필요합니다.';
+      return;
+    }
+
     setActiveType(type);
-    await fetchTransactions({ type: activeType.value });
+    await fetchTransactions({ userId: currentUserId }); // ✅ type 제거
   };
 
   const fetchTransactions = async (params = {}) => {
     isLoading.value = true;
     errorMessage.value = '';
     try {
+      // [API] 거래 목록 조회(GET). userId/type 등 query param으로 필터링 가능(json-server)
       const searchParams = new URLSearchParams();
       Object.entries(params).forEach(([key, value]) => {
         if (value === undefined || value === null || value === '') return;
@@ -170,6 +203,7 @@ export const useTransactionStore = defineStore('transaction', () => {
     isLoading.value = true;
     errorMessage.value = '';
     try {
+      // [API] 거래 저장(POST). payload에 userId를 포함해서 DB에 저장
       const data = await requestJson(`${API_BASE_URL}/transactions`, {
         method: 'POST',
         data: payload,
@@ -188,6 +222,7 @@ export const useTransactionStore = defineStore('transaction', () => {
   };
 
   const saveTransaction = async () => {
+    // [Action] 폼 검증 -> userId 확인 -> payload 생성 -> createTransaction 호출
     if (
       !form.value.date ||
       Number(form.value.amount) <= 0 ||
@@ -199,9 +234,16 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
 
     isSaving.value = true;
+    //스토리지 확인 코드
+    const currentUserId = getCurrentUserId();
+    if (!currentUserId) {
+      errorMessage.value = '로그인이 필요합니다.';
+      return false;
+    }
+
     try {
       const payload = {
-        userId: 1,
+        userId: currentUserId,
         type: activeType.value,
         categoryId: form.value.categoryId,
         amount: Number(form.value.amount),
@@ -240,7 +282,6 @@ export const useTransactionStore = defineStore('transaction', () => {
     selectedCategoryName,
     incomeTransactions,
     expenseTransactions,
-
     totalIncome,
     totalExpense,
     currentBalance,
@@ -251,5 +292,6 @@ export const useTransactionStore = defineStore('transaction', () => {
     createTransaction,
     saveTransaction,
     resetForm,
+    getCurrentUserId,
   };
 });
