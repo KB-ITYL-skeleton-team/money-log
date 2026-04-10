@@ -1,8 +1,3 @@
-보내주신 피그마 디자인(image_6.png)의 가로형 2단 레이아웃을 바탕으로, 기존
-코드의 유효성 검사와 눈 모양 아이콘 기능은 유지하되 웹(가로)과 앱(세로) 환경에
-따라 레이아웃이 바뀌는 반응형 회원가입 페이지를 만들었습니다. 피그마 디자인처럼
-전체를 카드(border, rounded) 안에 담았으며, 색상은 제외하고 구조만 잡았습니다.
-🛠️ 반응형 회원가입 페이지 SignupPage.vue 코드 스니펫
 <template>
   <div
     class="signup-wrapper d-flex align-items-center justify-content-center mt-md-5 pb-5"
@@ -12,6 +7,7 @@
         회원가입
       </h1>
 
+      <!-- 페이지 새로고침으로 삭제 방지 -->
       <form
         @submit.prevent="submitSignup"
         class="signup-card p-4 p-md-5 border rounded-5 shadow-sm bg-white"
@@ -196,35 +192,33 @@ const email = ref('');
 const userId = ref('');
 const password = ref('');
 const passwordConfirm = ref('');
-const isIdChecked = ref(false);
+const isIdChecked = ref(false); // 아이디 중복 확인 변수
 
-// 비밀번호 보이기 상태 관리 변수
+// 비밀번호 보이기, 숨기기 상태 관리 변수
 const showPassword = ref(false);
 const showPasswordConfirm = ref(false);
 
-// --- 유효성 검사 로직 (기존과 동일) ---
+// --- 유효성 검사 로직  ---
+// 이름 오타없이 완전한 글자로
 const isNameValid = computed(() => /^[가-힣]+$/.test(name.value));
+// 전화번호 형식
 const isPhoneValid = computed(() => /^010-\d{4}-\d{4}$/.test(phone.value));
+// 이메일 형식
 const isEmailValid = computed(() =>
   /^[a-zA-A0-9._%+-]+@[a-zA-A0-9.-]+\.[a-zA-A]{2,}$/.test(email.value),
 );
+// 비밀번호 형식
 const isPwValid = computed(() => {
   const pw = password.value;
   if (!pw) return false;
+
+  // 영문(?=.*[a-zA-Z])과 숫자(?=.*[0-9])가 모두 포함된 7자 이상(.{7,})인지 검사
   const regExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{7,}$/;
-  if (!regExp.test(pw)) return false;
-  for (let i = 0; i < pw.length - 2; i++) {
-    const char1 = pw.charCodeAt(i);
-    const char2 = pw.charCodeAt(i + 1);
-    const char3 = pw.charCodeAt(i + 2);
-    if (
-      (char1 + 1 === char2 && char2 + 1 === char3) ||
-      (char1 - 1 === char2 && char2 - 1 === char3)
-    )
-      return false;
-  }
-  return true;
+
+  return regExp.test(pw);
 });
+
+// 비밀번호와 비밀번호 확인 일치한지
 const isPwConfirmValid = computed(
   () => password.value !== '' && password.value === passwordConfirm.value,
 );
@@ -270,7 +264,7 @@ const submitSignup = async () => {
 </script>
 
 <style scoped>
-/* [웹/앱 공통] 전체 배경 설정 */
+/* [웹/앱 공통] 전체 배경 */
 .signup-wrapper {
   min-height: 100vh;
   background-color: #ffffff;
@@ -280,7 +274,7 @@ const submitSignup = async () => {
   max-width: 900px;
 }
 
-/* 카드 스타일: 피그마 디자인 참고 (테두리와 라운드) */
+/* 카드 스타일 */
 .signup-card {
   border-radius: 40px !important;
   border: 1px solid #eaeaea !important;
@@ -305,7 +299,7 @@ const submitSignup = async () => {
 }
 
 .form-underline:focus {
-  border-bottom-color: #2c7a90; /* 강조색 */
+  border-bottom-color: #2c7a90;
 }
 
 /* 아이콘 및 체크 표시 위치 */
@@ -321,12 +315,11 @@ const submitSignup = async () => {
   top: 10px;
 }
 
-/* 비밀번호 영역의 특수 배치 */
+/*  비밀번호 가리기, 보이기 아이콘 */
 .valid-icon.pw-valid {
-  right: 35px; /* 눈 모양 아이콘 공간 확보 */
+  right: 35px;
 }
 
-/* 비밀번호 가리기, 보이기 아이콘 */
 .eye-btn {
   position: absolute;
   right: 0px;
@@ -351,33 +344,38 @@ const submitSignup = async () => {
   color: #fff;
 }
 
-/* [앱/모바일 환경 설정] 768px 미만 */
+/* [앱/모바일 환경 설정] 
+/* 아이폰 12 프로 (너비 390px) */
 @media (max-width: 767.98px) {
   .signup-container {
-    max-width: 420px; /* 모바일 비율 유지 */
+    max-width: 390px;
+    padding: 0 10px;
   }
 
   .signup-card {
-    border-radius: 30px !important;
-    padding: 30px 20px !important;
-    margin: 0 15px;
+    border-radius: 25px !important;
+    padding: 25px 15px !important;
+    margin: 0 5px;
+    border: 1px solid #eee !important;
   }
 
   .mobile-inner-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 800;
     color: #333;
+    margin-bottom: 30px !important;
   }
 
   .info-content-area .col-12:first-child {
     border-right: none !important;
+    margin-bottom: 20px;
   }
 }
 
-/* [웹/PC 환경 설정] 768px 이상 */
+/* [웹/PC 환경 설정] */
 @media (min-width: 768px) {
   .section-divider {
-    border-right: 1px solid #eee; /* 세로 구분선 */
+    border-right: 1px solid #eee;
   }
 }
 </style>
