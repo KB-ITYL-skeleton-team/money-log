@@ -51,7 +51,7 @@
         <div class="transaction-items">
           <!-- 내역이 없을 때 -->
           <p v-if="filteredTransactions.length === 0" class="empty-msg">
-            지출 내역이 없어요.
+            수입/지출 내역이 없어요. <br />+ 버튼을 눌러 추가해주세요.
           </p>
           <!-- 내역이 있을 때: v-for로 날짜별 필터링된 거래 내역 표시 -->
           <div
@@ -273,8 +273,8 @@ const goCreate = (type) => {
 /* 2단 레이아웃 */
 .content-area {
   display: flex;
-  height: calc(100vh - 60px);
-  align-items: flex-start; /* 추가: 달력이랑 높이 맞추기 */
+  height: auto; /* 변경: calc(100vh - 60px) → auto */
+  align-items: stretch; /* 추가: 달력이랑 높이 맞추기 */
 }
 
 /* 왼쪽: 달력 박스 */
@@ -327,7 +327,7 @@ const goCreate = (type) => {
   padding: 12px;
   position: relative;
   border: 1px solid #eee;
-  align-self: stretch; /* 달력 높이에 맞춰 줄어듦 */
+  overflow-y: auto; /* 추가: 내용이 많아지면 스크롤 */
 }
 
 /* 선택된 날짜 - 패딩 추가로 공간 확보 */
@@ -341,18 +341,20 @@ const goCreate = (type) => {
 
 /* 거래 내역 목록 - 높이 조정 */
 .transaction-items {
-  height: calc(100% - 80px);
+  height: auto; /* 변경: calc(100% - 80px) → auto */
   display: flex; /* 변경: 가운데 정렬 위해 추가 */
-  align-items: center; /* 변경: 세로 가운데 정렬 */
-  justify-content: center; /* 변경: 가로 가운데 정렬 */
+  align-items: flex-start; /* 변경: center -> flex-start (위쪽 정렬) */
+  justify-content: flex-start; /* 변경: center -> flex-start (위쪽 정렬) */
   flex-direction: column; /* 추가: 내역 세로로 나열 */
+  padding-top: 12px; /* 추가 살짝 여백 주기 */
 }
 
 /* 내역 없을 때 메시지 - margin 제거 */
 .empty-msg {
   color: #eee;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
+  width: 100%; /* 추가: 가로 전체 차지해야 center 적용됨 */
 }
 
 /* 거래 내역 아이템 */
@@ -396,5 +398,32 @@ const goCreate = (type) => {
   color: #eee;
   font-size: 24px;
   cursor: pointer;
+}
+/* 반응형: 모바일에서 세로 배치 */
+@media (max-width: 430px) {
+  .content-area {
+    flex-direction: column; /* 변경: 가로 → 세로 */
+    height: auto;
+  }
+
+  .calendar-box {
+    width: 100%; /* 반응형 웹을 위한 추가 : 전체 너비 차지하도록 => 화면이 작아졌을 때 달력이 빠그라지는 것을 방지 */
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .detail-box {
+    width: 100%; /* 반응형 웹을 위한 추가 : 전체 너비 차지하도록 => 화면이 작아졌을 때 달력을 감싸는 외부 상자가 빠그라지는 것을 방지 */
+    align-self: auto;
+    min-height: 300px;
+    position: relative; /* 추가 : absoulte 버튼 기준점 */
+    padding-bottom: 70px; /* 추가 : 버튼 공간 확보 */
+  }
+  /* 추가: 모바일에서 플로팅 버튼 위치 고정 => .detail-box가 작아서 버튼이 잘려서 안보이는 문제 해결 */
+  .float-btn {
+    position: fixed; /* 변경: absolute → fixed */
+    bottom: 80px; /* 변경: 하단 네비게이션 위에 위치 */
+    right: 16px;
+  }
 }
 </style>

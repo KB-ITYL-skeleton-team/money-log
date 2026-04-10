@@ -2,7 +2,7 @@
   <div>
     <!-- width가 원래는 960px이었는데 700px로 수정하였다. -->
     <div style="width: 100%; margin: 0 auto">
-      <div style="border: solid 1px black">
+      <div style="border: solid 1px black; width: 100%">
         <div>
           <!-- 2-3. 현재 날짜 보여주기  ===> TransactionList.vue로 직접 이동하여 출력
             사용자 설정에 보여주기
@@ -44,7 +44,7 @@
               :key="index"
               :style="{
                 border: '1px solid gray',
-                height: '80px',
+                height: '60px' /* 변경 80 -> 60px */,
                 textAlign: 'center',
                 boxSizing: 'border-box',
                 color: getDayColor(index),
