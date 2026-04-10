@@ -27,7 +27,7 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  background-color: #020617;
+  // background-color: #020617;
 }
 
 .bottom {
@@ -35,7 +35,7 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
-  background-color: #020617;
+  // background-color: #020617;
   color: white;
 }
 
