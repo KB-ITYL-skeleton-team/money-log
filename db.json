@@ -44,10 +44,11 @@
       "userId": "usr_a1b2c3",
       "type": "income",
       "categoryId": 1,
-      "amount": 962278,
+      "amount": 1000,
       "memo": "수입",
       "date": "2026-04-03",
-      "assets": "bank"
+      "assets": "bank",
+      "asset": "bank"
     },
     {
       "id": "202604075639",
@@ -113,7 +114,7 @@
       "userId": "usr_a1b2c3",
       "type": "income",
       "categoryId": 1,
-      "amount": 1500000,
+      "amount": 3000000,
       "memo": "ㅇㄱ",
       "date": "2026-04-09",
       "asset": "현금",
