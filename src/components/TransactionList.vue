@@ -181,8 +181,11 @@ const filteredTransactions = computed(() => {
 });
 
 // 추가: 마운트시 userId:1 거래 내역 불러오기
+// 마운트 시 로그인 유저 거래 내역 불러오기(gj)
 onMounted(async () => {
-  await store.fetchTransactions({ userId: 1 });
+  const userId = store.getCurrentUserId(); // "usr_d4e5f6" 같은 값
+  if (!userId) return; // 또는 alert/로그인 이동 처리
+  await store.fetchTransactions({ userId });
 });
 
 // +버튼 클릭이벤트 관련
