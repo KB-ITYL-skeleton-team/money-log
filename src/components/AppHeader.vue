@@ -22,6 +22,7 @@
           <RouterLink class="nav-link" to="/fortune">운세</RouterLink>
           <RouterLink class="nav-link" to="/statics">통계</RouterLink>
           <RouterLink class="nav-link" to="/totalBudget">예산</RouterLink>
+          <div v-if="user">{{ user.name }} 님 환영합니다</div>
         </div>
       </nav>
     </div>
@@ -33,10 +34,15 @@ import { computed } from 'vue';
 import { useRouter, RouterLink } from 'vue-router';
 import { useLoginStore } from '@/stores/userStore';
 
+// 로그인 되어 있는지 확인 - 안 되어 있으면
 const store = useLoginStore();
 const router = useRouter();
-
 const isLogin = computed(() => store.isLoggedIn);
+const user = computed(() => {
+  const savedUser = localStorage.getItem('loginUser');
+  console.log('savedUser 정보  :', savedUser);
+  return savedUser ? JSON.parse(savedUser) : null;
+});
 
 const logout = () => {
   store.logout();
