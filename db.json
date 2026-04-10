@@ -108,6 +108,16 @@
       "date": "2026-04-09",
       "asset": "현금",
       "id": "rOVHCLlkw74"
+    },
+    {
+      "userId": "usr_a1b2c3",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 1500000,
+      "memo": "ㅇㄱ",
+      "date": "2026-04-09",
+      "asset": "현금",
+      "id": "opSDiFR"
     }
   ],
   "budgets": [
