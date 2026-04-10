@@ -1,35 +1,36 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <RouterLink class="navbar-brand" to="/"
-        >우주를 줄게
+      <!--  -->
+      <RouterLink class="navbar-brand" to="/">
+        <div v-if="isLogin && user" style="font-size: 70%; color: lightgray">
+          {{ user.name }} 님
+        </div>
+        우주를 줄게
         <img src="/src/assets/orbit_clean.gif" class="logo-icon" />
       </RouterLink>
-
-      <nav class="mobile-header-menu">
-        <div class="navbar-nav ms-auto"></div>
-      </nav>
 
       <nav class="header-menu">
         <div class="navbar-nav ms-auto">
           <RouterLink v-if="!isLogin" class="nav-link" to="/loginPage">
             로그인
           </RouterLink>
-
           <template v-else>
-            <RouterLink class="nav-link" to="/mypage">마이페이지</RouterLink>
+            <a class="nav-link" style="cursor: pointer" @click="refreshHome"
+              >홈</a
+            >
+            <RouterLink class="nav-link" to="/mypage"
+              >마이페이지
+              <!-- <img src="/src/components/icons/user.svg" class="logo-icon" /> -->
+            </RouterLink>
             <button class="nav-link btn btn-link" @click="logout">
               로그아웃
+              <!-- <img src="/src/components/icons/user.svg" class="logo-icon" /> -->
             </button>
+            <RouterLink class="nav-link" to="/fortune">운세</RouterLink>
+            <RouterLink class="nav-link" to="/statics">통계</RouterLink>
+            <RouterLink class="nav-link" to="/totalBudget">예산</RouterLink>
           </template>
-          <!-- 변경: 홈 버튼 클릭시 강제로 다른 경로 거쳐서 재이동 -->
-          <a class="nav-link" style="cursor: pointer" @click="refreshHome"
-            >홈</a
-          >
-          <RouterLink class="nav-link" to="/fortune">운세</RouterLink>
-          <RouterLink class="nav-link" to="/statics">통계</RouterLink>
-          <RouterLink class="nav-link" to="/totalBudget">예산</RouterLink>
-          <div v-if="isLogin && user">{{ user.name }} 님 환영합니다</div>
         </div>
       </nav>
     </div>
