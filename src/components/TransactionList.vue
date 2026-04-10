@@ -73,7 +73,7 @@
         <!-- 변경: 클릭시 모달 열기 오후 3시 51분 경 = 대기정 형님이 요청하신 변동사항 수행
         <button class="float-btn" @click="showModal = true">＋</button>-->
 
-        <!-- 변경: 모달 대신 transactionPage로 이동 -->
+        <!-- 변경: 모달 대신 transactionPage로 이동  ==> TransactionForm에서 탭 변경 시 라우트 query를 바꿔서 TransactionPage의 로직과 동기화-->
         <button
           class="float-btn"
           @click="
