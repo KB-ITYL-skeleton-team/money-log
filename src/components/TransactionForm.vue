@@ -4,6 +4,7 @@
       <header class="form-header">
         <h2 class="title">거래 등록</h2>
 
+        <!-- 수입/지출 탭: store.activeType 변경 + URL query.type 변경 -->
         <div class="btn-group" role="group" aria-label="거래 타입">
           <button
             v-for="item in typeTabs"
@@ -24,6 +25,7 @@
 
       <div class="card form-card">
         <div class="card-body">
+          <!-- 입력값은 transactionStore.form에 v-model로 바인딩(스토어가 폼 상태를 소유) -->
           <div class="row g-3 align-items-center">
             <div class="col-12 col-md-6">
               <label class="form-label mb-1">날짜</label>
@@ -42,6 +44,7 @@
                 inputmode="numeric"
                 class="form-control"
                 placeholder="0"
+                step="100"
               />
             </div>
 
@@ -107,7 +110,7 @@
 import { useRouter } from 'vue-router';
 import { useTransactionStore } from '@/stores/transactionStore';
 
-// 탭 버튼(UI)
+// UI 탭 버튼 표시용 상수(라벨/값)
 const typeTabs = [
   { label: '수입', value: 'income' },
   { label: '지출', value: 'expense' },
@@ -118,11 +121,12 @@ const router = useRouter();
 // 스토어 인스턴스
 const transactionStore = useTransactionStore();
 
-// 메서드: 탭 변경(라우트 query 변경)
+// 탭 변경 시 라우트 query를 바꿔서 TransactionPage의 로직과 동기화
 const changeType = (type) => {
   router.push({ name: 'transactionPage', query: { type } });
 };
-// 메서드: 저장(confirm -> store save -> alert -> 목록 이동)
+
+// [Save Click] 로그인 여부 확인 -> 저장 확인(confirm) -> store.saveTransaction() 호출 -> 목록으로 이동
 const transaction_handler = async () => {
   const savedUser = localStorage.getItem('loginUser');
   if (!savedUser) {
@@ -139,6 +143,7 @@ const transaction_handler = async () => {
       alert('저장에 실패했습니다. 입력값을 확인해주세요.');
     } else {
       alert('저장되었습니다.');
+      // 저장 완료 후 홈(목록)으로 이동
       router.push({ name: 'transactionList' });
     }
   } catch (e) {
