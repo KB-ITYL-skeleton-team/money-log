@@ -7,10 +7,13 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:3000';
 
 // [Auth] localStorage에 저장된 로그인 유저(loginUser)에서 userId("usr_...")를 꺼내는 용도
-// - 거래 저장/조회 시 "누구의 데이터인지" 식별하는 키로 사용
+// - 거래 저장/조회 시 "누구의 데이터인지"를 구분하는 기준값으로 사용
+// - 로그인 상태가 아니면 null을 반환하도록 만들어, 화면/저장 로직에서 가드 처리 가능
 const LOGIN_USER_KEY = 'loginUser';
 
-// localStorage(loginUser) -> JSON 파싱 -> userId 문자열 반환 (없거나 깨졌으면 null)
+// localStorage(loginUser) -> JSON 파싱 -> userId 문자열 반환
+// - 반환 예: "usr_d4e5f6"
+// - loginUser가 없거나 JSON이 깨졌거나 userId가 비어있으면 null
 const getCurrentUserId = () => {
   const raw = localStorage.getItem(LOGIN_USER_KEY);
   if (!raw) return null;
@@ -89,7 +92,9 @@ export const useTransactionStore = defineStore('transaction', () => {
   const form = ref(createInitialForm());
   const isSaving = ref(false);
   // [Edit State] 수정 모드인지 여부와 대상 거래 id
-  const editingTransactionId = ref(null); // null이면 등록 모드, 값이 있으면 수정 모드
+  // - editingTransactionId가 null이면 "새 거래 등록"
+  // - 값이 있으면 "해당 id 거래를 수정" (폼 값 유지 + PATCH 저장)
+  const editingTransactionId = ref(null);
   const isEditing = computed(() => Boolean(editingTransactionId.value));
 
   // 옵션(선택지)
@@ -201,10 +206,16 @@ export const useTransactionStore = defineStore('transaction', () => {
   const fetchCategories = async () => {
     categories.value = Object.values(CATEGORY_MAP).flat();
   };
+
+  // 거래 1건 조회(GET /transactions/:id)
+  // - 수정 화면 진입 시, DB에서 최신 데이터를 가져와 form에 채우기 위해 사용
   const fetchTransactionById = async (transactionId) => {
     return await requestJson(`${API_BASE_URL}/transactions/${transactionId}`);
   };
 
+  // 수정 모드 시작: 특정 거래를 불러와서 form에 그대로 채우고, editingTransactionId를 세팅
+  // - transactionId: 클릭한 거래의 id(route query.editId로 전달)
+  // - 본인(userId) 거래인지 확인해서, 타인 데이터 수정이 발생하지 않게 가드
   const startEditTransaction = async (transactionId) => {
     const currentUserId = getCurrentUserId();
     if (!currentUserId) throw new Error('로그인이 필요합니다.');
@@ -231,6 +242,8 @@ export const useTransactionStore = defineStore('transaction', () => {
     };
   };
 
+  // 수정 모드 종료: editingTransactionId 해제 + 폼 초기화(새 등록 상태로 복귀)
+  // - '+' 버튼으로 새 거래 등록을 시작할 때도 이 함수를 호출해 상태 충돌을 방지
   const clearEditTransaction = () => {
     editingTransactionId.value = null;
     resetForm();
@@ -257,6 +270,9 @@ export const useTransactionStore = defineStore('transaction', () => {
       isLoading.value = false;
     }
   };
+
+  // 거래 수정(PATCH /transactions/:id)
+  // - 수정 모드에서 저장 버튼을 눌렀을 때 실행됨
   const updateTransaction = async (transactionId, payload) => {
     return await requestJson(`${API_BASE_URL}/transactions/${transactionId}`, {
       method: 'PATCH',
@@ -266,7 +282,8 @@ export const useTransactionStore = defineStore('transaction', () => {
   };
 
   const saveTransaction = async () => {
-    // [Action] 폼 검증 -> userId 확인 -> payload 생성 -> createTransaction 호출
+    // [Action] 폼 검증 -> userId 확인 -> payload 생성 -> (등록/수정) 저장 처리
+    // - editingTransactionId가 있으면 PATCH(수정), 없으면 POST(등록)
     if (
       !form.value.date ||
       Number(form.value.amount) <= 0 ||
@@ -298,6 +315,7 @@ export const useTransactionStore = defineStore('transaction', () => {
 
       console.log('[SAVE] payload:', payload);
 
+      // 수정 모드: PATCH로 업데이트 + store.transactions에 반영 후 수정 모드 종료
       if (editingTransactionId.value) {
         const updated = await updateTransaction(
           editingTransactionId.value,

@@ -77,14 +77,7 @@
         <button class="float-btn" @click="showModal = true">＋</button>-->
 
         <!-- 변경: 모달 대신 transactionPage로 이동 -->
-        <button
-          class="float-btn"
-          @click="
-            router.push({ name: 'transactionPage', query: { type: 'expense' } })
-          "
-        >
-          ＋
-        </button>
+        <button class="float-btn" @click="goCreate('expense')">＋</button>
       </div>
     </div>
   </div>
@@ -203,6 +196,12 @@ onMounted(async () => {
 // +버튼 클릭이벤트 관련
 // 모달 표시 여부 상태 (대기정 님이 하셨던 것이 아닌 홈화면에서 + 버튼으로 투사하는 이벤트 관련 const입니다)
 // const showModal = ref(false); ==> 모달 이벤트 필요 없어져서 숨김.
+
+// + 버튼을 누를시 수정모드 해제 + 저장모드로 전환하는 함수
+const goCreate = (type) => {
+  store.clearEditTransaction(); // ✅ 수정모드 해제 + 폼 초기화
+  router.push({ name: 'transactionPage', query: { type } });
+};
 </script>
 
 <style scoped>
