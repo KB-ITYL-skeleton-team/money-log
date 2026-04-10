@@ -110,7 +110,7 @@ watch(
   max-width: none;
   margin: 0;
   padding: 0;
-  background: #f4f4f4;
+  /* background: #f4f4f4; */
   min-height: 100vh;
 }
 
