@@ -1,16 +1,25 @@
 <template>
   <!-- 수입/지출 입력 페이지(웹 폼 버전) -->
-  <div class="transaction-page">
-    <!-- 페이지 상단 헤더: 뒤로가기 + 현재 탭 제목 -->
-    <header class="page-header">
-      <button type="button" class="back-btn" @click="goBack">←</button>
-      <h1>{{ transactionStore.pageTitle }}</h1>
-      <div class="header-space" />
-    </header>
+  <div class="transaction-wrapper d-flex align-items-center justify-content-center">
+    <div class="container transaction-container">
+      <section class="transaction-card p-4 p-md-5 border rounded-5 shadow-sm bg-white">
+        <!-- 페이지 상단 헤더: 뒤로가기 + 현재 탭 제목 -->
+        <header class="page-header">
+          <button
+            type="button"
+            class="btn btn-outline-dark btn-sm rounded-pill px-3"
+            @click="goBack"
+          >
+            &lt; 뒤로가기
+          </button>
+          <h1>{{ transactionStore.pageTitle }}</h1>
+        </header>
 
-    <!-- 입력 폼 영역(탭/날짜/금액/분류/자산/내용/저장) -->
-    <!-- 거래 등록 폼 UI(입력/저장 버튼)는 TransactionForm이 담당 -->
-    <TransactionForm />
+        <!-- 입력 폼 영역(탭/날짜/금액/분류/자산/내용/저장) -->
+        <!-- 거래 등록 폼 UI(입력/저장 버튼)는 TransactionForm이 담당 -->
+        <TransactionForm />
+      </section>
+    </div>
   </div>
 </template>
 
@@ -108,35 +117,47 @@ watch(
 </script>
 
 <style scoped>
-.transaction-page {
-  /* Full-width page section (website-like) */
-  max-width: none;
-  margin: 0;
-  padding: 0;
+.transaction-wrapper {
   min-height: 100vh;
 }
 
+.transaction-container {
+  max-width: 900px;
+}
+
+.transaction-card {
+  border-radius: 40px !important;
+  border: 1px solid #eaeaea !important;
+}
+
 .page-header {
-  display: grid;
-  grid-template-columns: 24px 1fr 24px;
+  display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .page-header h1 {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #333;
 }
 
-.back-btn {
-  border: 0;
-  background: transparent;
-  font-size: 20px;
-  cursor: pointer;
-}
+@media (max-width: 767.98px) {
+  .transaction-container {
+    max-width: 420px;
+  }
 
-.header-space {
-  width: 24px;
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
 }
 </style>
