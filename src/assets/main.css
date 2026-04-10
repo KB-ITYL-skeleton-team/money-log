@@ -1,3 +1,19 @@
+/* 공용 background */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-image: url('./bg1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  z-index: -1;
+}
+
+/* 모바일 header 메뉴 */
+.mobile-header-menu {
+}
+
 /* header 메뉴 */
 .header-menu {
   display: flex;
