@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 // Page
+import IntroPage from '@/pages/IntroPage.vue';
 import HomePage from '@/pages/HomePage.vue';
 import LoginPage from '@/pages/LoginPage.vue';
 import MyPage from '@/pages/MyPage.vue';
@@ -29,12 +30,18 @@ import totalBudget from '@/totalBudget/TotalBudget.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // 홈으로 가는것, 리스트로 가는것 2개 구현 -> (alias) 사용
     {
       path: '/',
+      name: 'introPage',
+      component: IntroPage,
+    },
+
+    // 홈으로 가는것, 리스트로 가는것 2개 구현 -> (alias) 사용
+    {
+      path: '/transactionList',
       name: 'transactionList',
       component: TransactionList,
-      alias: '/transactionList',
+      // alias: '/transactionList',
     },
 
     {
