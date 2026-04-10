@@ -93,6 +93,7 @@
               />
             </div>
           </div>
+          <!-- 저장/수정 요청 중에는 중복 클릭을 막기 위해 비활성화 -->
           <div class="d-flex justify-content-end mt-3">
             <button
               type="button"
@@ -112,6 +113,7 @@
             <!-- 삭제 버튼은 수정 모드에서만 보이도록, 클릭 시 삭제 확인 후
               store.deleteTransaction() 호출 -> 목록으로 이동
               - 수정 버튼 오른쪽에 배치 -->
+            <!-- 삭제 요청 중에도 중복 클릭을 막기 위해 동일하게 비활성화 -->
             <button
               v-if="transactionStore.isEditing"
               type="button"
@@ -176,7 +178,10 @@ const transaction_handler = async () => {
     alert('저장 중 오류가 발생했습니다. 다시 시도해주세요.');
   }
 };
-// 삭제하는 메서드 -> 스토어 내부의 deleteTransaction() 호출 -> 목록으로 이동
+// 삭제 버튼 클릭 처리
+// - 수정 모드에서만 노출되는 '삭제하기' 버튼과 연결됨
+// - 정말 삭제할지 confirm으로 한 번 더 확인한 후, store.deleteTransaction()으로 DB/상태를 삭제
+// - 삭제 성공 시 홈(목록)으로 이동
 const delete_handler = async () => {
   const ok = confirm('정말 삭제하시겠습니까?');
   if (!ok) return;
@@ -196,7 +201,6 @@ const delete_handler = async () => {
 
 <style scoped>
 .transaction-form {
-  background: #f4f4f4;
   padding: 16px 0;
   width: 100%;
   margin: 0;

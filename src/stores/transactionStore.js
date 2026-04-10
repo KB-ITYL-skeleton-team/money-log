@@ -92,8 +92,9 @@ export const useTransactionStore = defineStore('transaction', () => {
   const form = ref(createInitialForm());
   const isSaving = ref(false);
   // [Edit State] 수정 모드인지 여부와 대상 거래 id
-  // - editingTransactionId가 null이면 "새 거래 등록"
-  // - 값이 있으면 "해당 id 거래를 수정" (폼 값 유지 + PATCH 저장)
+  // - editingTransactionId가 null이면 "새 거래 등록" 상태
+  // - 값이 있으면 "해당 id 거래를 수정" 상태(폼에 기존 값이 채워져 있고 PATCH로 저장됨)
+  // - 이 값이 남아 있으면 새 등록 화면에서도 '수정하기'처럼 보일 수 있어, 필요 시 clearEditTransaction()으로 해제
   const editingTransactionId = ref(null);
   const isEditing = computed(() => Boolean(editingTransactionId.value));
 
@@ -280,7 +281,11 @@ export const useTransactionStore = defineStore('transaction', () => {
       headers: { 'Content-Type': 'application/json' },
     });
   };
-  // 삭제 버튼 실행 함수
+  // 거래 삭제(DELETE /transactions/:id)
+  // - 수정 화면에서 "삭제하기" 버튼을 눌렀을 때 실행됨
+  // - 안전을 위해 DB에서 거래 1건을 다시 조회해서 "내 거래(userId)"가 맞는지 확인 후 삭제
+  // - 삭제 후 store.transactions에서도 제거해서 목록 화면에 즉시 반영
+  // - 만약 현재 수정 중인 거래를 삭제했다면 수정 모드도 같이 종료
   const deleteTransaction = async (transactionId) => {
     const currentUserId = getCurrentUserId();
     if (!currentUserId) throw new Error('로그인이 필요합니다.');
