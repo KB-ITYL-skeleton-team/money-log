@@ -60,14 +60,24 @@ onMounted(async () => {
   }
 
   // 초기 진입 시: 카테고리 로드 -> (유저 기준) 거래 목록 로드 -> 화면 상태 준비
-  const initialType = syncTypeFromQuery();
+
   await transactionStore.fetchCategories();
+
+  const editId = route.query.editId;
+  if (editId) {
+    await transactionStore.startEditTransaction(editId);
+    return;
+  }
+
+  const initialType = syncTypeFromQuery();
   await transactionStore.applyTypeFilter(initialType);
 });
 
 watch(
   () => route.query.type,
   async (nextType) => {
+    if (route.query.editId) return;
+
     // 탭 변경 시(query 변경): activeType만 바꾸고 필요한 데이터 갱신
     const savedUser = localStorage.getItem('loginUser');
     if (!savedUser) {
