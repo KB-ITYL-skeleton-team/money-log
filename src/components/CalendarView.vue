@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- width가 원래는 960px이었는데 700px로 수정하였다. -->
-    <div style="width: 700px; margin: 0 auto">
+    <div style="width: 100%; margin: 0 auto">
       <div style="border: solid 1px black">
         <div>
           <!-- 2-3. 현재 날짜 보여주기  ===> TransactionList.vue로 직접 이동하여 출력

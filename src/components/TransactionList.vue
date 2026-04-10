@@ -236,7 +236,7 @@ const goCreate = (type) => {
   display: flex;
   justify-content: space-around;
   padding: 12px 0;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #eee;
 }
 
 /* 요약 항목 */
@@ -250,14 +250,14 @@ const goCreate = (type) => {
 /* 라벨 */
 .summary-label {
   font-size: 12px;
-  color: #aaa;
+  color: #eee;
 }
 
 /* 금액 */
 .summary-value {
   font-size: 14px;
   font-weight: 600;
-  color: #fff;
+  color: #eee;
 }
 
 /* 수입 색상 */
@@ -274,12 +274,13 @@ const goCreate = (type) => {
 .content-area {
   display: flex;
   height: calc(100vh - 60px);
+  align-items: flex-start; /* 추가: 달력이랑 높이 맞추기 */
 }
 
 /* 왼쪽: 달력 박스 */
 .calendar-box {
   flex: 1;
-  border-right: 1px solid white;
+  border-right: 1px solid #eee;
   padding: 12px;
 }
 
@@ -289,7 +290,7 @@ const goCreate = (type) => {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
-  border: 1px solid white;
+  border: 1px solid #eee;
   padding: 8px;
   border-radius: 4px;
 }
@@ -298,21 +299,24 @@ const goCreate = (type) => {
 .month-label {
   font-size: 16px;
   font-weight: 600;
+  color: #eee;
 }
 
 /* 화살표 버튼 */
 .arrow-btn {
   background: none;
   border: none;
-  color: #fff;
+  color: #eee; /* #eee 자체가 연한 회색이라, font-weight : 900; 을 눌러서 굵게 변경 */
   font-size: 16px;
+  font-weight: 900;
   cursor: pointer;
 }
 
 /* 달력 날짜 영역 - 높이를 auto로 변경해서 달력 크기에 맞게 조정 */
 .calendar-body {
-  border: 1px solid white;
+  border: 1px solid #eee;
   height: auto; /* 변경: 300px → auto */
+  padding: 15px;
   border-radius: 4px;
   overflow: hidden; /* 추가: 달력이 박스 밖으로 넘치지 않게 */
 }
@@ -322,7 +326,8 @@ const goCreate = (type) => {
   flex: 1;
   padding: 12px;
   position: relative;
-  border: 1px solid white;
+  border: 1px solid #eee;
+  align-self: stretch; /* 달력 높이에 맞춰 줄어듦 */
 }
 
 /* 선택된 날짜 - 패딩 추가로 공간 확보 */
@@ -330,8 +335,8 @@ const goCreate = (type) => {
   font-size: 14px;
   font-weight: 600;
   padding: 12px 16px; /* 변경: 공간 추가 */
-  border-bottom: 1px solid white; /* 변경: 구분선 추가 */
-  color: #fff;
+  border-bottom: 1px solid #eee; /* 변경: 구분선 추가 */
+  color: #eee;
 }
 
 /* 거래 내역 목록 - 높이 조정 */
@@ -345,7 +350,7 @@ const goCreate = (type) => {
 
 /* 내역 없을 때 메시지 - margin 제거 */
 .empty-msg {
-  color: white;
+  color: #eee;
   text-align: center;
   font-size: 20px;
 }
@@ -356,20 +361,20 @@ const goCreate = (type) => {
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #eee;
   width: 100%;
   cursor: pointer; /* 추가: 클릭 가능한 항목임을 표시 */
 }
 
 /* 거래 내역 아이템 호버 효과 */
 .transaction-item:hover {
-  background-color: white; /* 추가: 마우스 올렸을 때 색상 변경 */
+  background-color: #eee; /* 추가: 마우스 올렸을 때 색상 변경 */
 }
 
 /* 메모 */
 .transaction-memo {
   font-size: 13px;
-  color: #fff;
+  color: #eee;
 }
 
 /* 금액 */
@@ -388,7 +393,7 @@ const goCreate = (type) => {
   border-radius: 50%;
   background-color: #4a90e2;
   border: none;
-  color: #fff;
+  color: #eee;
   font-size: 24px;
   cursor: pointer;
 }
