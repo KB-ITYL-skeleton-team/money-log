@@ -2,7 +2,9 @@
   <section class="transaction-form container-fluid">
     <div class="form-shell">
       <header class="form-header">
-        <h2 class="title">거래 등록</h2>
+        <h2 class="title">
+          {{ transactionStore.isEditing ? '거래 수정' : '거래 등록' }}
+        </h2>
 
         <!-- 수입/지출 탭: store.activeType 변경 + URL query.type 변경 -->
         <div class="btn-group" role="group" aria-label="거래 타입">
@@ -17,6 +19,7 @@
                 : 'btn-outline-secondary'
             "
             @click="changeType(item.value)"
+            :disabled="transactionStore.isEditing"
           >
             {{ item.label }}
           </button>
@@ -97,7 +100,13 @@
               :disabled="transactionStore.isSaving"
               @click="transaction_handler"
             >
-              {{ transactionStore.isSaving ? '저장 중...' : '저장하기' }}
+              {{
+                transactionStore.isSaving
+                  ? '저장 중...'
+                  : transactionStore.isEditing
+                    ? '수정하기'
+                    : '저장하기'
+              }}
             </button>
           </div>
         </div>
@@ -123,6 +132,7 @@ const transactionStore = useTransactionStore();
 
 // 탭 변경 시 라우트 query를 바꿔서 TransactionPage의 로직과 동기화
 const changeType = (type) => {
+  if (transactionStore.isEditing) return;
   router.push({ name: 'transactionPage', query: { type } });
 };
 
