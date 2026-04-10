@@ -55,11 +55,9 @@ onMounted(async () => {
   const savedUser = localStorage.getItem('loginUser');
   if (!savedUser) {
     alert('로그인이 필요합니다.');
-    router.replace({ name: 'loginPage' }); // 또는 router.replace('/loginPage')
+    router.replace({ name: 'loginPage' });
     return;
   }
-
-  // 초기 진입 시: 카테고리 로드 -> (유저 기준) 거래 목록 로드 -> 화면 상태 준비
 
   await transactionStore.fetchCategories();
 
@@ -72,8 +70,18 @@ onMounted(async () => {
     return;
   }
 
+  // 변경: applyTypeFilter 먼저 실행 후 날짜 세팅
+  // 이유: applyTypeFilter 내부에서 resetForm()이 호출되어 form.date가 오늘 날짜로 초기화됨
+  // → applyTypeFilter 이후에 날짜를 세팅해야 덮어쓰기 방지 가능
   const initialType = syncTypeFromQuery();
   await transactionStore.applyTypeFilter(initialType);
+
+  // 추가: date query가 있으면 form.date에 세팅 (TransactionList에서 선택한 날짜 반영)
+  // 반드시 applyTypeFilter 이후에 실행해야 resetForm()에 의해 덮어쓰이지 않음
+  const dateFromQuery = route.query.date;
+  if (dateFromQuery) {
+    transactionStore.form.date = dateFromQuery;
+  }
 });
 
 watch(
@@ -86,7 +94,7 @@ watch(
     const savedUser = localStorage.getItem('loginUser');
     if (!savedUser) {
       alert('로그인이 필요합니다.');
-      router.replace({ name: 'loginPage' }); // 또는 router.replace('/loginPage')
+      router.replace({ name: 'loginPage' });
       return;
     }
 
