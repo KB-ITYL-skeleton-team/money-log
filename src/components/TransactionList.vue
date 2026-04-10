@@ -345,7 +345,7 @@ const goCreate = (type) => {
 
 /* 내역 없을 때 메시지 - margin 제거 */
 .empty-msg {
-  color: #666;
+  color: white;
   text-align: center;
   font-size: 20px;
 }
