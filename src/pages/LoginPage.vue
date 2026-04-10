@@ -35,7 +35,7 @@
                 v-model="userId"
                 type="text"
                 class="form-underline"
-                placeholder="아이디"
+                placeholder="아이디를 입력해주세요"
               />
             </div>
 
@@ -47,7 +47,7 @@
                 v-model="userPw"
                 type="password"
                 class="form-underline"
-                placeholder="비밀번호"
+                placeholder="비밀번호를 입력해주세요"
               />
             </div>
 
@@ -111,7 +111,6 @@ const handleLogin = async () => {
 <style scoped>
 .login-wrapper {
   min-height: 100vh;
-  /* background-color: #ffffff; */
 }
 .login-container {
   max-width: 900px;
