@@ -5,7 +5,9 @@ import data from '../../db.json';
 export const useTransactionsStore = defineStore('Transactions', () => {
   const transactions = ref(data.transactions);
   const categories = ref(data.categories);
-  const userID = ref('usr_e0ifd0tv');
+  const userID = ref('usr_a1b2c3');
+
+  // load user
 
   // income
   const income = computed(() => {
