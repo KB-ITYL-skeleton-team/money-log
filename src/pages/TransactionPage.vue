@@ -113,7 +113,6 @@ watch(
   max-width: none;
   margin: 0;
   padding: 0;
-
   min-height: 100vh;
 }
 
