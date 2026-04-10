@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 // Page
-import IntroPage from '@/pages/IntroPage.vue';
 import HomePage from '@/pages/HomePage.vue';
 import LoginPage from '@/pages/LoginPage.vue';
 import MyPage from '@/pages/MyPage.vue';
@@ -10,10 +9,7 @@ import TransactionPage from '@/pages/TransactionPage.vue';
 
 // components
 import TransactionForm from '@/components/TransactionForm.vue';
-import TransactionItem from '@/components/TransactionItem.vue';
 import TransactionList from '@/components/TransactionList.vue';
-import SummaryCard from '@/components/SummaryCard.vue';
-import BudgetCard from '@/components/BudgetCard.vue';
 
 import FindId from '@/components/FindId.vue';
 import FindPw from '@/components/FindPw.vue';
@@ -30,44 +26,22 @@ import totalBudget from '@/totalBudget/TotalBudget.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // 홈으로 가는것, 리스트로 가는것 2개 구현 -> (alias) 사용
     {
       path: '/',
-      name: 'introPage',
-      component: IntroPage,
+      name: 'homePage',
+      component: HomePage,
     },
-
-    // 홈으로 가는것, 리스트로 가는것 2개 구현 -> (alias) 사용
     {
       path: '/transactionList',
       name: 'transactionList',
       component: TransactionList,
       // alias: '/transactionList',
     },
-
-    {
-      path: '/transactionItem',
-      name: 'transactionItem',
-      component: TransactionItem,
-    },
     {
       path: '/transactionForm',
       name: 'transactionForm',
       component: TransactionForm,
-    },
-    {
-      path: '/summaryCard',
-      name: 'summaryCard',
-      component: SummaryCard,
-    },
-    {
-      path: '/budgetCard',
-      name: 'budgetCard',
-      component: BudgetCard,
-    },
-    {
-      path: '/homePage',
-      name: 'homePage',
-      component: HomePage,
     },
     {
       path: '/loginPage',
