@@ -59,6 +59,9 @@ onMounted(async () => {
     return;
   }
 
+  // 이 페이지는 크게 2가지 진입이 있음
+  // 1) 새 거래 등록: query.type(수입/지출)을 기준으로 탭을 설정하고, 폼은 초기값으로 시작
+  // 2) 기존 거래 수정: query.editId가 있으면 DB에서 해당 거래를 불러와 폼에 채운 상태로 시작
   await transactionStore.fetchCategories();
 
   // [Edit Mode] query.editId가 있으면 "거래 수정"으로 진입
@@ -110,7 +113,6 @@ watch(
   max-width: none;
   margin: 0;
   padding: 0;
-  /* background: #f4f4f4; */
   min-height: 100vh;
 }
 
