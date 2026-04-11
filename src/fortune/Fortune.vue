@@ -6,17 +6,19 @@
       class="star"
       :style="star.style"
     ></div>
-    <div class="fortunement">
-      <div v-if="shown" class="content" :class="{ shadeIn: shadeInMent }">
+    <div class="fortunement" v-if="shown">
+      <div class="content" :class="{ shadeIn: shadeInMent }">
         {{ fortune }}
+      </div>
+      <br />
+      <div class="retry" :class="{ shadeIn: shadeInMent }" @click="reload">
+        다시 뽑고 싶다면 이곳을 눌러보세요!
       </div>
     </div>
     <div class="moon" v-if="show">
       <div class="dot" :class="{ explode: exploded }" @click="explode"></div>
       <br />
-      <p class="ment" :class="{ shadeOut: shadeOutMent }">
-        달을 클릭하면 운세를 볼 수 있어요
-      </p>
+      <p class="ment" :class="{ shadeOut: shadeOutMent }">달을 클릭해보세요!</p>
     </div>
   </div>
 </template>
@@ -28,6 +30,10 @@ import soundURL from '@/fortune/MP_Ta Da.mp3';
 export default {
   name: 'fortune',
   setup() {
+    function reload() {
+      window.location.reload();
+    }
+
     const fortune = ref('');
     const exploded = ref(false);
     const animating = ref(false);
@@ -93,7 +99,7 @@ export default {
     }
 
     function init() {
-      stars.value = Array.from({ length: 8 }, createStar);
+      stars.value = Array.from({ length: 10 }, createStar);
     }
 
     function recycle(index) {
@@ -109,6 +115,7 @@ export default {
     });
 
     return {
+      reload,
       show,
       shown,
       shadeOutMent,
@@ -128,14 +135,14 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: black;
+  background: #020617;
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
 
   flex-direction: column;
-  padding-top: 35vh;
+  padding-top: 30vh;
 }
 
 .star {
@@ -172,12 +179,12 @@ export default {
 .dot {
   position: relative;
 
-  width: clamp(90px, 14vw, 220px);
-  height: clamp(90px, 14vw, 220px);
+  width: clamp(150px, 14vw, 300px);
+  height: clamp(150px, 14vw, 300px);
 
-  background: white;
+  background: rgba(250, 204, 21, 0.803);
   border-radius: 50%;
-  box-shadow: 0 0 10px white;
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.803);
   cursor: pointer;
 }
 
@@ -277,5 +284,17 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 3vh;
+}
+
+.retry {
+  opacity: 0;
+  transition: opacity 2s linear;
+  color: rgba(250, 204, 21, 0.4);
+  cursor: pointer;
+}
+
+.retry.shadeIn {
+  opacity: 1;
 }
 </style>
