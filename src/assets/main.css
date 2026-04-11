@@ -7,52 +7,26 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
+  color: #f5f7ff;
 }
 
-/* 기본 상태 */
-.mobile-header-menu {
-  display: none;
+/* 기본 박스 모델 */
+* {
+  box-sizing: border-box;
 }
 
-.header-menu {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-direction: row;
-  flex-wrap: nowrap;
+/* 앱 전체 영역 */
+#app {
+  min-height: 100vh;
 }
 
-/* 태블릿 이상 */
-@media (min-width: 768px) {
-  .header-menu,
-  .navbar-nav {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: nowrap;
-  }
-
-  .navbar-collapse {
-    display: flex !important;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .nav-link {
-    white-space: nowrap;
-  }
+/* 링크 기본값 */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* 모바일 */
-@media (max-width: 767px) {
-  .header-menu,
-  .navbar-collapse {
-    display: none !important;
-  }
-
-  .mobile-header-menu {
-    display: flex !important;
-    align-items: center;
-  }
+/* 버튼 폰트 상속 */
+button {
+  font: inherit;
 }
