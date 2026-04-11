@@ -1,8 +1,14 @@
 <template>
-  <div></div>
-  <input type="month" v-model="inputMonth" />
-  <input type="number" v-model="budgetAmount" />
-  <button v-on:click="createBudget">저장하기</button>
+  <div class="content">
+    <p class="text">₩</p>
+    <input
+      type="number"
+      v-model="budgetAmount"
+      v-on:keydown.enter="createBudget"
+    />
+    <p class="text">으로</p>
+    <button v-on:click="createBudget">설정하기</button>
+  </div>
 </template>
 
 <script>
@@ -13,20 +19,26 @@ import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 
 export default {
-  setup() {
+  setup(porps, { emit }) {
     const transactions = useTransactionsStore();
-    const { userID, budget } = storeToRefs(transactions);
+    const { userID, budget, selectedMonth } = storeToRefs(transactions);
     const budgetAmount = ref(0);
-    const inputMonth = ref(new Date().toISOString().slice(0, 7));
+    const inputMonth = selectedMonth;
+
     const createBudget = async () => {
       try {
         if (!userID.value) return;
+
+        if (budgetAmount.value <= 0) {
+          alert('0 원 이상의 예산을 입력해주세요');
+          return;
+        }
 
         let response = await axios.get('http://localhost:3000/budgets', {
           params: { userId: userID.value, month: inputMonth.value },
         });
 
-        if (response.data.length > 0) {
+        if (response.data.length > 0 || budgetAmount.value <= 0) {
           const target = response.data[0];
 
           response = await axios.patch(
@@ -42,8 +54,13 @@ export default {
             amount: Number(budgetAmount.value),
           });
         }
+        await transactions.init();
+        emit('reloadPage', inputMonth.value);
 
         console.log(response.data);
+        alert(
+          `${inputMonth.value}월 의 예산이 ${budgetAmount.value} 로 저장되었습니다.`,
+        );
       } catch (err) {
         console.error(err);
       }
@@ -53,9 +70,43 @@ export default {
       transactions.init();
     });
 
-    return { inputMonth, budgetAmount, transactions, budget, createBudget };
+    return {
+      inputMonth,
+      budgetAmount,
+      transactions,
+      budget,
+      createBudget,
+    };
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 10px;
+}
+input {
+  background: #020617;
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  color: rgba(250, 204, 21, 0.45);
+  border-radius: 10px;
+  cursor: pointer;
+}
+button {
+  background: #020617;
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  color: rgba(250, 204, 21, 0.45);
+  border-radius: 10px;
+}
+</style>

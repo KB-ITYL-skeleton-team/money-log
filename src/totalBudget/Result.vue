@@ -1,8 +1,26 @@
 <template>
-  <div class="budget">
-    <input class="month" type="month" v-model="selectedMonth" />
-    <div class="text"><p>의 예산을</p></div>
-    <inputBudget class="input" v-on:reloadPage="reload" />
+  <div>
+    <div class="ment">
+      <div>{{ selectedMonth }} 월의</div>
+      <div class="text">
+        <div class="te">
+          <p>예산은</p>
+          <p class="number">100%</p>
+          <p>( ₩ {{ totalBudget }} )</p>
+        </div>
+        <div class="te">
+          <p>예산지출은</p>
+          <p class="number">{{ Math.floor(percentageExpense) }}%</p>
+          <p>( ₩ {{ totalExpense }} )</p>
+        </div>
+        <div class="te">
+          <p>예산잔액은</p>
+          <p class="number">{{ Math.floor(percentageBalance) }}%</p>
+          <p>( ₩ {{ totalBudget - totalExpense }} )</p>
+        </div>
+      </div>
+      <p>예요.</p>
+    </div>
   </div>
 </template>
 
@@ -13,7 +31,7 @@ import { storeToRefs } from 'pinia';
 import inputBudget from './InputBudget.vue';
 
 export default {
-  name: 'Budget',
+  name: 'Result',
   components: { inputBudget },
 
   setup() {
@@ -81,36 +99,39 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.budget {
+<style lang="scss" scoped>
+.ment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: -20vh;
+  color: rgba(250, 204, 21, 0.45);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: rgba(250, 204, 21, 0.45);
+}
+
+.te {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: clamp(10px, 4vw, 15px);
-  color: rgba(250, 204, 21, 0.45);
-  background: #020617;
-  border-radius: 5%;
-  flex-wrap: wrap;
-  margin-top: -10vh;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 15px;
 }
-
-.month {
-  cursor: pointer;
-}
-.text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 15px;
-  margin: 10px;
-}
-
-input {
-  background: #020617;
-  border: 1px solid rgba(250, 204, 21, 0.45);
-  color: rgba(250, 204, 21, 0.45);
-  border-radius: 10px;
-  margin: 10px;
+.number {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 25px;
+  color: rgba(250, 204, 21, 0.7);
 }
 </style>
