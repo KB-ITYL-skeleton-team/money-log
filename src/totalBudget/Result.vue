@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="ment">
-      <div>{{ selectedMonth }} 월의</div>
+      <div class="te">
+        <p class="number">{{ selectedMonth }}</p>
+        <p>월의</p>
+      </div>
       <div class="text">
         <div class="te">
           <p>예산은</p>

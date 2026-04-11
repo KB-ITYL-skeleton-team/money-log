@@ -10,8 +10,10 @@
         예산의 잔액이 줄어들수록 보름달에서 삭으로 변해갑니다!
       </p>
     </div>
-
-    <div v-if="budgetValue" class="star"></div>
+    <div class="warn">
+      <div v-if="budgetValue" class="star"></div>
+      <p v-if="budgetValue" class="ment2">예산에 비해 예산지출이 많아요..</p>
+    </div>
   </div>
 </template>
 
@@ -154,7 +156,7 @@ input[type='range'] {
   width: clamp(14px, 4vw, 20px);
   height: clamp(14px, 4vw, 20px);
   filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.4));
-  background: rgba(250, 204, 21, 0.918);
+  background: rgba(238, 100, 8, 0.822);
   clip-path: polygon(
     50% 0%,
     61% 35%,
@@ -177,5 +179,19 @@ input[type='range'] {
   display: flex;
   font-size: clamp(5px, 4vw, 10px);
   color: rgba(250, 204, 21, 0.45);
+}
+.ment2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: clamp(10px, 4vw, 15px);
+  color: rgba(238, 100, 8, 0.822);
+  margin-left: 10px;
+}
+
+.warn {
+  display: flex;
 }
 </style>
