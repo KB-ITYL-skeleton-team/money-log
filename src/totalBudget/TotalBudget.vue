@@ -73,7 +73,6 @@ export default {
   align-items: center;
   width: 100%;
   height: 100vh;
-  margin-top: 30px;
 }
 
 .star {
