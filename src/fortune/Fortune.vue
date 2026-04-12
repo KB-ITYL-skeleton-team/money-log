@@ -7,7 +7,7 @@
       :style="star.style"
     ></div>
     <div class="fortunement" v-if="shown">
-      <div class="content" :class="{ shadeIn: shadeInMent }">
+      <div class="fment" :class="{ shadeIn: shadeInMent }">
         {{ fortune }}
       </div>
       <br />
@@ -30,10 +30,12 @@ import soundURL from '@/fortune/MP_Ta Da.mp3';
 export default {
   name: 'fortune',
   setup() {
+    // 창 새로고침
     function reload() {
       window.location.reload();
     }
 
+    // 변수 지정
     const fortune = ref('');
     const exploded = ref(false);
     const animating = ref(false);
@@ -42,18 +44,21 @@ export default {
     const shadeOutMent = ref(false);
     const shadeInMent = ref(false);
 
+    // 효과음 삽입
     const clickSound = new Audio(soundURL);
-
     function playSound() {
       clickSound.currentTime = 0;
       clickSound.play();
     }
 
+    // 달 클릭 이벤트
     function explode() {
+      // 이벤트 중복 발생 방지
       if (animating.value) {
         return;
       }
 
+      // 이벤트 실행
       animating.value = true;
       exploded.value = true;
       shadeOutMent.value = true;
@@ -77,12 +82,11 @@ export default {
       }, 3000);
     }
 
+    // 별똥별 이벤트 관련 값 생성
     const stars = ref([]);
-
     function createStar() {
       const x = Math.random() * window.innerWidth;
       const y = Math.random() * window.innerHeight * 0.5;
-
       const distance = 300 + Math.random() * 400;
       const duration = 0.8 + Math.random() * 0.6;
 
@@ -98,14 +102,13 @@ export default {
       };
     }
 
+    // 별똥별 랜덤 생성
     function init() {
       stars.value = Array.from({ length: 10 }, createStar);
     }
-
     function recycle(index) {
       stars.value[index] = createStar();
     }
-
     onMounted(() => {
       init();
       setInterval(() => {
@@ -131,30 +134,28 @@ export default {
 </script>
 
 <style scoped>
+/* 배경 */
 .sky {
   position: fixed;
   width: 100%;
   height: 100%;
   background: #020617;
-
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
   flex-direction: column;
   padding-top: 30vh;
 }
 
+/* 별똥별 */
 .star {
   position: absolute;
   width: 2px;
   height: 2px;
   background: white;
   box-shadow: 0 0 8px white;
-
   animation: shoot 3.5s linear forwards;
 }
-
 .star::after {
   content: '';
   position: absolute;
@@ -163,35 +164,30 @@ export default {
   background: linear-gradient(to left, white, transparent);
   transform: translateX(-80px);
 }
-
 @keyframes shoot {
   0% {
     transform: translate(0, 0) rotate(45deg);
     opacity: 1;
   }
-
   100% {
     transform: translate(var(--x), var(--y)) rotate(45deg);
     opacity: 0;
   }
 }
 
+/* 달 폭발 */
 .dot {
   position: relative;
-
-  width: clamp(150px, 14vw, 300px);
-  height: clamp(150px, 14vw, 300px);
-
-  background: rgba(250, 204, 21, 0.803);
+  width: clamp(150px, 15vw, 300px);
+  height: clamp(150px, 15vw, 300px);
+  background: rgba(250, 205, 20, 0.8);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(250, 204, 21, 0.803);
+  box-shadow: 0 0 10px rgba(250, 205, 20, 0.8);
   cursor: pointer;
 }
-
 .dot.explode {
   animation: shadeoutMoon 3s linear 1;
 }
-
 @keyframes shadeoutMoon {
   0% {
     transform: scale(1);
@@ -239,25 +235,37 @@ export default {
   }
 }
 
+/* 달 기타 요소 */
+.moon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .ment {
   position: relative;
-  color: rgba(250, 204, 21, 0.4);
+  color: rgba(250, 205, 20, 0.4);
   opacity: 1;
   transition: opacity 3s ease;
 }
-
 .ment.shadeOut {
   opacity: 0;
 }
 
-.content {
+/* 운세 기타 요소 */
+.fortunement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3vh;
+}
+.fment {
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 80vw;
   max-width: 1000px;
-
   font-size: clamp(16px, 4vw, 40px);
   color: rgba(250, 204, 21, 0.803);
 
@@ -267,33 +275,16 @@ export default {
   opacity: 0;
   transition: opacity 2s linear;
 }
-
-.content.shadeIn {
+.fment.shadeIn {
   opacity: 1;
 }
-
-.moon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.fortunement {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 3vh;
-}
-
 .retry {
   opacity: 0;
   transition: opacity 2s linear;
   color: rgba(250, 204, 21, 0.4);
+  font-size: clamp(10px, 2.5vw, 15px);
   cursor: pointer;
 }
-
 .retry.shadeIn {
   opacity: 1;
 }
