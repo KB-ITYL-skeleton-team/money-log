@@ -23,6 +23,8 @@ import settleExpense from '@/settle/SettleExpense.vue';
 import fortune from '@/fortune/Fortune.vue';
 import totalBudget from '@/totalBudget/TotalBudget.vue';
 
+import NotFoundPage from '@/pages/NotFoundPage.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -99,6 +101,13 @@ const router = createRouter({
     { path: '/settleExpense', component: settleExpense },
     { path: '/fortune', component: fortune },
     { path: '/totalBudget', component: totalBudget },
+
+    // 404 페이지
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: NotFoundPage,
+    },
   ],
 });
 // [Auth Guard] 홈/운세/통계/예산은 로그인 필요
