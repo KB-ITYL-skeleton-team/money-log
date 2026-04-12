@@ -1,46 +1,56 @@
 <template>
   <div class="total">
-    <h1>연별 지출</h1>
+    <div class="inputYear">
+      <h1>
+        <label>
+          <input
+            type="number"
+            v-model.number="selectedYear"
+            min="2000"
+            max="2100"
+          />
+        </label>
+        지출
+      </h1>
+    </div>
     <br />
-    <!-- select year -->
-    <label>
-      <input
-        type="number"
-        v-model.number="selectedYear"
-        min="2000"
-        max="2100"
+    <!-- 차트 -->
+    <div>
+      <apexchart
+        v-if="filteredYear"
+        type="donut"
+        :options="chartOptions"
+        :series="series"
+        width="400"
       />
-    </label>
-    <br />
-    <!-- chart -->
-    <apexchart
-      v-if="filteredYear"
-      type="donut"
-      :options="chartOptions"
-      :series="series"
-      width="400"
-    />
+    </div>
     <br />
     <div v-if="filteredYear">
-      <h2>
-        {{ filteredYear.year }} 년의 총지출은 ₩
-        {{ Number(filteredYear.total).toLocaleString() }} 이에요.
-      </h2>
-
-      <div v-for="group in filteredYear.categories" :key="group.categoryId">
-        <h3>
-          Category: {{ categoryName[group.categoryId] }} | Sum: ₩
-          {{ Number(group.total).toLocaleString() }} | Percentage:
-          {{ group.percentage.toFixed(1) }}%
-        </h3>
-
-        <ul>
-          <li v-for="item in group.expenses" :key="item.id">
-            ({{ item.date }}) : ₩ {{ Number(item.amount).toLocaleString() }} ({{
-              item.memo
-            }})
-          </li>
-        </ul>
+      <div
+        class="description"
+        v-for="group in filteredYear.categories"
+        :key="group.categoryId"
+      >
+        <div class="part">
+          <h3>
+            {{ categoryName[group.categoryId] || '기타' }}의 총합은 ₩
+            {{ Number(group.total).toLocaleString() }} (
+            {{ group.percentage.toFixed(1) }}%) 이에요.
+          </h3>
+        </div>
+        <div>
+          <ul>
+            <li
+              v-for="item in group.expenses.filter((i) => i && i.id)"
+              :key="item.id"
+            >
+              <div>
+                ({{ item.date }}) : ₩
+                {{ Number(item.amount).toLocaleString() }} ({{ item.memo }})
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -53,7 +63,7 @@
 
 <script>
 import VueApexCharts from 'vue3-apexcharts';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useTransactionsStore } from '@/stores/staticsStores';
 
@@ -64,15 +74,19 @@ export default {
   setup() {
     const transactions = useTransactionsStore();
     const { expense, categories } = storeToRefs(transactions);
+    // 새로고침
+    onMounted(() => transactions.init());
 
-    // selected year initialization
+    // 연 선택
     const selectedYear = ref(new Date().getFullYear());
 
-    // grouping income by year/category
+    // 연별 카테고리별 지출 목록 생성
     const expenseYear = computed(() => {
       const group = {};
 
       expense.value.forEach((expense) => {
+        if (!expense || !expense.id) return;
+
         const year = expense.date.slice(0, 4);
 
         if (!group[year]) {
@@ -91,6 +105,7 @@ export default {
         group[year].total += expense.amount;
       });
 
+      // 데이터 객체형태 변환
       return Object.entries(group).map(([year, data]) => ({
         year: year,
         total: data.total,
@@ -105,7 +120,8 @@ export default {
         ),
       }));
     });
-    // catrgory name
+
+    // 카테고리 아이디와 이름 연결
     const categoryName = computed(() => {
       const name = {};
       categories.value.forEach((category) => {
@@ -114,12 +130,12 @@ export default {
       return name;
     });
 
-    // filter year
+    // // 지출 내역 월별 분류
     const filteredYear = computed(() =>
       expenseYear.value.find((y) => Number(y.year) === selectedYear.value),
     );
 
-    // data for chart
+    // 차트 데이터
     const series = computed(() =>
       filteredYear.value
         ? filteredYear.value.categories.map((c) => c.total)
@@ -128,7 +144,7 @@ export default {
     const chartOptions = computed(() => ({
       labels: filteredYear.value
         ? filteredYear.value.categories.map(
-            (c) => categoryName.value[c.categoryId],
+            (c) => categoryName.value[c.categoryId] || '기타',
           )
         : [],
       stroke: {
@@ -140,12 +156,12 @@ export default {
           donut: {
             labels: {
               show: true,
-              name: { color: 'rgba(250, 204, 21, 0.45)' },
-              value: { color: 'rgba(250, 204, 21, 0.45)' },
+              name: { color: 'rgba(250, 204, 21, 0.7)' },
+              value: { color: 'rgba(250, 204, 21, 0.7)' },
               total: {
                 show: true,
                 label: '총지출',
-                color: 'rgba(250, 204, 21, 0.45)',
+                color: 'rgba(250, 204, 21, 0.7)',
                 formatter: () =>
                   filteredYear.value
                     ? Number(filteredYear.value.total).toLocaleString()
@@ -179,13 +195,12 @@ export default {
 
 <style scoped>
 input {
-  width: 80px;
+  width: 130px;
   margin-bottom: 20px;
   display: block;
-
   background: #020617;
-  border: 1px solid rgba(250, 204, 21, 0.45);
-  color: rgba(250, 204, 21, 0.45);
+  border: 1px solid rgba(250, 204, 21, 0.7);
+  color: rgba(250, 204, 21, 0.7);
   border-radius: 10px;
   cursor: pointer;
 }
@@ -222,5 +237,16 @@ input {
 }
 .ment {
   margin-left: 20px;
+}
+.inputYear {
+  width: clamp(250px, 20vw, 250px);
+  color: rgba(250, 204, 21, 0.7);
+}
+.description {
+  font-size: clamp(1xpx, 1px);
+}
+.part {
+  color: rgba(250, 204, 21, 0.7);
+  font-size: clamp(1px, 1px);
 }
 </style>

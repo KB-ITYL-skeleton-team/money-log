@@ -5,20 +5,20 @@
       <div class="text"><p>의 예산을</p></div>
     </div>
     <div class="c">
-      <p class="text">₩</p>
+      <p class="text t">₩</p>
       <input
         type="number"
         v-model="budgetAmount"
         v-on:keydown.enter="createBudget"
       />
-      <p class="text">으로</p>
+      <p class="text t">으로</p>
       <button v-on:click="createBudget">설정하기</button>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
 import { storeToRefs } from 'pinia';
 import { useTransactionsStore } from '@/stores/staticsStores.js';
@@ -41,9 +41,6 @@ export default {
     } = storeToRefs(transactions);
     const isLoading = ref(false);
 
-    // 입력 예산 저장 변수
-    const budgetAmount = ref(0);
-
     // 변수 변화시 창 새로고침
     const reload = (month) => {
       selectedMonth.value = month;
@@ -51,12 +48,17 @@ export default {
     onMounted(() => {
       transactions.init();
     });
+    // 입력 예산 저장 변수
+    const budgetAmount = ref(0);
+    watch(totalBudgetM, (val) => {
+      budgetAmount.value = val;
+    });
 
-    // 서버에 예싼 입력
+    // 서버에 예산 입력
     const createBudget = async () => {
       try {
         if (!userID.value) return;
-        if (budgetAmount.value <= 0) {
+        if (budgetAmount.value < 0) {
           alert('0 원 이상의 예산을 입력해주세요');
           return;
         }
@@ -132,16 +134,16 @@ export default {
 
 input {
   background: #020617;
-  border: 1px solid rgba(250, 204, 21, 0.45);
-  color: rgba(250, 204, 21, 0.45);
+  border: 1px solid rgba(250, 204, 21, 0.7);
+  color: rgba(250, 204, 21, 0.7);
   border-radius: 10px;
   margin: 10px;
   cursor: pointer;
 }
 button {
   background: #020617;
-  border: 1px solid rgba(250, 204, 21, 0.45);
-  color: rgba(250, 204, 21, 0.45);
+  border: 1px solid rgba(250, 204, 21, 0.7);
+  color: rgba(250, 204, 21, 0.7);
   border-radius: 10px;
 }
 .text {
@@ -150,5 +152,9 @@ button {
   justify-content: center;
   padding-top: 15px;
   margin: 10px;
+}
+
+.t {
+  margin-top: -7px;
 }
 </style>

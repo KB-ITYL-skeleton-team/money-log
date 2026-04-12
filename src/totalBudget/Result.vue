@@ -32,6 +32,7 @@
 <script>
 import { useTransactionsStore } from '@/stores/staticsStores.js';
 import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 
 export default {
   name: 'Result',
@@ -56,8 +57,10 @@ export default {
       percentageBalanceM,
     } = storeToRefs(transactions);
 
-    const [year, month] = selectedMonth.value.split('-');
-    const date = { year, month };
+    const date = computed(() => {
+      const [year, month] = selectedMonth.value.split('-');
+      return { year, month };
+    });
 
     return {
       reload,

@@ -43,7 +43,7 @@ export default {
     }
 
     function init() {
-      stars.value = Array.from({ length: 15 }, createStar);
+      stars.value = Array.from({ length: 20 }, createStar);
     }
     function recycle(index) {
       stars.value[index] = createStar();
