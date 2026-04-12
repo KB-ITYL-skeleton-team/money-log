@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sky">
     <div
       v-for="(star, i) in stars"
       :key="star.id"
@@ -65,13 +65,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sky {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #020617;
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617; /* 배경 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #020617; /* 막대 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #020617;
+}
 .total {
   background-color: #020617;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
 }
 

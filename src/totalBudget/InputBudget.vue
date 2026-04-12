@@ -5,6 +5,7 @@
       type="number"
       v-model="budgetAmount"
       v-on:keydown.enter="createBudget"
+      min="o"
     />
     <p class="text">으로</p>
     <button v-on:click="createBudget">설정하기</button>

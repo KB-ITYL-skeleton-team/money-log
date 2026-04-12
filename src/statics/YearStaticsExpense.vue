@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1>Expense (Yearly)</h1>
-
+  <div class="total">
+    <h1>연별 지출</h1>
+    <br />
     <!-- select year -->
     <label>
       <input
@@ -11,7 +11,7 @@
         max="2100"
       />
     </label>
-
+    <br />
     <!-- chart -->
     <apexchart
       v-if="filteredYear"
@@ -20,25 +20,34 @@
       :series="series"
       width="400"
     />
-
+    <br />
     <div v-if="filteredYear">
-      <h2>Year: {{ filteredYear.year }} | Total: {{ filteredYear.total }}</h2>
+      <h2>
+        {{ filteredYear.year }} 년의 총지출은 ₩
+        {{ Number(filteredYear.total).toLocaleString() }} 이에요.
+      </h2>
 
       <div v-for="group in filteredYear.categories" :key="group.categoryId">
         <h3>
-          Category: {{ categoryName[group.categoryId] }} | Sum:
-          {{ group.total }} | Percentage: {{ group.percentage.toFixed(1) }}%
+          Category: {{ categoryName[group.categoryId] }} | Sum: ₩
+          {{ Number(group.total).toLocaleString() }} | Percentage:
+          {{ group.percentage.toFixed(1) }}%
         </h3>
 
         <ul>
           <li v-for="item in group.expenses" :key="item.id">
-            ({{ item.date }}) : {{ item.amount }}, ({{ item.memo }})
+            ({{ item.date }}) : ₩ {{ Number(item.amount).toLocaleString() }} ({{
+              item.memo
+            }})
           </li>
         </ul>
       </div>
     </div>
 
-    <p v-else>Nothing</p>
+    <div v-else>
+      <div class="star"></div>
+      <div class="ment">해당 내역이 없어요.</div>
+    </div>
   </div>
 </template>
 
@@ -116,31 +125,51 @@ export default {
         ? filteredYear.value.categories.map((c) => c.total)
         : [],
     );
-
     const chartOptions = computed(() => ({
       labels: filteredYear.value
         ? filteredYear.value.categories.map(
             (c) => categoryName.value[c.categoryId],
           )
         : [],
+      stroke: {
+        colors: ['#020617'],
+        width: 2,
+      },
       plotOptions: {
         pie: {
           donut: {
             labels: {
               show: true,
+              name: { color: 'rgba(250, 204, 21, 0.45)' },
+              value: { color: 'rgba(250, 204, 21, 0.45)' },
               total: {
                 show: true,
-                label: 'Total Expense',
+                label: '총지출',
+                color: 'rgba(250, 204, 21, 0.45)',
                 formatter: () =>
-                  filteredYear.value ? filteredYear.value.total : 0,
+                  filteredYear.value
+                    ? Number(filteredYear.value.total).toLocaleString()
+                    : 0,
               },
             },
           },
         },
       },
-      legend: { position: 'bottom' },
-      dataLabels: { enabled: true },
-      colors: ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff'],
+      legend: {
+        position: 'bottom',
+        labels: { colors: 'rgba(250, 204, 21, 0.45)' },
+      },
+      dataLabels: {
+        enabled: true,
+        style: { colors: ['rgba(250, 204, 21, 0.9)'] },
+      },
+      colors: [
+        'rgba(245, 200, 20, 0.6)',
+        'rgba(255, 170, 40, 0.5)',
+        'rgba(255, 230, 90, 0.4)',
+        'rgba(200, 150, 30, 0.5)',
+        'rgba(220, 200, 120, 0.45)',
+      ],
     }));
 
     return { selectedYear, categoryName, filteredYear, series, chartOptions };
@@ -153,5 +182,45 @@ input {
   width: 80px;
   margin-bottom: 20px;
   display: block;
+
+  background: #020617;
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  color: rgba(250, 204, 21, 0.45);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgba(250, 204, 21, 0.45);
+}
+
+.star {
+  width: clamp(150px, 4vw, 150px);
+  height: clamp(150px, 4vw, 150px);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  filter: drop-shadow(0 0 6px rgba(244, 218, 114, 0.929));
+  background: rgba(250, 204, 21, 0.803);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.803);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+.ment {
+  margin-left: 20px;
 }
 </style>

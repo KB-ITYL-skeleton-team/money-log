@@ -92,7 +92,7 @@ export default {
   background: #020617;
   border-radius: 5%;
   flex-wrap: wrap;
-  margin-top: -10vh;
+  margin-top: -100px;
 }
 
 .month {

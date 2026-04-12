@@ -1,25 +1,28 @@
 <template>
   <div>
     <div class="ment">
-      <div>{{ selectedMonth }} 월의</div>
+      <div class="te">
+        <p class="number">{{ selectedMonth }}</p>
+        <p>월의</p>
+      </div>
       <div class="text">
         <div class="te">
           <p>예산은</p>
           <p class="number">100%</p>
-          <p>( ₩ {{ totalBudget }} )</p>
+          <p>( ₩ {{ totalBudget.toLocaleString() }} )</p>
         </div>
         <div class="te">
           <p>예산지출은</p>
           <p class="number">{{ Math.floor(percentageExpense) }}%</p>
-          <p>( ₩ {{ totalExpense }} )</p>
+          <p>( ₩ {{ totalExpense.toLocaleString() }} )</p>
         </div>
         <div class="te">
           <p>예산잔액은</p>
           <p class="number">{{ Math.floor(percentageBalance) }}%</p>
-          <p>( ₩ {{ totalBudget - totalExpense }} )</p>
+          <p>( ₩ {{ (totalBudget - totalExpense).toLocaleString() }} )</p>
         </div>
       </div>
-      <p>예요.</p>
+      <p>이에요.</p>
     </div>
   </div>
 </template>
@@ -51,9 +54,11 @@ export default {
       if (!expense.value) {
         return 0;
       }
-      return expense.value
-        .filter((e) => e.date?.slice(0, 7) === selectedMonth.value)
-        .reduce((sum, e) => sum + (e.amount || 0), 0);
+      return Number(
+        expense.value
+          .filter((e) => e.date?.slice(0, 7) === selectedMonth.value)
+          .reduce((sum, e) => sum + (e.amount || 0), 0),
+      );
     });
 
     const totalBudget = computed(() => {
@@ -63,7 +68,7 @@ export default {
       const budgetForMonth = budgets.value.find(
         (b) => b.userId === userID.value && b.month === selectedMonth.value,
       );
-      return budgetForMonth ? budgetForMonth.amount : 0;
+      return budgetForMonth ? Number(budgetForMonth.amount) : 0;
     });
 
     const totalBalance = computed(() => {
