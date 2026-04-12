@@ -1,40 +1,44 @@
 <template>
   <div class="total">
-    <h1>월별 수입</h1>
+    <div>
+      <h1 class="inputMonth">
+        <input class="month" type="month" v-model="selectedMonth" /> 수입
+      </h1>
+    </div>
     <br />
-    <!-- select month -->
-    <input class="month" type="month" v-model="selectedMonth" />
-
+    <!-- 차트 -->
+    <div>
+      <apexchart
+        v-if="filteredMonth.total"
+        type="donut"
+        :options="chartOptions"
+        :series="series"
+        width="400"
+      />
+    </div>
     <br />
-    <!-- chart -->
-    <apexchart
-      v-if="filteredMonth"
-      type="donut"
-      :options="chartOptions"
-      :series="series"
-      width="400"
-    />
-    <br />
-    <div v-if="filteredMonth">
-      <h2>
-        {{ filteredMonth.month }} 월의 총수입은 ₩
-        {{ Number(filteredMonth.total).toLocaleString() }} 이에요.
-      </h2>
-
+    <div v-if="filteredMonth.total">
       <div v-for="group in filteredMonth.categories" :key="group.categoryId">
-        <h3>
-          Category: {{ categoryName[group.categoryId] }} | Sum: ₩
-          {{ Number(group.total).toLocaleString() }} | Percentage:
-          {{ group.percentage.toFixed(1) }}%
-        </h3>
-
-        <ul>
-          <li v-for="item in group.incomes" :key="item.id">
-            ({{ item.date }}) : ₩ {{ Number(item.amount).toLocaleString() }} ({{
-              item.memo
-            }})
-          </li>
-        </ul>
+        <div class="part">
+          <h3>
+            {{ categoryName[group.categoryId] || '기타' }}의 총합은 ₩
+            {{ Number(group.total).toLocaleString() }} (
+            {{ group.percentage.toFixed(1) }}%) 이에요.
+          </h3>
+        </div>
+        <div>
+          <ul>
+            <li
+              v-for="item in group.incomes.filter((i) => i && i.id)"
+              :key="item.id"
+            >
+              <div>
+                ({{ item.date }}) : ₩
+                {{ Number(item.amount).toLocaleString() }} ({{ item.memo }})
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -47,7 +51,7 @@
 
 <script>
 import VueApexCharts from 'vue3-apexcharts';
-import { computed, ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useTransactionsStore } from '@/stores/staticsStores';
 
@@ -58,14 +62,16 @@ export default {
     const transactions = useTransactionsStore();
     const { income, categories } = storeToRefs(transactions);
 
-    // selected month initializition
+    onMounted(() => transactions.init());
+
     const selectedMonth = ref(new Date().toISOString().slice(0, 7));
 
-    // grouping income by month/category
     const incomeByMonth = computed(() => {
       const result = {};
 
       income.value.forEach((income) => {
+        if (!income || !income.id) return;
+
         const month = income.date.slice(0, 7);
 
         if (!result[month]) {
@@ -85,11 +91,11 @@ export default {
       });
 
       return Object.entries(result).map(([month, data]) => ({
-        month: month,
+        month,
         total: data.total,
         categories: Object.entries(data.categories).map(
           ([categoryId, category]) => ({
-            categoryId: categoryId,
+            categoryId,
             incomes: category.incomes,
             total: category.total,
             percentage:
@@ -99,7 +105,6 @@ export default {
       }));
     });
 
-    // catrgory name
     const categoryName = computed(() => {
       const name = {};
       categories.value.forEach((category) => {
@@ -108,24 +113,24 @@ export default {
       return name;
     });
 
-    // filter month
-    const filteredMonth = computed(() =>
-      incomeByMonth.value.find((m) => m.month === selectedMonth.value),
-    );
+    const filteredMonth = computed(() => {
+      return (
+        incomeByMonth.value.find((m) => m.month === selectedMonth.value) || {
+          month: selectedMonth.value,
+          total: 0,
+          categories: [],
+        }
+      );
+    });
 
-    // data for chart
     const series = computed(() =>
-      filteredMonth.value
-        ? filteredMonth.value.categories.map((c) => c.total)
-        : [],
+      filteredMonth.value.categories.map((c) => c.total),
     );
 
     const chartOptions = computed(() => ({
-      labels: filteredMonth.value
-        ? filteredMonth.value.categories.map(
-            (c) => categoryName.value[c.categoryId],
-          )
-        : [],
+      labels: filteredMonth.value.categories.map(
+        (c) => categoryName.value[c.categoryId] || '기타',
+      ),
       stroke: {
         colors: ['#020617'],
         width: 2,
@@ -135,16 +140,14 @@ export default {
           donut: {
             labels: {
               show: true,
-              name: { color: 'rgba(250, 204, 21, 0.45)' },
-              value: { color: 'rgba(250, 204, 21, 0.45)' },
+              name: { color: 'rgba(250, 204, 21, 0.7)' },
+              value: { color: 'rgba(250, 204, 21, 0.7)' },
               total: {
                 show: true,
-                label: '총지출',
-                color: 'rgba(250, 204, 21, 0.45)',
+                label: '총수입',
+                color: 'rgba(250, 204, 21, 0.7)',
                 formatter: () =>
-                  filteredMonth.value
-                    ? Number(filteredMonth.value.total).toLocaleString()
-                    : 0,
+                  Number(filteredMonth.value.total).toLocaleString(),
               },
             },
           },
@@ -173,10 +176,15 @@ export default {
 </script>
 
 <style scoped>
+input {
+  width: 250px;
+  color: rgba(250, 204, 21, 0.7);
+}
+
 .month {
   background: #020617;
-  border: 1px solid rgba(250, 204, 21, 0.45);
-  color: rgba(250, 204, 21, 0.45);
+  border: 1px solid rgba(250, 204, 21, 0.7);
+  color: rgba(250, 204, 21, 0.7);
   border-radius: 10px;
   cursor: pointer;
 }
@@ -188,6 +196,7 @@ export default {
   align-items: center;
   color: rgba(250, 204, 21, 0.45);
 }
+
 .star {
   width: clamp(150px, 4vw, 150px);
   height: clamp(150px, 4vw, 150px);
@@ -213,5 +222,16 @@ export default {
 
 .ment {
   margin-left: 20px;
+}
+.inputMonth {
+  width: clamp(350px, 30vw, 600px);
+  color: rgba(250, 204, 21, 0.7);
+}
+.description {
+  font-size: clamp(10px, 20px);
+}
+.part {
+  color: rgba(250, 204, 21, 0.7);
+  font-size: clamp(1px, 1px);
 }
 </style>
