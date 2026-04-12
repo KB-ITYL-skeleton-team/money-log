@@ -2,9 +2,8 @@
   <div class="app">
     <svg class="moon" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="40" fill="#020617" />
-      <path v-if="progress > 0" :d="path" fill="#facc15" class="light" />
+      <path :d="path" fill="#facc15" class="light" />
     </svg>
-    <br />
     <div>
       <p class="ment1">
         예산의 잔액이 줄어들수록 보름달에서 삭으로 변해갑니다!
@@ -12,7 +11,7 @@
     </div>
     <div class="warn">
       <div v-if="budgetValue" class="star"></div>
-      <p v-if="budgetValue" class="ment2">예산에 비해 예산지출이 많아요..</p>
+      <p v-if="budgetValue" class="ment2">예산에 비해 지출이 많아요..</p>
     </div>
   </div>
 </template>
@@ -23,72 +22,43 @@ import { useTransactionsStore } from '@/stores/staticsStores.js';
 import { storeToRefs } from 'pinia';
 
 export default {
-  name: 'YourComponent',
-
+  name: 'Moon',
   setup() {
     const transactions = useTransactionsStore();
-    const { selectedMonth, userID } = storeToRefs(transactions);
+    const {
+      userID,
+      budget,
+      selectedMonth,
+      totalIncomeM,
+      totalExpenseM,
+      totalBudgetM,
+      totalBalanceM,
+      percentageExpenseM,
+      percentageBalanceM,
+    } = storeToRefs(transactions);
+    // 새로고침
+    onMounted(() => {
+      transactions.init();
+    });
+
+    // 에산 경고 변수
     const budgetValue = computed(() => {
-      if (percentageBalance.value === 0 || percentageBalance.value < 0) {
+      if (percentageBalanceM.value < 0) {
         return true;
       } else {
         return false;
       }
     });
 
-    onMounted(() => {
-      transactions.init();
-    });
-
-    // budget by month
-    const totalBudget = computed(() => {
-      const budgetForMonth = transactions.budgets.find(
-        (budget) =>
-          budget.userId === userID.value &&
-          budget.month === selectedMonth.value.slice(0, 7),
-      );
-      return budgetForMonth ? budgetForMonth.amount : 0;
-    });
-
-    // expense by month
-    const totalExpense = computed(() =>
-      transactions.expense
-        .filter((expense) => expense.date.slice(0, 7) === selectedMonth.value)
-        .reduce((sum, expense) => sum + (expense.amount || 0), 0),
-    );
-
-    // percentage of expense
-    const percentageExpense = computed(() => {
-      if (!totalBudget.value) {
-        return 0;
-      }
-      return (totalExpense.value / totalBudget.value) * 100;
-    });
-
-    // percentage of balance
-    const percentageBalance = computed(() => {
-      if (!totalBudget.value) {
-        return 0;
-      }
-      return (
-        ((totalBudget.value - totalExpense.value) / totalBudget.value) * 100
-      );
-    });
-
-    // progress
+    // 진행도
     const progress = computed(() => {
-      if (!totalBudget.value) {
-        return 0;
-      }
-
-      let ratio = (totalBudget.value - totalExpense.value) / totalBudget.value;
-      ratio = 1 - ratio;
-      return Math.min(100, Math.max(0, ratio * 100));
+      if (!totalBudgetM.value) return 0;
+      return Math.min(100, (totalExpenseM.value / totalBudgetM.value) * 100);
     });
 
+    // 달 궤도
     const path = computed(() => {
       const phase = (progress.value / 100) * Math.PI;
-      console.log(progress.value);
 
       const cx = 50;
       const cy = 50;
@@ -106,12 +76,16 @@ export default {
     });
 
     return {
-      totalBudget,
-      totalExpense,
+      userID,
+      budget,
       budgetValue,
-      percentageBalance,
-      percentageExpense,
       selectedMonth,
+      totalIncomeM,
+      totalExpenseM,
+      totalBudgetM,
+      totalBalanceM,
+      percentageExpenseM,
+      percentageBalanceM,
       progress,
       path,
     };
@@ -132,26 +106,29 @@ export default {
   width: min(60vw, 220px);
   height: auto;
 }
-
 .light {
   filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.4));
   transition: all 0.2s linear;
 }
-
 input[type='range'] {
   width: 200px;
   margin-top: 20px;
 }
 
-.number {
-  margin-top: 10px;
-  width: 100px;
-  padding: 8px;
-  border-radius: 8px;
-  border: none;
-  text-align: center;
+.ment1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: clamp(5px, 4vw, 10px);
+  color: rgba(250, 204, 21, 0.45);
 }
 
+/* 예산 초과 경고 */
+.warn {
+  display: flex;
+}
 .star {
   width: clamp(14px, 4vw, 20px);
   height: clamp(14px, 4vw, 20px);
@@ -170,16 +147,6 @@ input[type='range'] {
     39% 35%
   );
 }
-
-.ment1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  font-size: clamp(5px, 4vw, 10px);
-  color: rgba(250, 204, 21, 0.45);
-}
 .ment2 {
   display: flex;
   flex-direction: row;
@@ -189,9 +156,5 @@ input[type='range'] {
   font-size: clamp(10px, 4vw, 15px);
   color: rgba(238, 100, 8, 0.822);
   margin-left: 10px;
-}
-
-.warn {
-  display: flex;
 }
 </style>

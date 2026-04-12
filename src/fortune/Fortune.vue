@@ -104,7 +104,7 @@ export default {
 
     // 별똥별 랜덤 생성
     function init() {
-      stars.value = Array.from({ length: 10 }, createStar);
+      stars.value = Array.from({ length: 15 }, createStar);
     }
     function recycle(index) {
       stars.value[index] = createStar();
