@@ -47,6 +47,9 @@ export const useTransactionsStore = defineStore('Transactions', () => {
 
   // income
   const income = computed(() => {
+    if (!userID.value) {
+      return [];
+    }
     return transactions.value.filter(
       (transaction) =>
         transaction.type === 'income' && transaction.userId === userID.value,
@@ -55,6 +58,9 @@ export const useTransactionsStore = defineStore('Transactions', () => {
 
   // expense
   const expense = computed(() => {
+    if (!userID.value) {
+      return [];
+    }
     return transactions.value.filter(
       (transaction) =>
         transaction.type === 'expense' && transaction.userId === userID.value,
