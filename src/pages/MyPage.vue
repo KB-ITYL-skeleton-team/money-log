@@ -308,7 +308,7 @@ const confirmDelete = () => {
 /* 입력창 밑줄 스타일 */
 .form-control-custom {
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 0; 
   border: none;
   border-bottom: 2px solid #ddd;
   background: transparent;
