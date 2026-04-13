@@ -66,11 +66,11 @@ export default {
 
       const k = Math.cos(phase);
       const rx = Math.max(0.001, Math.abs(k) * r);
-      const sweep = k >= 0 ? 1 : 0;
+      const sweep = k >= 0 ? 0 : 1;
 
       return `
         M ${cx} ${cy - r}
-        A ${r} ${r} 0 0 1 ${cx} ${cy + r}
+        A ${r} ${r} 0 0 0 ${cx} ${cy + r}
         A ${rx} ${r} 0 0 ${sweep} ${cx} ${cy - r}
       `;
     });
