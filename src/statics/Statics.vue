@@ -67,7 +67,7 @@ export default {
     }
 
     onMounted(() => {
-      init(); // ✅ 반드시 초기화
+      init();
 
       timer = setInterval(() => {
         const i = Math.floor(Math.random() * stars.value.length);
