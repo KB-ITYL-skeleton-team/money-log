@@ -1,0 +1,5072 @@
+{
+  "users": [
+    {
+      "name": "안지영",
+      "phone": "010-4261-2428",
+      "email": "bol4@gmail.com",
+      "userId": "Bol1234",
+      "password": "GiveyouGalaxy4",
+      "id": "Fw6bcwrl3Jo",
+      "createdAt": "2026-04-13"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "1",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 12800,
+      "memo": "식비",
+      "date": "2025-01-14",
+      "assets": "card"
+    },
+    {
+      "id": "2",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 152000,
+      "memo": "월급",
+      "date": "2025-01-25",
+      "assets": "bank"
+    },
+    {
+      "id": "3",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4200,
+      "memo": "교통",
+      "date": "2025-02-03",
+      "assets": "cash"
+    },
+    {
+      "id": "4",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 32900,
+      "memo": "쇼핑",
+      "date": "2025-03-11",
+      "assets": "card"
+    },
+    {
+      "id": "5",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9800,
+      "memo": "문화",
+      "date": "2025-01-08",
+      "assets": "card"
+    },
+    {
+      "id": "6",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 87000,
+      "memo": "용돈",
+      "date": "2025-02-18",
+      "assets": "bank"
+    },
+    {
+      "id": "7",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 15300,
+      "memo": "식비",
+      "date": "2025-03-02",
+      "assets": "card"
+    },
+    {
+      "id": "8",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 6100,
+      "memo": "교통",
+      "date": "2025-01-21",
+      "assets": "cash"
+    },
+    {
+      "id": "9",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7200,
+      "memo": "기타",
+      "date": "2025-02-09",
+      "assets": "cash"
+    },
+    {
+      "id": "10",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 180000,
+      "memo": "보너스",
+      "date": "2025-03-27",
+      "assets": "bank"
+    },
+    {
+      "id": "11",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 22000,
+      "memo": "쇼핑",
+      "date": "2025-01-30",
+      "assets": "card"
+    },
+    {
+      "id": "12",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 9100,
+      "memo": "식비",
+      "date": "2025-02-14",
+      "assets": "card"
+    },
+    {
+      "id": "13",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 14000,
+      "memo": "문화",
+      "date": "2025-03-05",
+      "assets": "card"
+    },
+    {
+      "id": "14",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 150000,
+      "memo": "월급",
+      "date": "2025-01-25",
+      "assets": "bank"
+    },
+    {
+      "id": "15",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5300,
+      "memo": "교통",
+      "date": "2025-02-27",
+      "assets": "cash"
+    },
+    {
+      "id": "16",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 18900,
+      "memo": "식비",
+      "date": "2025-03-19",
+      "assets": "card"
+    },
+    {
+      "id": "17",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6400,
+      "memo": "기타",
+      "date": "2025-01-11",
+      "assets": "cash"
+    },
+    {
+      "id": "18",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 90000,
+      "memo": "용돈",
+      "date": "2025-02-22",
+      "assets": "bank"
+    },
+    {
+      "id": "19",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 27100,
+      "memo": "쇼핑",
+      "date": "2025-03-09",
+      "assets": "card"
+    },
+    {
+      "id": "20",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 11200,
+      "memo": "문화",
+      "date": "2025-01-17",
+      "assets": "card"
+    },
+    {
+      "id": "21",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 8300,
+      "memo": "식비",
+      "date": "2025-02-05",
+      "assets": "card"
+    },
+    {
+      "id": "22",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4700,
+      "memo": "교통",
+      "date": "2025-03-22",
+      "assets": "cash"
+    },
+    {
+      "id": "23",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 190000,
+      "memo": "보너스",
+      "date": "2025-01-28",
+      "assets": "bank"
+    },
+    {
+      "id": "24",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6900,
+      "memo": "기타",
+      "date": "2025-02-12",
+      "assets": "cash"
+    },
+    {
+      "id": "25",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 31800,
+      "memo": "쇼핑",
+      "date": "2025-03-15",
+      "assets": "card"
+    },
+    {
+      "id": "26",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 9900,
+      "memo": "식비",
+      "date": "2025-01-06",
+      "assets": "card"
+    },
+    {
+      "id": "27",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 13400,
+      "memo": "문화",
+      "date": "2025-02-19",
+      "assets": "card"
+    },
+    {
+      "id": "28",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 151000,
+      "memo": "월급",
+      "date": "2025-03-25",
+      "assets": "bank"
+    },
+    {
+      "id": "29",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5600,
+      "memo": "교통",
+      "date": "2025-01-19",
+      "assets": "cash"
+    },
+    {
+      "id": "30",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 17100,
+      "memo": "식비",
+      "date": "2025-02-28",
+      "assets": "card"
+    },
+    {
+      "id": "31",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 24000,
+      "memo": "쇼핑",
+      "date": "2025-03-03",
+      "assets": "card"
+    },
+    {
+      "id": "32",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6100,
+      "memo": "기타",
+      "date": "2025-01-23",
+      "assets": "cash"
+    },
+    {
+      "id": "33",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 86000,
+      "memo": "용돈",
+      "date": "2025-02-07",
+      "assets": "bank"
+    },
+    {
+      "id": "34",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 12900,
+      "memo": "식비",
+      "date": "2025-03-18",
+      "assets": "card"
+    },
+    {
+      "id": "35",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 15100,
+      "memo": "문화",
+      "date": "2025-01-04",
+      "assets": "card"
+    },
+    {
+      "id": "36",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4900,
+      "memo": "교통",
+      "date": "2025-02-16",
+      "assets": "cash"
+    },
+    {
+      "id": "37",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 28900,
+      "memo": "쇼핑",
+      "date": "2025-03-29",
+      "assets": "card"
+    },
+    {
+      "id": "38",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 175000,
+      "memo": "보너스",
+      "date": "2025-01-27",
+      "assets": "bank"
+    },
+    {
+      "id": "39",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 7600,
+      "memo": "식비",
+      "date": "2025-02-01",
+      "assets": "card"
+    },
+    {
+      "id": "40",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 8800,
+      "memo": "기타",
+      "date": "2025-03-07",
+      "assets": "cash"
+    },
+    {
+      "id": "41",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 12300,
+      "memo": "문화",
+      "date": "2025-01-09",
+      "assets": "card"
+    },
+    {
+      "id": "42",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 153000,
+      "memo": "월급",
+      "date": "2025-02-25",
+      "assets": "bank"
+    },
+    {
+      "id": "43",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5800,
+      "memo": "교통",
+      "date": "2025-03-12",
+      "assets": "cash"
+    },
+    {
+      "id": "44",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 31000,
+      "memo": "쇼핑",
+      "date": "2025-01-16",
+      "assets": "card"
+    },
+    {
+      "id": "45",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 10400,
+      "memo": "식비",
+      "date": "2025-02-11",
+      "assets": "card"
+    },
+    {
+      "id": "46",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9900,
+      "memo": "문화",
+      "date": "2025-03-21",
+      "assets": "card"
+    },
+    {
+      "id": "47",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 92000,
+      "memo": "용돈",
+      "date": "2025-01-29",
+      "assets": "bank"
+    },
+    {
+      "id": "48",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7300,
+      "memo": "기타",
+      "date": "2025-02-23",
+      "assets": "cash"
+    },
+    {
+      "id": "49",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 16800,
+      "memo": "식비",
+      "date": "2025-03-08",
+      "assets": "card"
+    },
+    {
+      "id": "50",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 6200,
+      "memo": "교통",
+      "date": "2025-01-02",
+      "assets": "cash"
+    },
+    {
+      "id": "51",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 150000,
+      "memo": "월급",
+      "date": "2025-02-25",
+      "assets": "bank"
+    },
+    {
+      "id": "52",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 13200,
+      "memo": "식비",
+      "date": "2025-01-18",
+      "assets": "card"
+    },
+    {
+      "id": "53",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5100,
+      "memo": "교통",
+      "date": "2025-03-06",
+      "assets": "cash"
+    },
+    {
+      "id": "54",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 29800,
+      "memo": "쇼핑",
+      "date": "2025-02-08",
+      "assets": "card"
+    },
+    {
+      "id": "55",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 12100,
+      "memo": "문화",
+      "date": "2025-01-22",
+      "assets": "card"
+    },
+    {
+      "id": "56",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 88000,
+      "memo": "용돈",
+      "date": "2025-03-10",
+      "assets": "bank"
+    },
+    {
+      "id": "57",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6900,
+      "memo": "기타",
+      "date": "2025-02-17",
+      "assets": "cash"
+    },
+    {
+      "id": "58",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 9900,
+      "memo": "식비",
+      "date": "2025-01-07",
+      "assets": "card"
+    },
+    {
+      "id": "59",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4500,
+      "memo": "교통",
+      "date": "2025-03-14",
+      "assets": "cash"
+    },
+    {
+      "id": "60",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 185000,
+      "memo": "보너스",
+      "date": "2025-02-27",
+      "assets": "bank"
+    },
+    {
+      "id": "61",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 21300,
+      "memo": "쇼핑",
+      "date": "2025-01-12",
+      "assets": "card"
+    },
+    {
+      "id": "62",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9800,
+      "memo": "문화",
+      "date": "2025-03-20",
+      "assets": "card"
+    },
+    {
+      "id": "63",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 15400,
+      "memo": "식비",
+      "date": "2025-02-04",
+      "assets": "card"
+    },
+    {
+      "id": "64",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7400,
+      "memo": "기타",
+      "date": "2025-01-26",
+      "assets": "cash"
+    },
+    {
+      "id": "65",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 152000,
+      "memo": "월급",
+      "date": "2025-03-25",
+      "assets": "bank"
+    },
+    {
+      "id": "66",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5600,
+      "memo": "교통",
+      "date": "2025-02-10",
+      "assets": "cash"
+    },
+    {
+      "id": "67",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 11100,
+      "memo": "식비",
+      "date": "2025-01-03",
+      "assets": "card"
+    },
+    {
+      "id": "68",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 33000,
+      "memo": "쇼핑",
+      "date": "2025-03-01",
+      "assets": "card"
+    },
+    {
+      "id": "69",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 89000,
+      "memo": "용돈",
+      "date": "2025-02-19",
+      "assets": "bank"
+    },
+    {
+      "id": "70",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 14600,
+      "memo": "문화",
+      "date": "2025-01-15",
+      "assets": "card"
+    },
+    {
+      "id": "71",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4800,
+      "memo": "교통",
+      "date": "2025-03-28",
+      "assets": "cash"
+    },
+    {
+      "id": "72",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 12300,
+      "memo": "식비",
+      "date": "2025-02-26",
+      "assets": "card"
+    },
+    {
+      "id": "73",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7900,
+      "memo": "기타",
+      "date": "2025-01-20",
+      "assets": "cash"
+    },
+    {
+      "id": "74",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 178000,
+      "memo": "보너스",
+      "date": "2025-03-19",
+      "assets": "bank"
+    },
+    {
+      "id": "75",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 27500,
+      "memo": "쇼핑",
+      "date": "2025-02-01",
+      "assets": "card"
+    },
+    {
+      "id": "76",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 10200,
+      "memo": "문화",
+      "date": "2025-01-24",
+      "assets": "card"
+    },
+    {
+      "id": "77",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 8700,
+      "memo": "식비",
+      "date": "2025-03-16",
+      "assets": "card"
+    },
+    {
+      "id": "78",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 150000,
+      "memo": "월급",
+      "date": "2025-02-25",
+      "assets": "bank"
+    },
+    {
+      "id": "79",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 6100,
+      "memo": "교통",
+      "date": "2025-01-09",
+      "assets": "cash"
+    },
+    {
+      "id": "80",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6600,
+      "memo": "기타",
+      "date": "2025-03-23",
+      "assets": "cash"
+    },
+    {
+      "id": "81",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 28900,
+      "memo": "쇼핑",
+      "date": "2025-02-13",
+      "assets": "card"
+    },
+    {
+      "id": "82",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 9400,
+      "memo": "식비",
+      "date": "2025-01-28",
+      "assets": "card"
+    },
+    {
+      "id": "83",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 93000,
+      "memo": "용돈",
+      "date": "2025-03-04",
+      "assets": "bank"
+    },
+    {
+      "id": "84",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5200,
+      "memo": "교통",
+      "date": "2025-02-21",
+      "assets": "cash"
+    },
+    {
+      "id": "85",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 11100,
+      "memo": "문화",
+      "date": "2025-01-06",
+      "assets": "card"
+    },
+    {
+      "id": "86",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 16000,
+      "memo": "식비",
+      "date": "2025-03-27",
+      "assets": "card"
+    },
+    {
+      "id": "87",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7100,
+      "memo": "기타",
+      "date": "2025-02-06",
+      "assets": "cash"
+    },
+    {
+      "id": "88",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 182000,
+      "memo": "보너스",
+      "date": "2025-01-31",
+      "assets": "bank"
+    },
+    {
+      "id": "89",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 30500,
+      "memo": "쇼핑",
+      "date": "2025-03-12",
+      "assets": "card"
+    },
+    {
+      "id": "90",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4900,
+      "memo": "교통",
+      "date": "2025-02-15",
+      "assets": "cash"
+    },
+    {
+      "id": "91",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 11800,
+      "memo": "식비",
+      "date": "2025-01-10",
+      "assets": "card"
+    },
+    {
+      "id": "92",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 153000,
+      "memo": "월급",
+      "date": "2025-03-25",
+      "assets": "bank"
+    },
+    {
+      "id": "93",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9700,
+      "memo": "문화",
+      "date": "2025-02-09",
+      "assets": "card"
+    },
+    {
+      "id": "94",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5800,
+      "memo": "교통",
+      "date": "2025-01-14",
+      "assets": "cash"
+    },
+    {
+      "id": "95",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 8200,
+      "memo": "기타",
+      "date": "2025-03-08",
+      "assets": "cash"
+    },
+    {
+      "id": "96",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 10100,
+      "memo": "식비",
+      "date": "2025-02-03",
+      "assets": "card"
+    },
+    {
+      "id": "97",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 26000,
+      "memo": "쇼핑",
+      "date": "2025-01-21",
+      "assets": "card"
+    },
+    {
+      "id": "98",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 87000,
+      "memo": "용돈",
+      "date": "2025-03-21",
+      "assets": "bank"
+    },
+    {
+      "id": "99",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 13200,
+      "memo": "문화",
+      "date": "2025-02-28",
+      "assets": "card"
+    },
+    {
+      "id": "100",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4400,
+      "memo": "교통",
+      "date": "2025-01-27",
+      "assets": "cash"
+    },
+    {
+      "id": "101",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 11200,
+      "memo": "식비",
+      "date": "2025-01-05",
+      "assets": "card"
+    },
+    {
+      "id": "102",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 150000,
+      "memo": "월급",
+      "date": "2025-02-25",
+      "assets": "bank"
+    },
+    {
+      "id": "103",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5200,
+      "memo": "교통",
+      "date": "2025-03-10",
+      "assets": "cash"
+    },
+    {
+      "id": "104",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 31500,
+      "memo": "쇼핑",
+      "date": "2025-01-19",
+      "assets": "card"
+    },
+    {
+      "id": "105",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9900,
+      "memo": "문화",
+      "date": "2025-02-07",
+      "assets": "card"
+    },
+    {
+      "id": "106",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7400,
+      "memo": "기타",
+      "date": "2025-03-18",
+      "assets": "cash"
+    },
+    {
+      "id": "107",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 88000,
+      "memo": "용돈",
+      "date": "2025-01-27",
+      "assets": "bank"
+    },
+    {
+      "id": "108",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 13400,
+      "memo": "식비",
+      "date": "2025-02-16",
+      "assets": "card"
+    },
+    {
+      "id": "109",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 6100,
+      "memo": "교통",
+      "date": "2025-03-21",
+      "assets": "cash"
+    },
+    {
+      "id": "110",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 180000,
+      "memo": "보너스",
+      "date": "2025-02-28",
+      "assets": "bank"
+    },
+    {
+      "id": "111",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 22800,
+      "memo": "쇼핑",
+      "date": "2025-01-11",
+      "assets": "card"
+    },
+    {
+      "id": "112",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 8900,
+      "memo": "식비",
+      "date": "2025-02-03",
+      "assets": "card"
+    },
+    {
+      "id": "113",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 12100,
+      "memo": "문화",
+      "date": "2025-03-29",
+      "assets": "card"
+    },
+    {
+      "id": "114",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4700,
+      "memo": "교통",
+      "date": "2025-01-23",
+      "assets": "cash"
+    },
+    {
+      "id": "115",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 152000,
+      "memo": "월급",
+      "date": "2025-02-25",
+      "assets": "bank"
+    },
+    {
+      "id": "116",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6900,
+      "memo": "기타",
+      "date": "2025-03-07",
+      "assets": "cash"
+    },
+    {
+      "id": "117",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 15800,
+      "memo": "식비",
+      "date": "2025-01-08",
+      "assets": "card"
+    },
+    {
+      "id": "118",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 30000,
+      "memo": "쇼핑",
+      "date": "2025-02-14",
+      "assets": "card"
+    },
+    {
+      "id": "119",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 90000,
+      "memo": "용돈",
+      "date": "2025-03-25",
+      "assets": "bank"
+    },
+    {
+      "id": "120",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 10100,
+      "memo": "문화",
+      "date": "2025-01-30",
+      "assets": "card"
+    },
+    {
+      "id": "121",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5400,
+      "memo": "교통",
+      "date": "2025-02-11",
+      "assets": "cash"
+    },
+    {
+      "id": "122",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 12300,
+      "memo": "식비",
+      "date": "2025-03-02",
+      "assets": "card"
+    },
+    {
+      "id": "123",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7600,
+      "memo": "기타",
+      "date": "2025-01-16",
+      "assets": "cash"
+    },
+    {
+      "id": "124",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 175000,
+      "memo": "보너스",
+      "date": "2025-02-27",
+      "assets": "bank"
+    },
+    {
+      "id": "125",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 27800,
+      "memo": "쇼핑",
+      "date": "2025-03-11",
+      "assets": "card"
+    },
+    {
+      "id": "126",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9700,
+      "memo": "문화",
+      "date": "2025-01-04",
+      "assets": "card"
+    },
+    {
+      "id": "127",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 14600,
+      "memo": "식비",
+      "date": "2025-02-19",
+      "assets": "card"
+    },
+    {
+      "id": "128",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5800,
+      "memo": "교통",
+      "date": "2025-03-05",
+      "assets": "cash"
+    },
+    {
+      "id": "129",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 151000,
+      "memo": "월급",
+      "date": "2025-01-25",
+      "assets": "bank"
+    },
+    {
+      "id": "130",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 8200,
+      "memo": "기타",
+      "date": "2025-02-08",
+      "assets": "cash"
+    },
+    {
+      "id": "131",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 11100,
+      "memo": "식비",
+      "date": "2025-03-20",
+      "assets": "card"
+    },
+    {
+      "id": "132",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 32200,
+      "memo": "쇼핑",
+      "date": "2025-01-21",
+      "assets": "card"
+    },
+    {
+      "id": "133",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 87000,
+      "memo": "용돈",
+      "date": "2025-02-22",
+      "assets": "bank"
+    },
+    {
+      "id": "134",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 11200,
+      "memo": "문화",
+      "date": "2025-03-14",
+      "assets": "card"
+    },
+    {
+      "id": "135",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4900,
+      "memo": "교통",
+      "date": "2025-01-09",
+      "assets": "cash"
+    },
+    {
+      "id": "136",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 9700,
+      "memo": "식비",
+      "date": "2025-02-26",
+      "assets": "card"
+    },
+    {
+      "id": "137",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6500,
+      "memo": "기타",
+      "date": "2025-03-23",
+      "assets": "cash"
+    },
+    {
+      "id": "138",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 182000,
+      "memo": "보너스",
+      "date": "2025-01-31",
+      "assets": "bank"
+    },
+    {
+      "id": "139",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 28900,
+      "memo": "쇼핑",
+      "date": "2025-02-05",
+      "assets": "card"
+    },
+    {
+      "id": "140",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9800,
+      "memo": "문화",
+      "date": "2025-03-27",
+      "assets": "card"
+    },
+    {
+      "id": "141",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 14300,
+      "memo": "식비",
+      "date": "2025-01-18",
+      "assets": "card"
+    },
+    {
+      "id": "142",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5600,
+      "memo": "교통",
+      "date": "2025-02-01",
+      "assets": "cash"
+    },
+    {
+      "id": "143",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 150000,
+      "memo": "월급",
+      "date": "2025-03-25",
+      "assets": "bank"
+    },
+    {
+      "id": "144",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7800,
+      "memo": "기타",
+      "date": "2025-01-26",
+      "assets": "cash"
+    },
+    {
+      "id": "145",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 31000,
+      "memo": "쇼핑",
+      "date": "2025-02-17",
+      "assets": "card"
+    },
+    {
+      "id": "146",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 9200,
+      "memo": "식비",
+      "date": "2025-03-09",
+      "assets": "card"
+    },
+    {
+      "id": "147",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 10500,
+      "memo": "문화",
+      "date": "2025-01-12",
+      "assets": "card"
+    },
+    {
+      "id": "148",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4700,
+      "memo": "교통",
+      "date": "2025-02-23",
+      "assets": "cash"
+    },
+    {
+      "id": "149",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 91000,
+      "memo": "용돈",
+      "date": "2025-03-28",
+      "assets": "bank"
+    },
+    {
+      "id": "150",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6900,
+      "memo": "기타",
+      "date": "2025-01-03",
+      "assets": "cash"
+    },
+    {
+      "id": "151",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 11600,
+      "memo": "식비",
+      "date": "2025-02-12",
+      "assets": "card"
+    },
+    {
+      "id": "152",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 27000,
+      "memo": "쇼핑",
+      "date": "2025-03-16",
+      "assets": "card"
+    },
+    {
+      "id": "153",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5100,
+      "memo": "교통",
+      "date": "2025-01-20",
+      "assets": "cash"
+    },
+    {
+      "id": "154",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 180000,
+      "memo": "보너스",
+      "date": "2025-02-25",
+      "assets": "bank"
+    },
+    {
+      "id": "155",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9900,
+      "memo": "문화",
+      "date": "2025-03-03",
+      "assets": "card"
+    },
+    {
+      "id": "156",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 12900,
+      "memo": "식비",
+      "date": "2025-01-07",
+      "assets": "card"
+    },
+    {
+      "id": "157",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7200,
+      "memo": "기타",
+      "date": "2025-02-19",
+      "assets": "cash"
+    },
+    {
+      "id": "158",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 29500,
+      "memo": "쇼핑",
+      "date": "2025-03-12",
+      "assets": "card"
+    },
+    {
+      "id": "159",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 152000,
+      "memo": "월급",
+      "date": "2025-01-25",
+      "assets": "bank"
+    },
+    {
+      "id": "160",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4300,
+      "memo": "교통",
+      "date": "2025-02-07",
+      "assets": "cash"
+    },
+    {
+      "id": "161",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 10100,
+      "memo": "식비",
+      "date": "2025-03-21",
+      "assets": "card"
+    },
+    {
+      "id": "162",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 11800,
+      "memo": "문화",
+      "date": "2025-01-28",
+      "assets": "card"
+    },
+    {
+      "id": "163",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 32000,
+      "memo": "쇼핑",
+      "date": "2025-02-14",
+      "assets": "card"
+    },
+    {
+      "id": "164",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7600,
+      "memo": "기타",
+      "date": "2025-03-25",
+      "assets": "cash"
+    },
+    {
+      "id": "165",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 88000,
+      "memo": "용돈",
+      "date": "2025-01-19",
+      "assets": "bank"
+    },
+    {
+      "id": "166",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5200,
+      "memo": "교통",
+      "date": "2025-02-03",
+      "assets": "cash"
+    },
+    {
+      "id": "167",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 13300,
+      "memo": "식비",
+      "date": "2025-03-08",
+      "assets": "card"
+    },
+    {
+      "id": "168",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 29900,
+      "memo": "쇼핑",
+      "date": "2025-01-11",
+      "assets": "card"
+    },
+    {
+      "id": "169",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 178000,
+      "memo": "보너스",
+      "date": "2025-02-28",
+      "assets": "bank"
+    },
+    {
+      "id": "170",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9500,
+      "memo": "문화",
+      "date": "2025-03-18",
+      "assets": "card"
+    },
+    {
+      "id": "171",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 14000,
+      "memo": "식비",
+      "date": "2025-01-14",
+      "assets": "card"
+    },
+    {
+      "id": "172",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 6100,
+      "memo": "교통",
+      "date": "2025-02-10",
+      "assets": "cash"
+    },
+    {
+      "id": "173",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7900,
+      "memo": "기타",
+      "date": "2025-03-29",
+      "assets": "cash"
+    },
+    {
+      "id": "174",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 150000,
+      "memo": "월급",
+      "date": "2025-01-25",
+      "assets": "bank"
+    },
+    {
+      "id": "175",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 28000,
+      "memo": "쇼핑",
+      "date": "2025-02-21",
+      "assets": "card"
+    },
+    {
+      "id": "176",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 9900,
+      "memo": "식비",
+      "date": "2025-03-02",
+      "assets": "card"
+    },
+    {
+      "id": "177",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 10400,
+      "memo": "문화",
+      "date": "2025-01-05",
+      "assets": "card"
+    },
+    {
+      "id": "178",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5400,
+      "memo": "교통",
+      "date": "2025-02-16",
+      "assets": "cash"
+    },
+    {
+      "id": "179",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 90000,
+      "memo": "용돈",
+      "date": "2025-03-11",
+      "assets": "bank"
+    },
+    {
+      "id": "180",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 11100,
+      "memo": "식비",
+      "date": "2025-01-22",
+      "assets": "card"
+    },
+    {
+      "id": "181",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 31200,
+      "memo": "쇼핑",
+      "date": "2025-02-27",
+      "assets": "card"
+    },
+    {
+      "id": "182",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6800,
+      "memo": "기타",
+      "date": "2025-03-07",
+      "assets": "cash"
+    },
+    {
+      "id": "183",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 8700,
+      "memo": "식비",
+      "date": "2025-01-09",
+      "assets": "card"
+    },
+    {
+      "id": "184",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 185000,
+      "memo": "보너스",
+      "date": "2025-02-25",
+      "assets": "bank"
+    },
+    {
+      "id": "185",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4900,
+      "memo": "교통",
+      "date": "2025-03-14",
+      "assets": "cash"
+    },
+    {
+      "id": "186",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 11200,
+      "memo": "문화",
+      "date": "2025-01-17",
+      "assets": "card"
+    },
+    {
+      "id": "187",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 26800,
+      "memo": "쇼핑",
+      "date": "2025-02-05",
+      "assets": "card"
+    },
+    {
+      "id": "188",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 10300,
+      "memo": "식비",
+      "date": "2025-03-23",
+      "assets": "card"
+    },
+    {
+      "id": "189",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 153000,
+      "memo": "월급",
+      "date": "2025-01-25",
+      "assets": "bank"
+    },
+    {
+      "id": "190",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 7200,
+      "memo": "기타",
+      "date": "2025-02-08",
+      "assets": "cash"
+    },
+    {
+      "id": "191",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 5600,
+      "memo": "교통",
+      "date": "2025-03-05",
+      "assets": "cash"
+    },
+    {
+      "id": "192",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 12600,
+      "memo": "식비",
+      "date": "2025-01-26",
+      "assets": "card"
+    },
+    {
+      "id": "193",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 9800,
+      "memo": "문화",
+      "date": "2025-02-12",
+      "assets": "card"
+    },
+    {
+      "id": "194",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 30300,
+      "memo": "쇼핑",
+      "date": "2025-03-16",
+      "assets": "card"
+    },
+    {
+      "id": "195",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 87000,
+      "memo": "용돈",
+      "date": "2025-01-19",
+      "assets": "bank"
+    },
+    {
+      "id": "196",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 6900,
+      "memo": "기타",
+      "date": "2025-02-23",
+      "assets": "cash"
+    },
+    {
+      "id": "197",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 11900,
+      "memo": "식비",
+      "date": "2025-03-28",
+      "assets": "card"
+    },
+    {
+      "id": "198",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 4700,
+      "memo": "교통",
+      "date": "2025-01-03",
+      "assets": "cash"
+    },
+    {
+      "id": "199",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 180000,
+      "memo": "보너스",
+      "date": "2025-02-27",
+      "assets": "bank"
+    },
+    {
+      "id": "200",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 29500,
+      "memo": "쇼핑",
+      "date": "2025-03-21",
+      "assets": "card"
+    },
+    {
+      "id": "201",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 73000,
+      "memo": "커피값으로 통장이 울었다",
+      "date": "2025-07-01",
+      "assets": "card"
+    },
+    {
+      "id": "202",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 3,
+      "amount": 145000,
+      "memo": "월급은 스쳐가는 바람",
+      "date": "2025-08-02",
+      "assets": "cash"
+    },
+    {
+      "id": "203",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 32000,
+      "memo": "충동구매 성공적 실패",
+      "date": "2025-09-03",
+      "assets": "bank"
+    },
+    {
+      "id": "204",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 5,
+      "amount": 98000,
+      "memo": "세일은 못 참지",
+      "date": "2025-10-04",
+      "assets": "card"
+    },
+    {
+      "id": "205",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 56000,
+      "memo": "배달의 민족이 또 이김",
+      "date": "2025-11-05",
+      "assets": "cash"
+    },
+    {
+      "id": "206",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 7,
+      "amount": 210000,
+      "memo": "소확행 과다복용",
+      "date": "2025-12-06",
+      "assets": "bank"
+    },
+    {
+      "id": "207",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 43000,
+      "memo": "지갑 다이어트 진행중",
+      "date": "2025-07-07",
+      "assets": "card"
+    },
+    {
+      "id": "208",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 9,
+      "amount": 67000,
+      "memo": "생각 없이 산 나 칭찬해",
+      "date": "2025-08-08",
+      "assets": "cash"
+    },
+    {
+      "id": "209",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 125000,
+      "memo": "나도 모르게 결제됨",
+      "date": "2025-09-09",
+      "assets": "bank"
+    },
+    {
+      "id": "210",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 88000,
+      "memo": "이건 필요했음 (아마도)",
+      "date": "2025-10-10",
+      "assets": "card"
+    },
+    {
+      "id": "211",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 99000,
+      "memo": "커피값으로 통장이 울었다",
+      "date": "2025-11-11",
+      "assets": "cash"
+    },
+    {
+      "id": "212",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 3,
+      "amount": 15000,
+      "memo": "월급은 스쳐가는 바람",
+      "date": "2025-12-12",
+      "assets": "bank"
+    },
+    {
+      "id": "213",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 64000,
+      "memo": "충동구매 성공적 실패",
+      "date": "2025-07-13",
+      "assets": "card"
+    },
+    {
+      "id": "214",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 5,
+      "amount": 230000,
+      "memo": "세일은 못 참지",
+      "date": "2025-08-14",
+      "assets": "cash"
+    },
+    {
+      "id": "215",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 41000,
+      "memo": "배달의 민족이 또 이김",
+      "date": "2025-09-15",
+      "assets": "bank"
+    },
+    {
+      "id": "216",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 7,
+      "amount": 77000,
+      "memo": "소확행 과다복용",
+      "date": "2025-10-16",
+      "assets": "card"
+    },
+    {
+      "id": "217",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 53000,
+      "memo": "지갑 다이어트 진행중",
+      "date": "2025-11-17",
+      "assets": "cash"
+    },
+    {
+      "id": "218",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 9,
+      "amount": 196000,
+      "memo": "생각 없이 산 나 칭찬해",
+      "date": "2025-12-18",
+      "assets": "bank"
+    },
+    {
+      "id": "219",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 34000,
+      "memo": "나도 모르게 결제됨",
+      "date": "2025-07-19",
+      "assets": "card"
+    },
+    {
+      "id": "220",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 112000,
+      "memo": "이건 필요했음 (아마도)",
+      "date": "2025-08-20",
+      "assets": "cash"
+    },
+    {
+      "id": "221",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 88000,
+      "memo": "커피값으로 통장이 울었다",
+      "date": "2025-09-21",
+      "assets": "bank"
+    },
+    {
+      "id": "222",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 3,
+      "amount": 64000,
+      "memo": "월급은 스쳐가는 바람",
+      "date": "2025-10-22",
+      "assets": "card"
+    },
+    {
+      "id": "223",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 73000,
+      "memo": "충동구매 성공적 실패",
+      "date": "2025-11-23",
+      "assets": "cash"
+    },
+    {
+      "id": "224",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 5,
+      "amount": 99000,
+      "memo": "세일은 못 참지",
+      "date": "2025-12-24",
+      "assets": "bank"
+    },
+    {
+      "id": "225",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 12000,
+      "memo": "배달의 민족이 또 이김",
+      "date": "2025-07-25",
+      "assets": "card"
+    },
+    {
+      "id": "226",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 7,
+      "amount": 175000,
+      "memo": "소확행 과다복용",
+      "date": "2025-08-26",
+      "assets": "cash"
+    },
+    {
+      "id": "227",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 45000,
+      "memo": "지갑 다이어트 진행중",
+      "date": "2025-09-27",
+      "assets": "bank"
+    },
+    {
+      "id": "228",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 9,
+      "amount": 82000,
+      "memo": "생각 없이 산 나 칭찬해",
+      "date": "2025-10-28",
+      "assets": "card"
+    },
+    {
+      "id": "229",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 91000,
+      "memo": "나도 모르게 결제됨",
+      "date": "2025-11-29",
+      "assets": "cash"
+    },
+    {
+      "id": "230",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 134000,
+      "memo": "이건 필요했음 (아마도)",
+      "date": "2025-12-30",
+      "assets": "bank"
+    },
+    {
+      "id": "231",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 54000,
+      "memo": "오늘도 통장이 먼저 울었다",
+      "date": "2025-07-02",
+      "assets": "card"
+    },
+    {
+      "id": "232",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 210000,
+      "memo": "예상치 못한 보너스 등장",
+      "date": "2025-07-03",
+      "assets": "cash"
+    },
+    {
+      "id": "233",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 32000,
+      "memo": "배고픔은 죄가 아니다 배달이 문제다",
+      "date": "2025-07-04",
+      "assets": "bank"
+    },
+    {
+      "id": "234",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 98000,
+      "memo": "용돈이 아니라 생명줄",
+      "date": "2025-07-05",
+      "assets": "card"
+    },
+    {
+      "id": "235",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 76000,
+      "memo": "카페에서 하루가 증발",
+      "date": "2025-07-06",
+      "assets": "cash"
+    },
+    {
+      "id": "236",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 120000,
+      "memo": "숨 쉬듯 들어온 돈",
+      "date": "2025-07-07",
+      "assets": "bank"
+    },
+    {
+      "id": "237",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 43000,
+      "memo": "충동구매는 예술이다",
+      "date": "2025-07-08",
+      "assets": "card"
+    },
+    {
+      "id": "238",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 67000,
+      "memo": "생각보다 더 들어온 날",
+      "date": "2025-07-09",
+      "assets": "cash"
+    },
+    {
+      "id": "239",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 91000,
+      "memo": "지갑이 얇아지는 속도 실화냐",
+      "date": "2025-07-10",
+      "assets": "bank"
+    },
+    {
+      "id": "240",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 150000,
+      "memo": "월급의 착한 부분만 도착",
+      "date": "2025-07-11",
+      "assets": "card"
+    },
+    {
+      "id": "241",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 28000,
+      "memo": "커피가 아니라 감정 구매",
+      "date": "2025-07-12",
+      "assets": "cash"
+    },
+    {
+      "id": "242",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 300000,
+      "memo": "이건 진짜 뜻밖의 수입",
+      "date": "2025-07-13",
+      "assets": "bank"
+    },
+    {
+      "id": "243",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 45000,
+      "memo": "쇼핑은 치료다",
+      "date": "2025-07-14",
+      "assets": "card"
+    },
+    {
+      "id": "244",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 88000,
+      "memo": "용돈이 나를 살렸다",
+      "date": "2025-07-15",
+      "assets": "cash"
+    },
+    {
+      "id": "245",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 99000,
+      "memo": "결제 버튼은 왜 이렇게 쉬운가",
+      "date": "2025-07-16",
+      "assets": "bank"
+    },
+    {
+      "id": "246",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 110000,
+      "memo": "기다리던 돈 드디어 도착",
+      "date": "2025-07-17",
+      "assets": "card"
+    },
+    {
+      "id": "247",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 37000,
+      "memo": "야식은 의무였다",
+      "date": "2025-07-18",
+      "assets": "cash"
+    },
+    {
+      "id": "248",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 145000,
+      "memo": "작지만 행복한 입금",
+      "date": "2025-07-19",
+      "assets": "bank"
+    },
+    {
+      "id": "249",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 52000,
+      "memo": "지름신 강림 완료",
+      "date": "2025-07-20",
+      "assets": "card"
+    },
+    {
+      "id": "250",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 96000,
+      "memo": "보너스 아닌데 보너스 같은 돈",
+      "date": "2025-07-21",
+      "assets": "cash"
+    },
+    {
+      "id": "251",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 61000,
+      "memo": "카드가 일을 너무 잘함",
+      "date": "2025-07-22",
+      "assets": "bank"
+    },
+    {
+      "id": "252",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 123000,
+      "memo": "숨겨진 수입 발견",
+      "date": "2025-07-23",
+      "assets": "card"
+    },
+    {
+      "id": "253",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 34000,
+      "memo": "커피 중독 진행 중",
+      "date": "2025-07-24",
+      "assets": "cash"
+    },
+    {
+      "id": "254",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 78000,
+      "memo": "작은 행복 입금 완료",
+      "date": "2025-07-25",
+      "assets": "bank"
+    },
+    {
+      "id": "255",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 84000,
+      "memo": "쇼핑은 계획이 없다",
+      "date": "2025-07-26",
+      "assets": "card"
+    },
+    {
+      "id": "256",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 199000,
+      "memo": "예상 외 수익 폭발",
+      "date": "2025-07-27",
+      "assets": "cash"
+    },
+    {
+      "id": "257",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 42000,
+      "memo": "배달앱이 또 이겼다",
+      "date": "2025-07-28",
+      "assets": "bank"
+    },
+    {
+      "id": "258",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 87000,
+      "memo": "용돈의 기적",
+      "date": "2025-07-29",
+      "assets": "card"
+    },
+    {
+      "id": "259",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 93000,
+      "memo": "지갑이 텅 비는 속도 기록 갱신",
+      "date": "2025-07-30",
+      "assets": "cash"
+    },
+    {
+      "id": "260",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 140000,
+      "memo": "월급 외 수입 등장",
+      "date": "2025-07-31",
+      "assets": "bank"
+    },
+    {
+      "id": "261",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 39000,
+      "memo": "커피는 삶의 일부",
+      "date": "2025-08-01",
+      "assets": "card"
+    },
+    {
+      "id": "262",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 250000,
+      "memo": "뜻밖의 입금 알림",
+      "date": "2025-08-02",
+      "assets": "cash"
+    },
+    {
+      "id": "263",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 71000,
+      "memo": "충동구매는 예술이다",
+      "date": "2025-08-03",
+      "assets": "bank"
+    },
+    {
+      "id": "264",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 83000,
+      "memo": "작지만 확실한 수입",
+      "date": "2025-08-04",
+      "assets": "card"
+    },
+    {
+      "id": "265",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 66000,
+      "memo": "야식은 배신하지 않는다",
+      "date": "2025-08-05",
+      "assets": "cash"
+    },
+    {
+      "id": "266",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 115000,
+      "memo": "숨겨진 돈 발견",
+      "date": "2025-08-06",
+      "assets": "bank"
+    },
+    {
+      "id": "267",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 52000,
+      "memo": "카페 투어 완료",
+      "date": "2025-08-07",
+      "assets": "card"
+    },
+    {
+      "id": "268",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 99000,
+      "memo": "예상보다 많이 들어옴",
+      "date": "2025-08-08",
+      "assets": "cash"
+    },
+    {
+      "id": "269",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 88000,
+      "memo": "지갑 탈출 시도 실패",
+      "date": "2025-08-09",
+      "assets": "bank"
+    },
+    {
+      "id": "270",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 160000,
+      "memo": "보너스 느낌의 입금",
+      "date": "2025-08-10",
+      "assets": "card"
+    },
+    {
+      "id": "271",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 47000,
+      "memo": "커피가 아니라 위로였다",
+      "date": "2025-08-11",
+      "assets": "cash"
+    },
+    {
+      "id": "272",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 134000,
+      "memo": "작은 기적 발생",
+      "date": "2025-08-12",
+      "assets": "bank"
+    },
+    {
+      "id": "273",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 59000,
+      "memo": "쇼핑은 감정이다",
+      "date": "2025-08-13",
+      "assets": "card"
+    },
+    {
+      "id": "274",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 92000,
+      "memo": "용돈이 나를 살림",
+      "date": "2025-08-14",
+      "assets": "cash"
+    },
+    {
+      "id": "275",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 81000,
+      "memo": "배달앱 VIP 등록됨",
+      "date": "2025-08-15",
+      "assets": "bank"
+    },
+    {
+      "id": "276",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 177000,
+      "memo": "예상 못한 수익",
+      "date": "2025-08-16",
+      "assets": "card"
+    },
+    {
+      "id": "277",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 36000,
+      "memo": "야식의 유혹",
+      "date": "2025-08-17",
+      "assets": "cash"
+    },
+    {
+      "id": "278",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 104000,
+      "memo": "작은 행운 도착",
+      "date": "2025-08-18",
+      "assets": "bank"
+    },
+    {
+      "id": "279",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 95000,
+      "memo": "지갑이 먼저 퇴사",
+      "date": "2025-08-19",
+      "assets": "card"
+    },
+    {
+      "id": "280",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 128000,
+      "memo": "월급 외 수익 등장",
+      "date": "2025-08-20",
+      "assets": "cash"
+    },
+    {
+      "id": "201",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 73000,
+      "memo": "커피값으로 통장이 울었다",
+      "date": "2025-07-01",
+      "assets": "card"
+    },
+    {
+      "id": "202",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 3,
+      "amount": 145000,
+      "memo": "월급은 스쳐가는 바람",
+      "date": "2025-08-02",
+      "assets": "cash"
+    },
+    {
+      "id": "203",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 32000,
+      "memo": "충동구매 성공적 실패",
+      "date": "2025-09-03",
+      "assets": "bank"
+    },
+    {
+      "id": "204",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 5,
+      "amount": 98000,
+      "memo": "세일은 못 참지",
+      "date": "2025-10-04",
+      "assets": "card"
+    },
+    {
+      "id": "205",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 56000,
+      "memo": "배달의 민족이 또 이김",
+      "date": "2025-11-05",
+      "assets": "cash"
+    },
+    {
+      "id": "206",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 7,
+      "amount": 210000,
+      "memo": "소확행 과다복용",
+      "date": "2025-12-06",
+      "assets": "bank"
+    },
+    {
+      "id": "207",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 43000,
+      "memo": "지갑 다이어트 진행중",
+      "date": "2025-07-07",
+      "assets": "card"
+    },
+    {
+      "id": "208",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 9,
+      "amount": 67000,
+      "memo": "생각 없이 산 나 칭찬해",
+      "date": "2025-08-08",
+      "assets": "cash"
+    },
+    {
+      "id": "209",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 125000,
+      "memo": "나도 모르게 결제됨",
+      "date": "2025-09-09",
+      "assets": "bank"
+    },
+    {
+      "id": "210",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 88000,
+      "memo": "이건 필요했음 (아마도)",
+      "date": "2025-10-10",
+      "assets": "card"
+    },
+    {
+      "id": "211",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 99000,
+      "memo": "커피값으로 통장이 울었다",
+      "date": "2025-11-11",
+      "assets": "cash"
+    },
+    {
+      "id": "212",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 3,
+      "amount": 15000,
+      "memo": "월급은 스쳐가는 바람",
+      "date": "2025-12-12",
+      "assets": "bank"
+    },
+    {
+      "id": "213",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 64000,
+      "memo": "충동구매 성공적 실패",
+      "date": "2025-07-13",
+      "assets": "card"
+    },
+    {
+      "id": "214",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 5,
+      "amount": 230000,
+      "memo": "세일은 못 참지",
+      "date": "2025-08-14",
+      "assets": "cash"
+    },
+    {
+      "id": "215",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 41000,
+      "memo": "배달의 민족이 또 이김",
+      "date": "2025-09-15",
+      "assets": "bank"
+    },
+    {
+      "id": "216",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 7,
+      "amount": 77000,
+      "memo": "소확행 과다복용",
+      "date": "2025-10-16",
+      "assets": "card"
+    },
+    {
+      "id": "217",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 53000,
+      "memo": "지갑 다이어트 진행중",
+      "date": "2025-11-17",
+      "assets": "cash"
+    },
+    {
+      "id": "218",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 9,
+      "amount": 196000,
+      "memo": "생각 없이 산 나 칭찬해",
+      "date": "2025-12-18",
+      "assets": "bank"
+    },
+    {
+      "id": "219",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 34000,
+      "memo": "나도 모르게 결제됨",
+      "date": "2025-07-19",
+      "assets": "card"
+    },
+    {
+      "id": "220",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 112000,
+      "memo": "이건 필요했음 (아마도)",
+      "date": "2025-08-20",
+      "assets": "cash"
+    },
+    {
+      "id": "221",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 88000,
+      "memo": "커피값으로 통장이 울었다",
+      "date": "2025-09-21",
+      "assets": "bank"
+    },
+    {
+      "id": "222",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 3,
+      "amount": 64000,
+      "memo": "월급은 스쳐가는 바람",
+      "date": "2025-10-22",
+      "assets": "card"
+    },
+    {
+      "id": "223",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 73000,
+      "memo": "충동구매 성공적 실패",
+      "date": "2025-11-23",
+      "assets": "cash"
+    },
+    {
+      "id": "224",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 5,
+      "amount": 99000,
+      "memo": "세일은 못 참지",
+      "date": "2025-12-24",
+      "assets": "bank"
+    },
+    {
+      "id": "225",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 12000,
+      "memo": "배달의 민족이 또 이김",
+      "date": "2025-07-25",
+      "assets": "card"
+    },
+    {
+      "id": "226",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 7,
+      "amount": 175000,
+      "memo": "소확행 과다복용",
+      "date": "2025-08-26",
+      "assets": "cash"
+    },
+    {
+      "id": "227",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 45000,
+      "memo": "지갑 다이어트 진행중",
+      "date": "2025-09-27",
+      "assets": "bank"
+    },
+    {
+      "id": "228",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 9,
+      "amount": 82000,
+      "memo": "생각 없이 산 나 칭찬해",
+      "date": "2025-10-28",
+      "assets": "card"
+    },
+    {
+      "id": "229",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 91000,
+      "memo": "나도 모르게 결제됨",
+      "date": "2025-11-29",
+      "assets": "cash"
+    },
+    {
+      "id": "230",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 134000,
+      "memo": "이건 필요했음 (아마도)",
+      "date": "2025-12-30",
+      "assets": "bank"
+    },
+    {
+      "id": "331",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 42000,
+      "memo": "9월 시작은 이미 지출로 시작",
+      "date": "2025-09-01",
+      "assets": "card"
+    },
+    {
+      "id": "332",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 180000,
+      "memo": "예상 밖 용돈 등장",
+      "date": "2025-09-02",
+      "assets": "cash"
+    },
+    {
+      "id": "333",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 51000,
+      "memo": "커피는 이제 생활비",
+      "date": "2025-09-03",
+      "assets": "bank"
+    },
+    {
+      "id": "334",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 99000,
+      "memo": "작은 보너스 느낌",
+      "date": "2025-09-04",
+      "assets": "card"
+    },
+    {
+      "id": "335",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 73000,
+      "memo": "배달앱이 또 승리",
+      "date": "2025-09-05",
+      "assets": "cash"
+    },
+    {
+      "id": "336",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 120000,
+      "memo": "숨은 돈 발견",
+      "date": "2025-09-06",
+      "assets": "bank"
+    },
+    {
+      "id": "337",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 36000,
+      "memo": "충동구매는 예술",
+      "date": "2025-09-07",
+      "assets": "card"
+    },
+    {
+      "id": "338",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 84000,
+      "memo": "뜻밖의 입금",
+      "date": "2025-09-08",
+      "assets": "cash"
+    },
+    {
+      "id": "339",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 91000,
+      "memo": "지갑이 먼저 탈출",
+      "date": "2025-09-09",
+      "assets": "bank"
+    },
+    {
+      "id": "340",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 150000,
+      "memo": "월급 외 수입 등장",
+      "date": "2025-09-10",
+      "assets": "card"
+    },
+    {
+      "id": "341",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 29000,
+      "memo": "커피로 하루 삭제",
+      "date": "2025-09-11",
+      "assets": "cash"
+    },
+    {
+      "id": "342",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 210000,
+      "memo": "보너스 아닌 보너스",
+      "date": "2025-09-12",
+      "assets": "bank"
+    },
+    {
+      "id": "343",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 47000,
+      "memo": "쇼핑은 항상 계획 밖",
+      "date": "2025-09-13",
+      "assets": "card"
+    },
+    {
+      "id": "344",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 76000,
+      "memo": "생각보다 들어온 돈",
+      "date": "2025-09-14",
+      "assets": "cash"
+    },
+    {
+      "id": "345",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 83000,
+      "memo": "야식이 승리한 날",
+      "date": "2025-09-15",
+      "assets": "bank"
+    },
+    {
+      "id": "346",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 132000,
+      "memo": "예상 못한 수익",
+      "date": "2025-09-16",
+      "assets": "card"
+    },
+    {
+      "id": "347",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 38000,
+      "memo": "카페 투어 진행중",
+      "date": "2025-09-17",
+      "assets": "cash"
+    },
+    {
+      "id": "348",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 95000,
+      "memo": "작은 행운 도착",
+      "date": "2025-09-18",
+      "assets": "bank"
+    },
+    {
+      "id": "349",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 92000,
+      "memo": "지갑이 텅 비는 중",
+      "date": "2025-09-19",
+      "assets": "card"
+    },
+    {
+      "id": "350",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 145000,
+      "memo": "월급 같은 느낌",
+      "date": "2025-09-20",
+      "assets": "cash"
+    },
+    {
+      "id": "351",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 44000,
+      "memo": "커피는 오늘도 승리",
+      "date": "2025-09-21",
+      "assets": "bank"
+    },
+    {
+      "id": "352",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 168000,
+      "memo": "뜻밖의 입금 알림",
+      "date": "2025-09-22",
+      "assets": "card"
+    },
+    {
+      "id": "353",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 56000,
+      "memo": "충동구매 완료",
+      "date": "2025-09-23",
+      "assets": "cash"
+    },
+    {
+      "id": "354",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 88000,
+      "memo": "용돈의 기적",
+      "date": "2025-09-24",
+      "assets": "bank"
+    },
+    {
+      "id": "355",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 69000,
+      "memo": "배달이 인생을 바꿈",
+      "date": "2025-09-25",
+      "assets": "card"
+    },
+    {
+      "id": "356",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 119000,
+      "memo": "숨겨진 돈 등장",
+      "date": "2025-09-26",
+      "assets": "cash"
+    },
+    {
+      "id": "357",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 35000,
+      "memo": "카페 중독 진행형",
+      "date": "2025-09-27",
+      "assets": "bank"
+    },
+    {
+      "id": "358",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 99000,
+      "memo": "예상 밖 수입",
+      "date": "2025-09-28",
+      "assets": "card"
+    },
+    {
+      "id": "359",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 87000,
+      "memo": "지갑 탈주 실패",
+      "date": "2025-09-29",
+      "assets": "cash"
+    },
+    {
+      "id": "360",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 160000,
+      "memo": "보너스 느낌 충만",
+      "date": "2025-09-30",
+      "assets": "bank"
+    },
+    {
+      "id": "361",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 31000,
+      "memo": "10월도 커피로 시작",
+      "date": "2025-10-01",
+      "assets": "card"
+    },
+    {
+      "id": "362",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 200000,
+      "memo": "뜻밖의 수입 발생",
+      "date": "2025-10-02",
+      "assets": "cash"
+    },
+    {
+      "id": "363",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 58000,
+      "memo": "쇼핑은 계획이 없다",
+      "date": "2025-10-03",
+      "assets": "bank"
+    },
+    {
+      "id": "364",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 94000,
+      "memo": "작은 행복 입금",
+      "date": "2025-10-04",
+      "assets": "card"
+    },
+    {
+      "id": "365",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 77000,
+      "memo": "배달앱이 또 이김",
+      "date": "2025-10-05",
+      "assets": "cash"
+    },
+    {
+      "id": "366",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 125000,
+      "memo": "숨은 돈 발견",
+      "date": "2025-10-06",
+      "assets": "bank"
+    },
+    {
+      "id": "367",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 42000,
+      "memo": "카페는 이제 집",
+      "date": "2025-10-07",
+      "assets": "card"
+    },
+    {
+      "id": "368",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 87000,
+      "memo": "생각보다 들어온 돈",
+      "date": "2025-10-08",
+      "assets": "cash"
+    },
+    {
+      "id": "369",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 93000,
+      "memo": "지갑이 퇴사함",
+      "date": "2025-10-09",
+      "assets": "bank"
+    },
+    {
+      "id": "370",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 155000,
+      "memo": "월급 외 수입 등장",
+      "date": "2025-10-10",
+      "assets": "card"
+    },
+    {
+      "id": "371",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 33000,
+      "memo": "커피는 삶의 일부",
+      "date": "2025-10-11",
+      "assets": "cash"
+    },
+    {
+      "id": "372",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 175000,
+      "memo": "뜻밖의 보너스",
+      "date": "2025-10-12",
+      "assets": "bank"
+    },
+    {
+      "id": "373",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 64000,
+      "memo": "충동구매 완료",
+      "date": "2025-10-13",
+      "assets": "card"
+    },
+    {
+      "id": "374",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 82000,
+      "memo": "용돈의 힘",
+      "date": "2025-10-14",
+      "assets": "cash"
+    },
+    {
+      "id": "375",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 71000,
+      "memo": "배달앱은 사랑",
+      "date": "2025-10-15",
+      "assets": "bank"
+    },
+    {
+      "id": "376",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 138000,
+      "memo": "숨겨진 수입 발견",
+      "date": "2025-10-16",
+      "assets": "card"
+    },
+    {
+      "id": "377",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 39000,
+      "memo": "카페 투어 종료",
+      "date": "2025-10-17",
+      "assets": "cash"
+    },
+    {
+      "id": "378",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 91000,
+      "memo": "작은 행운 도착",
+      "date": "2025-10-18",
+      "assets": "bank"
+    },
+    {
+      "id": "379",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 88000,
+      "memo": "지갑 탈출 시도",
+      "date": "2025-10-19",
+      "assets": "card"
+    },
+    {
+      "id": "380",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 149000,
+      "memo": "보너스 느낌 수입",
+      "date": "2025-10-20",
+      "assets": "cash"
+    },
+    {
+      "id": "381",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 36000,
+      "memo": "커피 중독 인증",
+      "date": "2025-10-21",
+      "assets": "bank"
+    },
+    {
+      "id": "382",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 190000,
+      "memo": "예상 못한 입금",
+      "date": "2025-10-22",
+      "assets": "card"
+    },
+    {
+      "id": "383",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 53000,
+      "memo": "쇼핑은 감정",
+      "date": "2025-10-23",
+      "assets": "cash"
+    },
+    {
+      "id": "384",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 86000,
+      "memo": "용돈 도착",
+      "date": "2025-10-24",
+      "assets": "bank"
+    },
+    {
+      "id": "385",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 79000,
+      "memo": "배달앱 VIP",
+      "date": "2025-10-25",
+      "assets": "card"
+    },
+    {
+      "id": "386",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 142000,
+      "memo": "숨은 돈 발견",
+      "date": "2025-10-26",
+      "assets": "cash"
+    },
+    {
+      "id": "387",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 41000,
+      "memo": "카페는 일상",
+      "date": "2025-10-27",
+      "assets": "bank"
+    },
+    {
+      "id": "388",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 93000,
+      "memo": "작은 행운",
+      "date": "2025-10-28",
+      "assets": "card"
+    },
+    {
+      "id": "389",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 94000,
+      "memo": "지갑이 먼저 퇴사",
+      "date": "2025-10-29",
+      "assets": "cash"
+    },
+    {
+      "id": "390",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 158000,
+      "memo": "월급 외 수입",
+      "date": "2025-10-30",
+      "assets": "bank"
+    },
+    {
+      "id": "391",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 34000,
+      "memo": "커피로 하루 시작",
+      "date": "2025-11-01",
+      "assets": "card"
+    },
+    {
+      "id": "392",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 210000,
+      "memo": "뜻밖의 수입",
+      "date": "2025-11-02",
+      "assets": "cash"
+    },
+    {
+      "id": "393",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 61000,
+      "memo": "충동구매 완료",
+      "date": "2025-11-03",
+      "assets": "bank"
+    },
+    {
+      "id": "394",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 88000,
+      "memo": "용돈 등장",
+      "date": "2025-11-04",
+      "assets": "card"
+    },
+    {
+      "id": "395",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 72000,
+      "memo": "배달앱 승리",
+      "date": "2025-11-05",
+      "assets": "cash"
+    },
+    {
+      "id": "396",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 131000,
+      "memo": "숨은 돈 발견",
+      "date": "2025-11-06",
+      "assets": "bank"
+    },
+    {
+      "id": "397",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 45000,
+      "memo": "카페는 계속된다",
+      "date": "2025-11-07",
+      "assets": "card"
+    },
+    {
+      "id": "398",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 97000,
+      "memo": "작은 행운",
+      "date": "2025-11-08",
+      "assets": "cash"
+    },
+    {
+      "id": "399",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 89000,
+      "memo": "지갑 탈출 실패",
+      "date": "2025-11-09",
+      "assets": "bank"
+    },
+    {
+      "id": "400",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 150000,
+      "memo": "보너스 느낌",
+      "date": "2025-11-10",
+      "assets": "card"
+    },
+    {
+      "id": "401",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 32000,
+      "memo": "커피는 의식",
+      "date": "2025-11-11",
+      "assets": "cash"
+    },
+    {
+      "id": "402",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 180000,
+      "memo": "예상 수입",
+      "date": "2025-11-12",
+      "assets": "bank"
+    },
+    {
+      "id": "403",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 57000,
+      "memo": "쇼핑 중독",
+      "date": "2025-11-13",
+      "assets": "card"
+    },
+    {
+      "id": "404",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 84000,
+      "memo": "용돈 도착",
+      "date": "2025-11-14",
+      "assets": "cash"
+    },
+    {
+      "id": "405",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 76000,
+      "memo": "배달앱 VIP",
+      "date": "2025-11-15",
+      "assets": "bank"
+    },
+    {
+      "id": "406",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 143000,
+      "memo": "숨은 돈",
+      "date": "2025-11-16",
+      "assets": "card"
+    },
+    {
+      "id": "407",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 40000,
+      "memo": "카페 투어",
+      "date": "2025-11-17",
+      "assets": "cash"
+    },
+    {
+      "id": "408",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 92000,
+      "memo": "행운 도착",
+      "date": "2025-11-18",
+      "assets": "bank"
+    },
+    {
+      "id": "409",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 95000,
+      "memo": "지갑 퇴사",
+      "date": "2025-11-19",
+      "assets": "card"
+    },
+    {
+      "id": "410",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 159000,
+      "memo": "월급 외 수입",
+      "date": "2025-11-20",
+      "assets": "cash"
+    },
+    {
+      "id": "411",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 37000,
+      "memo": "커피 하루 루틴",
+      "date": "2025-11-21",
+      "assets": "bank"
+    },
+    {
+      "id": "412",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 200000,
+      "memo": "뜻밖의 입금",
+      "date": "2025-11-22",
+      "assets": "card"
+    },
+    {
+      "id": "413",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 65000,
+      "memo": "충동구매",
+      "date": "2025-11-23",
+      "assets": "cash"
+    },
+    {
+      "id": "414",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 87000,
+      "memo": "용돈 도착",
+      "date": "2025-11-24",
+      "assets": "bank"
+    },
+    {
+      "id": "415",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 74000,
+      "memo": "배달앱",
+      "date": "2025-11-25",
+      "assets": "card"
+    },
+    {
+      "id": "416",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 136000,
+      "memo": "숨은 수입",
+      "date": "2025-11-26",
+      "assets": "cash"
+    },
+    {
+      "id": "417",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 43000,
+      "memo": "카페 생활",
+      "date": "2025-11-27",
+      "assets": "bank"
+    },
+    {
+      "id": "418",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 98000,
+      "memo": "행운",
+      "date": "2025-11-28",
+      "assets": "card"
+    },
+    {
+      "id": "419",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 90000,
+      "memo": "지갑 탈주",
+      "date": "2025-11-29",
+      "assets": "cash"
+    },
+    {
+      "id": "420",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 151000,
+      "memo": "보너스 느낌",
+      "date": "2025-11-30",
+      "assets": "bank"
+    },
+    {
+      "id": "421",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 30000,
+      "memo": "12월 시작 커피",
+      "date": "2025-12-01",
+      "assets": "card"
+    },
+    {
+      "id": "422",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 220000,
+      "memo": "연말 보너스 느낌",
+      "date": "2025-12-02",
+      "assets": "cash"
+    },
+    {
+      "id": "423",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 68000,
+      "memo": "쇼핑 폭주",
+      "date": "2025-12-03",
+      "assets": "bank"
+    },
+    {
+      "id": "424",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 89000,
+      "memo": "용돈 도착",
+      "date": "2025-12-04",
+      "assets": "card"
+    },
+    {
+      "id": "425",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 78000,
+      "memo": "배달앱 연말 버전",
+      "date": "2025-12-05",
+      "assets": "cash"
+    },
+    {
+      "id": "426",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 144000,
+      "memo": "숨은 돈",
+      "date": "2025-12-06",
+      "assets": "bank"
+    },
+    {
+      "id": "427",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 46000,
+      "memo": "카페 연말 정산",
+      "date": "2025-12-07",
+      "assets": "card"
+    },
+    {
+      "id": "428",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 93000,
+      "memo": "작은 행운",
+      "date": "2025-12-08",
+      "assets": "cash"
+    },
+    {
+      "id": "429",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 96000,
+      "memo": "지갑 퇴사 완료",
+      "date": "2025-12-09",
+      "assets": "bank"
+    },
+    {
+      "id": "430",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 160000,
+      "memo": "연말 수입",
+      "date": "2025-12-10",
+      "assets": "card"
+    },
+    {
+      "id": "431",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 35000,
+      "memo": "커피는 연말에도 필수",
+      "date": "2025-12-11",
+      "assets": "cash"
+    },
+    {
+      "id": "432",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 190000,
+      "memo": "뜻밖의 입금",
+      "date": "2025-12-12",
+      "assets": "bank"
+    },
+    {
+      "id": "433",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 62000,
+      "memo": "충동구매",
+      "date": "2025-12-13",
+      "assets": "card"
+    },
+    {
+      "id": "434",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 85000,
+      "memo": "용돈",
+      "date": "2025-12-14",
+      "assets": "cash"
+    },
+    {
+      "id": "435",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 79000,
+      "memo": "배달앱",
+      "date": "2025-12-15",
+      "assets": "bank"
+    },
+    {
+      "id": "436",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 138000,
+      "memo": "숨은 수입",
+      "date": "2025-12-16",
+      "assets": "card"
+    },
+    {
+      "id": "437",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 41000,
+      "memo": "카페",
+      "date": "2025-12-17",
+      "assets": "cash"
+    },
+    {
+      "id": "438",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 95000,
+      "memo": "행운",
+      "date": "2025-12-18",
+      "assets": "bank"
+    },
+    {
+      "id": "439",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 97000,
+      "memo": "지갑 탈출",
+      "date": "2025-12-19",
+      "assets": "card"
+    },
+    {
+      "id": "440",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 152000,
+      "memo": "연말 보너스 느낌",
+      "date": "2025-12-20",
+      "assets": "cash"
+    },
+    {
+      "id": "441",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 38000,
+      "memo": "커피 마지막 스퍼트",
+      "date": "2025-12-21",
+      "assets": "bank"
+    },
+    {
+      "id": "442",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 205000,
+      "memo": "예상 못한 수입",
+      "date": "2025-12-22",
+      "assets": "card"
+    },
+    {
+      "id": "443",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 66000,
+      "memo": "쇼핑",
+      "date": "2025-12-23",
+      "assets": "cash"
+    },
+    {
+      "id": "444",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 88000,
+      "memo": "용돈",
+      "date": "2025-12-24",
+      "assets": "bank"
+    },
+    {
+      "id": "445",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 82000,
+      "memo": "배달앱",
+      "date": "2025-12-25",
+      "assets": "card"
+    },
+    {
+      "id": "446",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 140000,
+      "memo": "숨은 돈",
+      "date": "2025-12-26",
+      "assets": "cash"
+    },
+    {
+      "id": "447",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 44000,
+      "memo": "카페",
+      "date": "2025-12-27",
+      "assets": "bank"
+    },
+    {
+      "id": "448",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 97000,
+      "memo": "행운",
+      "date": "2025-12-28",
+      "assets": "card"
+    },
+    {
+      "id": "449",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 98000,
+      "memo": "지갑 마지막 탈출",
+      "date": "2025-12-29",
+      "assets": "cash"
+    },
+    {
+      "id": "450",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 165000,
+      "memo": "연말 수입",
+      "date": "2025-12-30",
+      "assets": "bank"
+    },
+    {
+      "id": "451",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 40000,
+      "memo": "연말 커피 마무리",
+      "date": "2025-12-31",
+      "assets": "card"
+    },
+    {
+      "id": "452",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 54000,
+      "memo": "새해 첫 소비가 벌써 문제다",
+      "date": "2026-01-01",
+      "assets": "card"
+    },
+    {
+      "id": "453",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 72000,
+      "memo": "다짐은 카드 앞에서 무력",
+      "date": "2026-01-02",
+      "assets": "cash"
+    },
+    {
+      "id": "454",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 3,
+      "amount": 130000,
+      "memo": "새해 복 대신 들어온 돈",
+      "date": "2026-01-03",
+      "assets": "bank"
+    },
+    {
+      "id": "455",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 89000,
+      "memo": "겨울이라 쇼핑이 더 잘됨",
+      "date": "2026-01-04",
+      "assets": "card"
+    },
+    {
+      "id": "456",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 61000,
+      "memo": "배달앱이 나를 기억함",
+      "date": "2026-01-05",
+      "assets": "cash"
+    },
+    {
+      "id": "457",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 43000,
+      "memo": "카페는 이제 집",
+      "date": "2026-01-06",
+      "assets": "bank"
+    },
+    {
+      "id": "458",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 98000,
+      "memo": "겨울 코트가 나를 선택함",
+      "date": "2026-01-07",
+      "assets": "card"
+    },
+    {
+      "id": "459",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 175000,
+      "memo": "뜻밖의 입금 등장",
+      "date": "2026-01-08",
+      "assets": "cash"
+    },
+    {
+      "id": "460",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 52000,
+      "memo": "커피가 아니라 생존",
+      "date": "2026-01-09",
+      "assets": "bank"
+    },
+    {
+      "id": "461",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 76000,
+      "memo": "지갑이 먼저 포기",
+      "date": "2026-01-10",
+      "assets": "card"
+    },
+    {
+      "id": "462",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 34000,
+      "memo": "충동구매는 예술",
+      "date": "2026-01-11",
+      "assets": "cash"
+    },
+    {
+      "id": "463",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 92000,
+      "memo": "겨울이라 더 잘 삼",
+      "date": "2026-01-12",
+      "assets": "bank"
+    },
+    {
+      "id": "464",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 3,
+      "amount": 110000,
+      "memo": "생각보다 들어온 돈",
+      "date": "2026-01-13",
+      "assets": "card"
+    },
+    {
+      "id": "465",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 68000,
+      "memo": "카드가 또 일을 함",
+      "date": "2026-01-14",
+      "assets": "cash"
+    },
+    {
+      "id": "466",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 45000,
+      "memo": "야식은 겨울 필수",
+      "date": "2026-01-15",
+      "assets": "bank"
+    },
+    {
+      "id": "467",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 83000,
+      "memo": "세일이라는 단어의 위험성",
+      "date": "2026-01-16",
+      "assets": "card"
+    },
+    {
+      "id": "468",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 7,
+      "amount": 99000,
+      "memo": "작은 행운 등장",
+      "date": "2026-01-17",
+      "assets": "cash"
+    },
+    {
+      "id": "469",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 57000,
+      "memo": "카페 투어 시작",
+      "date": "2026-01-18",
+      "assets": "bank"
+    },
+    {
+      "id": "470",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 64000,
+      "memo": "쇼핑은 치료다",
+      "date": "2026-01-19",
+      "assets": "card"
+    },
+    {
+      "id": "471",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 91000,
+      "memo": "지갑이 탈출 시도",
+      "date": "2026-01-20",
+      "assets": "cash"
+    },
+    {
+      "id": "472",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 1,
+      "amount": 145000,
+      "memo": "예상 못한 입금",
+      "date": "2026-01-21",
+      "assets": "bank"
+    },
+    {
+      "id": "473",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 38000,
+      "memo": "커피가 하루를 지배",
+      "date": "2026-01-22",
+      "assets": "card"
+    },
+    {
+      "id": "474",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 76000,
+      "memo": "겨울 쇼핑 폭주",
+      "date": "2026-01-23",
+      "assets": "cash"
+    },
+    {
+      "id": "475",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 53000,
+      "memo": "배달앱 VIP 유지",
+      "date": "2026-01-24",
+      "assets": "bank"
+    },
+    {
+      "id": "476",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 87000,
+      "memo": "충동구매 풀콤보",
+      "date": "2026-01-25",
+      "assets": "card"
+    },
+    {
+      "id": "477",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 6,
+      "amount": 125000,
+      "memo": "숨은 돈 발견",
+      "date": "2026-01-26",
+      "assets": "cash"
+    },
+    {
+      "id": "478",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 69000,
+      "memo": "카페는 생활",
+      "date": "2026-01-27",
+      "assets": "bank"
+    },
+    {
+      "id": "479",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 94000,
+      "memo": "지갑 퇴사 선언",
+      "date": "2026-01-28",
+      "assets": "card"
+    },
+    {
+      "id": "480",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 41000,
+      "memo": "야식은 죄가 아니다",
+      "date": "2026-01-29",
+      "assets": "cash"
+    },
+    {
+      "id": "481",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 160000,
+      "memo": "연초 보너스 느낌",
+      "date": "2026-01-30",
+      "assets": "bank"
+    },
+    {
+      "id": "482",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 58000,
+      "memo": "카드가 또 이김",
+      "date": "2026-01-31",
+      "assets": "card"
+    },
+    {
+      "id": "483",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 62000,
+      "memo": "2월 시작도 소비",
+      "date": "2026-02-01",
+      "assets": "cash"
+    },
+    {
+      "id": "484",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 84000,
+      "memo": "겨울 끝물 쇼핑",
+      "date": "2026-02-02",
+      "assets": "bank"
+    },
+    {
+      "id": "485",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 4,
+      "amount": 120000,
+      "memo": "뜻밖의 입금",
+      "date": "2026-02-03",
+      "assets": "card"
+    },
+    {
+      "id": "486",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 71000,
+      "memo": "배달앱이 삶",
+      "date": "2026-02-04",
+      "assets": "cash"
+    },
+    {
+      "id": "487",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 93000,
+      "memo": "세일은 덫이다",
+      "date": "2026-02-05",
+      "assets": "bank"
+    },
+    {
+      "id": "488",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 46000,
+      "memo": "카페 순회중",
+      "date": "2026-02-06",
+      "assets": "card"
+    },
+    {
+      "id": "489",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 88000,
+      "memo": "충동구매 완료",
+      "date": "2026-02-07",
+      "assets": "cash"
+    },
+    {
+      "id": "490",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 9,
+      "amount": 105000,
+      "memo": "작은 행운",
+      "date": "2026-02-08",
+      "assets": "bank"
+    },
+    {
+      "id": "491",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 67000,
+      "memo": "지갑이 먼저 탈주",
+      "date": "2026-02-09",
+      "assets": "card"
+    },
+    {
+      "id": "492",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 52000,
+      "memo": "커피 중독 확정",
+      "date": "2026-02-10",
+      "assets": "cash"
+    },
+    {
+      "id": "493",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 99000,
+      "memo": "겨울 소비 피크",
+      "date": "2026-02-11",
+      "assets": "bank"
+    },
+    {
+      "id": "494",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 3,
+      "amount": 140000,
+      "memo": "예상 밖 수입",
+      "date": "2026-02-12",
+      "assets": "card"
+    },
+    {
+      "id": "495",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 75000,
+      "memo": "쇼핑은 감정이다",
+      "date": "2026-02-13",
+      "assets": "cash"
+    },
+    {
+      "id": "496",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 86000,
+      "memo": "배달앱 연장전",
+      "date": "2026-02-14",
+      "assets": "bank"
+    },
+    {
+      "id": "497",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 43000,
+      "memo": "카페 데이",
+      "date": "2026-02-15",
+      "assets": "card"
+    },
+    {
+      "id": "498",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 7,
+      "amount": 91000,
+      "memo": "지갑 완전 탈주",
+      "date": "2026-02-16",
+      "assets": "cash"
+    },
+    {
+      "id": "499",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 8,
+      "amount": 115000,
+      "memo": "작은 보너스 느낌",
+      "date": "2026-02-17",
+      "assets": "bank"
+    },
+    {
+      "id": "500",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 78000,
+      "memo": "충동구매 엔딩",
+      "date": "2026-02-18",
+      "assets": "card"
+    },
+    {
+      "id": "501",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 10,
+      "amount": 64000,
+      "memo": "카드가 마지막까지 일함",
+      "date": "2026-02-19",
+      "assets": "cash"
+    },
+    {
+      "id": "502",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 83000,
+      "memo": "겨울 끝 소비",
+      "date": "2026-02-20",
+      "assets": "bank"
+    },
+    {
+      "id": "503",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 2,
+      "amount": 128000,
+      "memo": "예상 못한 입금",
+      "date": "2026-02-21",
+      "assets": "card"
+    },
+    {
+      "id": "504",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 3,
+      "amount": 59000,
+      "memo": "쇼핑은 계속된다",
+      "date": "2026-02-22",
+      "assets": "cash"
+    },
+    {
+      "id": "505",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 4,
+      "amount": 92000,
+      "memo": "지갑 마지막 방어 실패",
+      "date": "2026-02-23",
+      "assets": "bank"
+    },
+    {
+      "id": "506",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 47000,
+      "memo": "배달앱 종료 없음",
+      "date": "2026-02-24",
+      "assets": "card"
+    },
+    {
+      "id": "507",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 6,
+      "amount": 87000,
+      "memo": "카페는 일상",
+      "date": "2026-02-25",
+      "assets": "cash"
+    },
+    {
+      "id": "508",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 7,
+      "amount": 150000,
+      "memo": "연말 보너스 뒤늦게",
+      "date": "2026-02-26",
+      "assets": "bank"
+    },
+    {
+      "id": "509",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 8,
+      "amount": 69000,
+      "memo": "충동구매 완료",
+      "date": "2026-02-27",
+      "assets": "card"
+    },
+    {
+      "id": "510",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 9,
+      "amount": 94000,
+      "memo": "2월 마무리 소비 폭발",
+      "date": "2026-02-28",
+      "assets": "cash"
+    },
+    {
+      "id": "511",
+      "userId": "Bol1234",
+      "type": "income",
+      "categoryId": 10,
+      "amount": 132000,
+      "memo": "마지막 작은 수입",
+      "date": "2026-02-28",
+      "assets": "bank"
+    },
+    {
+      "id": "512",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 1,
+      "amount": 56000,
+      "memo": "월말인데도 소비는 진행형",
+      "date": "2026-02-28",
+      "assets": "card"
+    },
+    {
+      "id": "513",
+      "userId": "Bol1234",
+      "type": "expense",
+      "categoryId": 2,
+      "amount": 88000,
+      "memo": "지갑 완전 방전 직전",
+      "date": "2026-02-28",
+      "assets": "cash"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "1",
+      "userId": "usr_e0ifd0tv",
+      "month": "2026-01",
+      "amount": 1341793
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2026-02",
+      "amount": 1500000,
+      "id": "okjEoquxvOE"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2026-01",
+      "amount": 1500000,
+      "id": "et0mItFvXCI"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2025-01",
+      "amount": 1000000,
+      "id": "byoJxJunSmg"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2025-02",
+      "amount": 1000000,
+      "id": "L2hkSd3nDgk"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2025-03",
+      "amount": 1200000,
+      "id": "wxJgX01irts"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2025-07",
+      "amount": 1500000,
+      "id": "S1CXc907_4E"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2025-08",
+      "amount": 1000000,
+      "id": "LmOhVJgzn9s"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2025-09",
+      "amount": 1500000,
+      "id": "aEmC7R5ZNoo"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2025-10",
+      "amount": 1000000,
+      "id": "2t_PwMb4t3o"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2025-11",
+      "amount": 1500000,
+      "id": "nRcohOGmOxw"
+    },
+    {
+      "userId": "Bol1234",
+      "month": "2025-12",
+      "amount": 1500000,
+      "id": "nTcMxATrc98"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "type": "income",
+      "name": "월급"
+    },
+    {
+      "id": "2",
+      "type": "income",
+      "name": "용돈"
+    },
+    {
+      "id": "3",
+      "type": "expense",
+      "name": "식비"
+    },
+    {
+      "id": "4",
+      "type": "expense",
+      "name": "교통"
+    },
+    {
+      "id": "5",
+      "type": "expense",
+      "name": "쇼핑"
+    },
+    {
+      "id": "6",
+      "type": "expense",
+      "name": "문화"
+    },
+    {
+      "id": "7",
+      "type": "expense",
+      "name": "의료"
+    },
+    {
+      "id": "8",
+      "type": "income",
+      "name": "보너스"
+    },
+    {
+      "id": "9",
+      "type": "expense",
+      "name": "주거"
+    },
+    {
+      "id": "10",
+      "type": "expense",
+      "name": "기타"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
