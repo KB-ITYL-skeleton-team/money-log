@@ -3,6 +3,8 @@
 Vue 3 + Pinia + json-server 기반의 가계부 웹 애플리케이션이다.
 우주 컨셉 UI를 적용하여 시각적인 재미와 데이터 분석 기능을 동시에 제공한다.
 
+![이미지 설명](./images/01.jpeg)
+
 ---
 
 ## 📌 기술 스택
@@ -69,7 +71,7 @@ src/
 
 ---
 ## 화면 이미지
-![이미지 설명](./images/01.jpeg)
+
 ![이미지 설명](./images/02.jpeg)
 ![이미지 설명](./images/03.jpeg)
 ![이미지 설명](./images/04.jpeg)
@@ -81,6 +83,9 @@ src/
 ![이미지 설명](./images/10.jpeg)
 ![이미지 설명](./images/11.jpeg)
 ![이미지 설명](./images/12.jpeg)
+![이미지 설명](./images/13.jpeg)
+![이미지 설명](./images/14.jpeg)
+![이미지 설명](./images/15.jpeg)
 
 
 
