@@ -12,5 +12,4 @@ dist/
 
 npm-debug.log*
 
-db.json
 dummy_db.json
