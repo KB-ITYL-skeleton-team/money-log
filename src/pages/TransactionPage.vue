@@ -1,8 +1,12 @@
 <template>
   <!-- 수입/지출 입력 페이지(웹 폼 버전) -->
-  <div class="transaction-wrapper d-flex align-items-center justify-content-center">
+  <div
+    class="transaction-wrapper d-flex align-items-center justify-content-center"
+  >
     <div class="container transaction-container">
-      <section class="transaction-card p-4 p-md-5 border rounded-5 shadow-sm bg-white">
+      <section
+        class="transaction-card p-4 p-md-5 border rounded-5 shadow-sm bg-white"
+      >
         <!-- 페이지 상단 헤더: 뒤로가기 + 현재 탭 제목 -->
         <header class="page-header">
           <button

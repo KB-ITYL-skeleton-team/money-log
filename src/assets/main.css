@@ -9,10 +9,14 @@
   --font-base: 'Inter', 'Noto Sans KR', sans-serif;
 
   /* 우주 + 금융 앱 톤 */
-  --space-bg: #020617;
+  /* --space-bg: #020617;
   --space-bg-soft: #0b1120;
   --space-card: rgba(15, 23, 42, 0.78);
-  --space-border: rgba(148, 163, 184, 0.18);
+  --space-border: rgba(148, 163, 184, 0.18); */
+  --space-bg: #f8fafc; /* 전체 배경 (밝은 회백색) */
+  --space-bg-soft: #ffffff; /* 보조 배경 (완전 흰색) */
+  --space-card: rgba(255, 255, 255, 0.85); /* 카드 (반투명 흰색) */
+  --space-border: rgba(0, 0, 0, 0.08); /* 얇은 회색 테두리 */
   --space-text: #e5eefc;
   --space-text-muted: #94a3b8;
   --space-accent: #7c9cff;
