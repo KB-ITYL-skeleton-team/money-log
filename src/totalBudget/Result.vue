@@ -2,24 +2,26 @@
   <div>
     <div class="ment">
       <div class="te">
-        <p class="number">{{ selectedMonth }}</p>
+        <p class="number">{{ date.year }}</p>
+        <p>년</p>
+        <p class="number">{{ date.month }}</p>
         <p>월의</p>
       </div>
       <div class="text">
         <div class="te">
           <p>예산은</p>
-          <p class="number">100%</p>
-          <p>( ₩ {{ totalBudget.toLocaleString() }} )</p>
+          <p class="number">{{ totalBudgetM === 0 ? '0%' : '100%' }}</p>
+          <p>( ₩ {{ totalBudgetM.toLocaleString() }} )</p>
         </div>
         <div class="te">
-          <p>예산지출은</p>
-          <p class="number">{{ Math.floor(percentageExpense) }}%</p>
-          <p>( ₩ {{ totalExpense.toLocaleString() }} )</p>
+          <p>지출은</p>
+          <p class="number">{{ Math.floor(percentageExpenseM * 10) / 10 }}%</p>
+          <p>( ₩ {{ totalExpenseM.toLocaleString() }} )</p>
         </div>
         <div class="te">
-          <p>예산잔액은</p>
-          <p class="number">{{ Math.floor(percentageBalance) }}%</p>
-          <p>( ₩ {{ (totalBudget - totalExpense).toLocaleString() }} )</p>
+          <p>잔액은</p>
+          <p class="number">{{ Math.floor(percentageBalanceM * 10) / 10 }}%</p>
+          <p>( ₩ {{ (totalBudgetM - totalExpenseM).toLocaleString() }} )</p>
         </div>
       </div>
       <p>이에요.</p>
@@ -28,77 +30,50 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
 import { useTransactionsStore } from '@/stores/staticsStores.js';
 import { storeToRefs } from 'pinia';
-import inputBudget from './InputBudget.vue';
+import { computed } from 'vue';
 
 export default {
   name: 'Result',
-  components: { inputBudget },
 
   setup() {
+    // 새로고침
     const reload = (month) => {
       selectedMonth.value = month;
     };
 
-    const transaction = useTransactionsStore();
-    const { selectedMonth, userID, expense, budgets } =
-      storeToRefs(transaction);
+    // 스토어 사용
+    const transactions = useTransactionsStore();
+    const {
+      userID,
+      budget,
+      selectedMonth,
+      totalIncomeM,
+      totalExpenseM,
+      totalBudgetM,
+      totalBalanceM,
+      percentageExpenseM,
+      percentageBalanceM,
+    } = storeToRefs(transactions);
 
-    onMounted(() => {
-      transaction.init();
-    });
-
-    const totalExpense = computed(() => {
-      if (!expense.value) {
-        return 0;
-      }
-      return Number(
-        expense.value
-          .filter((e) => e.date?.slice(0, 7) === selectedMonth.value)
-          .reduce((sum, e) => sum + (e.amount || 0), 0),
-      );
-    });
-
-    const totalBudget = computed(() => {
-      if (!budgets.value || !userID.value) {
-        return 0;
-      }
-      const budgetForMonth = budgets.value.find(
-        (b) => b.userId === userID.value && b.month === selectedMonth.value,
-      );
-      return budgetForMonth ? Number(budgetForMonth.amount) : 0;
-    });
-
-    const totalBalance = computed(() => {
-      return totalBudget.value - totalExpense.value;
-    });
-
-    const percentageBalance = computed(() => {
-      if (!totalBudget.value) {
-        return 0;
-      }
-      return (
-        ((totalBudget.value - totalExpense.value) / totalBudget.value) * 100
-      );
-    });
-
-    const percentageExpense = computed(() => {
-      if (!totalBudget.value) {
-        return 0;
-      }
-      return (totalExpense.value / totalBudget.value) * 100;
+    const date = computed(() => {
+      const [year, month] = selectedMonth.value.split('-');
+      return { year, month };
     });
 
     return {
       reload,
+      date,
+      userID,
+      budget,
       selectedMonth,
-      totalExpense,
-      totalBudget,
-      totalBalance,
-      percentageBalance,
-      percentageExpense,
+      totalIncomeM,
+      totalExpenseM,
+      totalBudgetM,
+      totalBalanceM,
+      percentageExpenseM,
+      percentageBalanceM,
     };
   },
 };
@@ -113,7 +88,6 @@ export default {
   margin-top: -20vh;
   color: rgba(250, 204, 21, 0.45);
 }
-
 .text {
   display: flex;
   flex-direction: column;
@@ -123,7 +97,6 @@ export default {
   margin-left: 10px;
   color: rgba(250, 204, 21, 0.45);
 }
-
 .te {
   display: flex;
   flex-direction: row;

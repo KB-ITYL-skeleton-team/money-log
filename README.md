@@ -6,6 +6,7 @@
 - Pinia
 - Composition API
 - Vite
+- vue3-apexcharts
 
 ## 디자인
 - Figma

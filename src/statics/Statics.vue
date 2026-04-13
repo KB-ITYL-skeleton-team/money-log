@@ -6,20 +6,23 @@
       class="star"
       :style="star.style"
     ></div>
+
     <div class="top">
       <div class="box">
-        <router-link to="/statics/yearStatics"
-          ><div class="year"></div>
-          <div>Year Statics</div></router-link
-        >
+        <router-link to="/statics/yearStatics">
+          <div class="year"></div>
+          <div>연도별 통계</div>
+        </router-link>
       </div>
+
       <div class="box">
-        <router-link to="/statics/monthStatics"
-          ><div class="month"></div>
-          <div>Month Statics</div></router-link
-        >
+        <router-link to="/statics/monthStatics">
+          <div class="month"></div>
+          <div>월별 통계</div>
+        </router-link>
       </div>
     </div>
+
     <div class="bottom">
       <div class="left"><RouterView name="left"></RouterView></div>
       <div class="right"><RouterView name="right"></RouterView></div>
@@ -28,16 +31,17 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+
 export default {
   name: 'Statics',
   setup() {
     const stars = ref([]);
+    let timer = null;
 
     function createStar() {
       const x = Math.random() * window.innerWidth;
       const y = Math.random() * window.innerHeight * 0.5;
-
       const distance = 300 + Math.random() * 400;
       const duration = 0.8 + Math.random() * 0.6;
 
@@ -54,20 +58,27 @@ export default {
     }
 
     function init() {
-      stars.value = Array.from({ length: 10 }, createStar);
+      stars.value = Array.from({ length: 20 }, createStar);
     }
 
     function recycle(index) {
+      if (!stars.value[index]) return;
       stars.value[index] = createStar();
     }
 
     onMounted(() => {
-      init();
-      setInterval(() => {
-        const i = Math.floor(Math.random() * 5);
+      init(); // ✅ 반드시 초기화
+
+      timer = setInterval(() => {
+        const i = Math.floor(Math.random() * stars.value.length);
         recycle(i);
       }, 700);
     });
+
+    onUnmounted(() => {
+      clearInterval(timer);
+    });
+
     return { stars };
   },
 };
@@ -87,16 +98,13 @@ export default {
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 ::-webkit-scrollbar-track {
   background: #020617; /* 배경 */
 }
-
 ::-webkit-scrollbar-thumb {
   background: #020617; /* 막대 */
   border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #020617;
 }
@@ -110,11 +118,18 @@ export default {
 
 .bottom {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   background-color: #020617;
   color: white;
+}
+
+.left {
+  width: 40vw;
+}
+.right {
+  width: 40vw;
 }
 
 .box {
@@ -125,7 +140,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: rgba(250, 204, 21, 0.45);
+  color: rgba(250, 204, 21, 0.7);
 }
 
 .star {
@@ -137,7 +152,6 @@ export default {
 
   animation: shoot 3.5s linear forwards;
 }
-
 .star::after {
   content: '';
   position: absolute;
@@ -146,7 +160,6 @@ export default {
   background: linear-gradient(to left, white, transparent);
   transform: translateX(-80px);
 }
-
 @keyframes shoot {
   0% {
     transform: translate(0, 0) rotate(45deg);
@@ -161,7 +174,6 @@ export default {
 .year {
   width: 50px;
   height: 50px;
-
   background-image: url('@/statics/sun.png');
   background-size: cover;
   background-position: center;
@@ -170,7 +182,6 @@ export default {
 .month {
   width: 50px;
   height: 50px;
-
   background-image: url('@/statics/sun.png');
   background-size: cover;
   background-position: center;
