@@ -151,9 +151,6 @@ export const useLoginStore = defineStore('login', () => {
       return;
     }
 
-    if (!confirm('정말로 탈퇴하시겠습니까? 계정과 모든 데이터가 삭제됩니다.'))
-      return;
-
     try {
       await axios.delete(`http://localhost:3000/users/${currentUser.value.id}`);
 
@@ -170,15 +167,29 @@ export const useLoginStore = defineStore('login', () => {
       alert('탈퇴 처리 중 오류가 발생했습니다.');
     }
   };
+  //------
+  function getYyyymmdd() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDay()).padStart(2, '0');
+
+    return `${year}${month}${day}`;
+  }
+
+  const randomNum = parseInt(Math.random() * 10000);
+  console.log(getYyyymmdd() + num);
 
   // --- 회원가입 로직 ---
   const handleSignup = async (userData) => {
     try {
       // 1. 서버에 저장할 객체 구성
-
+      // 새로운 회원 id 키 값 생성
+      // 형태 : yyyymmdd + 난수 4자리
       const newUser = {
         ...userData,
-        id: String(Date.now()),
+        id: String(getId()),
         createdAt: new Date().toISOString().split('T')[0], // 가입 날짜
       };
 

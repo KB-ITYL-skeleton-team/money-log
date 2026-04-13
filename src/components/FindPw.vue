@@ -2,18 +2,23 @@
   <div class="find-pw-wrapper d-flex align-items-center justify-content-center">
     <div class="container find-pw-container">
       <div class="find-pw-card p-4 p-md-5 shadow-lg bg-white">
-        <h1 class="pc-title d-none d-md-block mb-5 text-center text-md-start">
+        <h1
+          class="pc-title d-none d-md-block mb-5 text-center text-md-start title-yellow"
+        >
           비밀번호 찾기
         </h1>
 
         <div class="row align-items-center">
           <div class="col-12 col-md-5 text-center mb-4 mb-md-0 icon-section">
-            <h1 class="d-md-none mb-4 mobile-inner-title">
-              비밀번호 찾기 <span style="font-size: 1.5rem">🔑</span>
+            <h1 class="d-md-none mb-4 mobile-inner-title title-yellow">
+              비밀번호 찾기
             </h1>
-            <div class="user-icon-area">
-              <div class="user-icon">
-                <span style="font-size: 3.5rem">🔑</span>
+
+            <div class="space-area">
+              <div class="ufo">
+                <div class="ufo-glass"></div>
+                <div class="ufo-body"></div>
+                <div class="ufo-light"></div>
               </div>
             </div>
           </div>
@@ -26,8 +31,9 @@
               <input
                 v-model="userId"
                 type="text"
-                class="form-underline"
+                class="form-block-input"
                 placeholder="아이디를 입력하세요"
+                @keyup.enter="handleFindPw"
               />
             </div>
 
@@ -38,15 +44,16 @@
               <input
                 v-model="email"
                 type="email"
-                class="form-underline"
+                class="form-block-input"
                 placeholder="등록된 이메일을 입력하세요"
+                @keyup.enter="handleFindPw"
               />
             </div>
 
             <div class="d-grid gap-2 mb-4">
               <button
                 @click="handleFindPw"
-                class="btn btn-find-pw py-2 fw-bold"
+                class="btn btn-yellow-main py-2 fw-bold"
               >
                 비밀번호 확인
               </button>
@@ -55,7 +62,7 @@
             <div class="text-center">
               <router-link
                 to="/loginPage"
-                class="back-link small text-secondary"
+                class="back-to-login small text-secondary"
               >
                 취소
               </router-link>
@@ -85,14 +92,12 @@ const handleFindPw = async () => {
 </script>
 
 <style scoped>
-/* 배경 및 전체 래퍼 (로그인/아이디 찾기와 동일) */
 .find-pw-wrapper {
   min-height: 100vh;
-  background: no-repeat center center / cover;
+  background: #0b0e18;
   padding: 20px;
 }
 
-/* 박스 크기 통일 */
 .find-pw-container {
   width: 100%;
   max-width: 650px;
@@ -104,83 +109,147 @@ const handleFindPw = async () => {
   background-color: #ffffff;
 }
 
+/* 타이틀 노란색 */
+.title-yellow {
+  color: #ffd700 !important;
+  font-weight: 800;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
 .pc-title {
   font-size: 3rem;
-  font-weight: 800;
-  color: #333;
 }
 
-/* 왼쪽 원형 아이콘 스타일 */
-.user-icon-area {
+/* 🛸 우주선(UFO) 애니메이션 스타일 */
+.space-area {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 150px;
+  position: relative;
 }
 
-.user-icon {
-  width: 120px;
-  height: 120px;
-  background-color: #2c7a90;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.ufo {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  animation: fly 4s infinite ease-in-out;
 }
 
-/* 입력창 밑줄 스타일 */
-.form-underline {
+.ufo-body {
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  background: #95a5a6;
+  border-radius: 50px;
+  bottom: 0;
+  z-index: 2;
+}
+
+.ufo-glass {
+  position: absolute;
+  width: 40px;
+  height: 25px;
+  background: rgba(52, 152, 219, 0.7);
+  border-radius: 50% 50% 0 0;
+  top: -5px;
+  left: 20px;
+  z-index: 1;
+}
+
+.ufo-light {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(255, 215, 0, 0.3), transparent);
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  top: 25px;
+  left: 10px;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes fly {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-10px, -15px) rotate(-5deg);
+  }
+  50% {
+    transform: translate(10px, -5px) rotate(5deg);
+  }
+  75% {
+    transform: translate(-5px, -20px) rotate(-3deg);
+  }
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+/* 입력창 블록형 */
+.form-block-input {
   width: 100%;
-  padding: 10px 0;
-  border: none;
-  border-bottom: 2px solid #333;
-  background: transparent;
+  padding: 12px 15px;
+  border: 1px solid #ddd !important;
+  border-radius: 12px;
+  background-color: #f8f9fa;
   outline: none;
-  transition: border-bottom 0.3s;
+  transition: all 0.3s;
 }
 
-.form-underline:focus {
-  border-bottom: 2px solid #2c7a90;
+.form-block-input:focus {
+  border-color: #ffd700 !important;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
 }
 
-/* 버튼 스타일 */
-.btn-find-pw {
-  background-color: #ffffff;
-  border: 1px solid #333;
+/* 노란색 메인 버튼 */
+.btn-yellow-main {
+  background-color: #ffd700;
+  border: 1px solid #ffd700;
   color: #333;
   border-radius: 12px;
   transition: all 0.2s;
 }
 
-.btn-find-pw:hover {
+.btn-yellow-main:hover {
   background-color: #333;
-  color: #fff;
+  color: #ffd700;
+  border-color: #333;
 }
 
-.back-link {
+/* 취소 링크 호버 빨간색 */
+.back-to-login {
   text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
 }
 
-.back-link:hover {
+.back-to-login:hover {
+  color: #ff4d4d !important;
   text-decoration: underline;
 }
 
-/* 모바일 */
 @media (max-width: 767.98px) {
   .find-pw-container {
     max-width: 390px;
-    padding: 0 10px;
   }
-
   .find-pw-card {
     border-radius: 30px !important;
-    padding: 40px 25px !important;
-    margin: 0 5px;
+    padding: 35px 20px !important;
   }
-
   .mobile-inner-title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #333;
+    font-size: 2.2rem;
+  }
+  .ufo {
+    transform: scale(0.8);
   }
 }
 </style>

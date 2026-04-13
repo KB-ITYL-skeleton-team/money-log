@@ -1,13 +1,23 @@
+TML
 <template>
   <div
     class="signup-wrapper d-flex align-items-center justify-content-center mt-md-5 pb-5"
   >
-    <!-- 페이지 새로고침으로 삭제 방지 -->
     <form
       @submit.prevent="submitSignup"
       class="signup-card p-4 p-md-5 border rounded-5 shadow-sm bg-white"
     >
-      <h1 class="fw-extra-bold mb-4 text-dark display-6">회원가입</h1>
+      <div class="d-flex align-items-center mb-4 gap-3">
+        <h1 class="fw-extra-bold display-6 mb-0 signup-title-yellow">
+          회원가입
+        </h1>
+        <div class="planets-box d-none d-sm-flex gap-2">
+          <div class="planet jupiter"></div>
+          <div class="planet saturn"></div>
+          <div class="planet uranus"></div>
+          <div class="planet neptune"></div>
+        </div>
+      </div>
 
       <div class="row info-content-area">
         <div class="col-12 col-md-6 pe-md-4 mb-4 mb-md-0 section-divider">
@@ -80,7 +90,6 @@
                 />
                 <span class="valid-icon" v-if="userId.length > 0">
                   <span v-if="isIdChecked" style="color: green">✅</span>
-
                   <template v-else>
                     <span v-if="!isIdValid" style="color: red">❌</span>
                     <span v-else style="color: orange">⚠️</span>
@@ -96,12 +105,14 @@
               </button>
             </div>
           </div>
+
           <div class="mt-2" style="font-size: 0.75rem">
             <span class="me-2">❌: 6자 미만</span>
             <span class="me-2">⚠️: 중복 확인 필요</span>
             <span>✅: 사용 가능</span>
           </div>
         </div>
+
         <div class="col-12 col-md-6 ps-md-4">
           <div class="mb-4">
             <label class="form-label fw-bold small text-secondary mb-1"
@@ -159,14 +170,15 @@
           <div class="d-grid gap-2 mb-3 mt-auto">
             <button
               type="submit"
-              class="btn btn-dark-custom py-2 rounded-3 fw-bold"
+              class="btn btn-yellow-main py-2 rounded-3 fw-bold"
             >
               가입하기
             </button>
+
             <button
               type="button"
               @click="router.push('/loginPage')"
-              class="btn btn-outline-secondary py-2 rounded-3 FW-bold"
+              class="btn btn-red-cancel py-2 rounded-3 fw-bold"
             >
               가입취소
             </button>
@@ -181,11 +193,9 @@
 import { ref, computed } from 'vue';
 import { useLoginStore } from '@/stores/userStore';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
 
 const loginStore = useLoginStore();
 const router = useRouter();
-
 const name = ref('');
 const phone = ref('');
 const email = ref('');
@@ -193,22 +203,28 @@ const userId = ref('');
 const password = ref('');
 const passwordConfirm = ref('');
 const isIdChecked = ref(false); // 아이디 중복 확인 변수
+const isEmailUnique = ref(true);
 
 // 비밀번호 보이기, 숨기기 상태 관리 변수
 const showPassword = ref(false);
 const showPasswordConfirm = ref(false);
 
 // --- 유효성 검사 로직  ---
+
 // 이름 오타없이 완전한 글자로
 const isNameValid = computed(() => /^[가-힣]+$/.test(name.value));
+
 // 전화번호 형식
 const isPhoneValid = computed(() => /^010-\d{4}-\d{4}$/.test(phone.value));
+
 // 이메일 형식
 const isEmailValid = computed(() =>
   /^[a-zA-A0-9._%+-]+@[a-zA-A0-9.-]+\.[a-zA-A]{2,}$/.test(email.value),
 );
+
 // 아이디 형식
 const isIdValid = computed(() => userId.value.length >= 6);
+
 // 비밀번호 형식
 const isPwValid = computed(() => {
   const pw = password.value;
@@ -216,7 +232,6 @@ const isPwValid = computed(() => {
 
   // 영문(?=.*[a-zA-Z])과 숫자(?=.*[0-9])가 모두 포함된 7자 이상(.{7,})인지 검사
   const regExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{7,}$/;
-
   return regExp.test(pw);
 });
 
@@ -235,7 +250,6 @@ const checkId = async () => {
 
   // 2. 스토어 함수 호출해서 중복 여부 확인
   const isDuplicated = await loginStore.checkIdDuplicated(userId.value);
-
   if (isDuplicated) {
     alert('이미 사용 중인 아이디입니다.');
     isIdChecked.value = false; // 중복 확인 실패 상태
@@ -246,17 +260,71 @@ const checkId = async () => {
 };
 
 const submitSignup = async () => {
-  if (
-    !isNameValid.value ||
-    !isPhoneValid.value ||
-    !isEmailValid.value ||
-    !isIdChecked.value ||
-    !isPwValid.value ||
-    !isPwConfirmValid.value
-  ) {
-    alert('입력 칸에 정보를 모두 작성하고 중복 확인을 완료해주세요.');
+  // 1. 이름 검사
+  if (!name.value.trim()) {
+    alert('이름을 입력해주세요.');
     return;
   }
+  if (!isNameValid.value) {
+    alert('이름을 한글로 정확히 입력해주세요.');
+    return;
+  }
+
+  // 2. 전화번호 검사
+  if (!phone.value.trim()) {
+    alert('전화번호를 입력해주세요.');
+    return;
+  }
+  if (!isPhoneValid.value) {
+    alert('전화번호 형식이 올바르지 않습니다. (010-0000-0000)');
+    return;
+  }
+
+  // 3. 이메일 검사
+  if (!email.value.trim()) {
+    alert('이메일을 입력해주세요.');
+    return;
+  }
+  if (!isEmailValid.value) {
+    alert('이메일 형식이 올바르지 않습니다.');
+    return;
+  }
+
+  // 4. 아이디 검사
+  if (!userId.value.trim()) {
+    alert('아이디를 입력해주세요.');
+    return;
+  }
+  if (!isIdValid.value) {
+    alert('아이디는 6자리 이상이어야 합니다.');
+    return;
+  }
+  if (!isIdChecked.value) {
+    alert('아이디 중복 확인을 완료해주세요.');
+    return;
+  }
+
+  // 5. 비밀번호 검사
+  if (!password.value.trim()) {
+    alert('비밀번호를 입력해주세요.');
+    return;
+  }
+  if (!isPwValid.value) {
+    alert('비밀번호는 영문과 숫자를 포함하여 7자 이상이어야 합니다.');
+    return;
+  }
+
+  // 6. 비밀번호 확인 검사
+  if (!passwordConfirm.value.trim()) {
+    alert('비밀번호 확인 칸을 입력해주세요.');
+    return;
+  }
+  if (!isPwConfirmValid.value) {
+    alert('비밀번호가 일치하지 않습니다.');
+    return;
+  }
+
+  // 모든 검사를 통과하면 서버로 가입 요청 전송
   await loginStore.handleSignup({
     name: name.value,
     phone: phone.value,
@@ -268,6 +336,37 @@ const submitSignup = async () => {
 </script>
 
 <style scoped>
+/* [가입하기] 정보수정 스타일 (노란색) */
+.btn-yellow-main {
+  background-color: #ffd700;
+  border: 1px solid #ffd700;
+  color: #333;
+  transition: all 0.2s ease;
+}
+.btn-yellow-main:hover {
+  background-color: #333;
+  border-color: #333;
+  color: #ffd700;
+}
+
+/* [가입취소] 회원탈퇴 스타일 (빨간색) */
+.btn-red-cancel {
+  background-color: transparent;
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  transition: all 0.2s ease;
+}
+.btn-red-cancel:hover {
+  background-color: #ff4d4d;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+}
+
+/* 폰트 굵기 보정 */
+.fw-bold {
+  font-weight: 700 !important;
+}
+/* 전체 폰트 및 공통 설정 */
 .fw-extra-bold {
   font-weight: 800;
   letter-spacing: -1px;
@@ -275,42 +374,84 @@ const submitSignup = async () => {
 
 .display-6 {
   font-size: 2.5rem;
-  color: #212529 !important;
 }
 
-.signup-card {
-  max-width: 850px;
-  width: 100%;
-}
-/* 카드 스타일 */
-.signup-card {
-  border-radius: 40px !important;
-  border: 1px solid #eaeaea !important;
+/* [1] 회원가입 타이틀 (로그인 테마 노란색) */
+.signup-title-yellow {
+  color: #ffd700 !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* PC용 타이틀 */
-.pc-title {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #333;
+/* [2] 행성 애니메이션 (목토천해) */
+.planets-box {
+  display: flex;
+  align-items: center;
+}
+.planet {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  animation: float-planet 3s infinite ease-in-out;
+}
+.jupiter {
+  background: #d39c7e;
+  animation-delay: 0s;
+}
+.saturn {
+  background: #f0e2a8;
+  animation-delay: 0.5s;
+  border: 2px solid #d4c38d;
+  position: relative;
+}
+/* 토성 고리 효과 */
+.saturn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 4px;
+  border: 1px solid #d4c38d;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+}
+.uranus {
+  background: #b2d8d8;
+  animation-delay: 1s;
+}
+.neptune {
+  background: #5b5ddf;
+  animation-delay: 1.5s;
 }
 
-/* 입력창 밑줄 스타일 */
+@keyframes float-planet {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* [3] 블록형 입력창 스타일 */
 .form-underline {
   width: 100%;
-  padding: 10px 0;
-  border: none;
-  border-bottom: 2px solid #333;
-  background: transparent;
+  padding: 12px 15px;
+  border: 1px solid #ddd !important;
+  border-radius: 12px; /* 둥근 블록형 */
+  background-color: #f8f9fa; /* 연한 회색 블록 */
   outline: none;
-  transition: border-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .form-underline:focus {
-  border-bottom-color: #2c7a90;
+  border-color: #ffd700 !important;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
 }
 
-/* 아이콘 및 체크 표시 위치 */
+/* 입력 아이콘 위치 최적화 */
 .input-with-icon {
   position: relative;
   display: flex;
@@ -319,71 +460,62 @@ const submitSignup = async () => {
 
 .valid-icon {
   position: absolute;
-  right: 5px;
-  top: 10px;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-/*  비밀번호 가리기, 보이기 아이콘 */
 .valid-icon.pw-valid {
-  right: 35px;
+  right: 45px;
 }
 
 .eye-btn {
   position: absolute;
-  right: 0px;
-  top: 10px;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 0;
   font-size: 1.2rem;
+  padding: 0;
+  z-index: 5;
 }
 
-/* 가입하기 버튼 스타일 */
-.btn-dark-custom {
-  background-color: #ffffff;
-  border: 1px solid #333;
+/* [4] 노란색 버튼 스타일 */
+.btn-yellow-main {
+  background-color: #ffd700;
+  border: 1px solid #ffd700;
   color: #333;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
-
-.btn-dark-custom:hover {
+.btn-yellow-main:hover {
   background-color: #333;
-  color: #fff;
+  border-color: #333;
+  color: #ffd700;
 }
 
-/* [앱/모바일 환경 설정] 
-/* 아이폰 12 프로 (너비 390px) */
+.btn-outline-yellow-sub {
+  background-color: transparent;
+  border: 1px solid #ffd700;
+  color: #ffd700;
+}
+.btn-outline-yellow-sub:hover {
+  background-color: #ffd700;
+  color: #333;
+}
+
+/* 카드 및 레이아웃 */
+.signup-card {
+  max-width: 850px;
+  width: 100%;
+  border-radius: 40px !important;
+  border: 1px solid #eaeaea !important;
+}
+
 @media (max-width: 767.98px) {
-  .signup-container {
-    max-width: 390px;
-    padding: 0 10px;
-  }
-
   .signup-card {
-    border-radius: 25px !important;
-    padding: 25px 15px !important;
-    margin: 0 5px;
-    border: 1px solid #eee !important;
-  }
-
-  .mobile-inner-title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #333;
-    margin-bottom: 30px !important;
-  }
-
-  .info-content-area .col-12:first-child {
-    border-right: none !important;
-    margin-bottom: 20px;
-  }
-}
-
-/* [웹/PC 환경 설정] */
-@media (min-width: 768px) {
-  .section-divider {
-    border-right: 1px solid #eee;
+    margin: 0 165px;
+    border-radius: 30px !important;
   }
 }
 </style>
