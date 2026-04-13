@@ -69,7 +69,18 @@ src/
 
 ---
 ## 화면 이미지
-![이미지 설명](./image/01.png)
+![이미지 설명](./images/01.jpeg)
+![이미지 설명](./images/02.jpeg)
+![이미지 설명](./images/03.jpeg)
+![이미지 설명](./images/04.jpeg)
+![이미지 설명](./images/05.jpeg)
+![이미지 설명](./images/06.jpeg)
+![이미지 설명](./images/07.jpeg)
+![이미지 설명](./images/08.jpeg)
+![이미지 설명](./images/09.jpeg)
+![이미지 설명](./images/10.jpeg)
+![이미지 설명](./images/11.jpeg)
+![이미지 설명](./images/12.jpeg)
 
 
 
