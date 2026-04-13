@@ -147,11 +147,19 @@ const transactionStore = useTransactionStore();
 
 // 탭 변경 시 라우트 query를 바꿔서 TransactionPage의 로직과 동기화
 // - 수정 모드(isEditing)에서는 탭 변경을 막아, 불필요한 form 초기화를 방지
+// 변경 ( 4월 13일 오전 9시 ) : 탭 전환 시 기존 date query 유지
 const changeType = (type) => {
   if (transactionStore.isEditing) return;
-  router.push({ name: 'transactionPage', query: { type } });
+  router.push({
+    name: 'transactionPage',
+    query: {
+      type,
+      ...(router.currentRoute.value.query.date
+        ? { date: router.currentRoute.value.query.date }
+        : {}),
+    },
+  });
 };
-
 // [Save Click] 로그인 여부 확인 -> 저장 확인(confirm) -> store.saveTransaction() 호출 -> 목록으로 이동
 // - saveTransaction 내부에서 (등록/수정)을 자동 분기(POST/PATCH)
 const transaction_handler = async () => {
