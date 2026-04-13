@@ -168,19 +168,15 @@ export const useLoginStore = defineStore('login', () => {
     }
   };
   //------
-  function getYyyymmdd() {
+  function getId() {
     const now = new Date();
-
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDay()).padStart(2, '0');
-
-    return `${year}${month}${day}`;
+    const yyyymmdd =
+      now.getFullYear() +
+      String(now.getMonth() + 1).padStart(2, '0') +
+      String(now.getDate()).padStart(2, '0');
+    const random = Math.floor(Math.random() * 10000);
+    return yyyymmdd + random;
   }
-
-  const randomNum = parseInt(Math.random() * 10000);
-  console.log(getYyyymmdd() + num);
-
   // --- 회원가입 로직 ---
   const handleSignup = async (userData) => {
     try {
@@ -192,12 +188,9 @@ export const useLoginStore = defineStore('login', () => {
         id: String(getId()),
         createdAt: new Date().toISOString().split('T')[0], // 가입 날짜
       };
-
       // 2. 서버에 데이터 전송 (POST 요청)
       await axios.post('http://localhost:3000/users', newUser);
-
       alert('회원가입이 완료되었습니다! 로그인 페이지로 이동합니다.');
-
       // 3. 가입 성공 후 로그인 페이지로 이동
       router.push('/loginPage');
     } catch (error) {
@@ -205,6 +198,7 @@ export const useLoginStore = defineStore('login', () => {
       alert('서버 연결 중 오류가 발생했습니다.');
     }
   };
+
   // --- 아이디 중복 확인 함수 ---
   const checkIdDuplicated = async (userId) => {
     try {
