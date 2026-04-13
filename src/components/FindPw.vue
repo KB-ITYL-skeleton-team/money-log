@@ -94,7 +94,7 @@ const handleFindPw = async () => {
 <style scoped>
 .find-pw-wrapper {
   min-height: 100vh;
-  background: #0b0e18;
+  /* background: #0b0e18; */
   padding: 20px;
 }
 
