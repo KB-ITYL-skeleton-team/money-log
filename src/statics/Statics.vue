@@ -174,7 +174,7 @@ export default {
 .year {
   width: 50px;
   height: 50px;
-  background-image: url('@/statics/sun.png');
+  background-image: url('@/assets/sun.png');
   background-size: cover;
   background-position: center;
 }
@@ -182,7 +182,7 @@ export default {
 .month {
   width: 50px;
   height: 50px;
-  background-image: url('@/statics/sun.png');
+  background-image: url('@/assets/sun.png');
   background-size: cover;
   background-position: center;
 }

@@ -186,7 +186,13 @@ export const useTransactionStore = defineStore('transaction', () => {
     typeClickCount.value[type] += 1;
     lastSelectedType.value = type;
     activeType.value = type;
+
+    // [변경] resetForm() 전에 현재 날짜 저장
+    // 변경 전: resetForm()만 호출 → date가 오늘 날짜로 초기화됨
+    // 변경 후: resetForm() 직후 날짜 즉시 복원 → 깜빡임 없이 날짜 유지
+    const savedDate = form.value.date;
     resetForm();
+    form.value.date = savedDate;
   };
 
   const applyTypeFilter = async (type) => {

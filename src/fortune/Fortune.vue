@@ -26,7 +26,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import data from '../../fortune.json';
-import soundURL from '@/fortune/MP_Ta Da.mp3';
+import soundURL from '@/assets/MP_Ta Da.mp3';
 export default {
   name: 'fortune',
   setup() {
