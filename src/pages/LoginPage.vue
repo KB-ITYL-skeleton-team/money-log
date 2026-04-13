@@ -112,7 +112,7 @@ const handleLogin = async () => {
   }
   loginStore.userId = userId.value;
   loginStore.userPw = userPw.value;
-  await loginStore.handleLogin(userId.value, userPw.value);
+  await loginStore.handleLogin();
 };
 
 const showPassword = ref(false); // 비밀번호 보이기 상태
